@@ -1,0 +1,45 @@
+from google.appengine.ext import ndb
+
+class Hero(ndb.Model):
+  """
+  Models an individual Hero. Heroes, have many stats not shown here, but many
+  of the attributes are calculated rather than stored.
+  Heros have a name, experience number, inventory, hero_class,
+  hero_settings.
+  """
+  name = ndb.StringProperty()
+  experience = ndb.IntegerProperty(default=0) # See experience.py
+  inventory = ndb.KeyProperty(kind='Inventory')
+  hero_class = ndb.IntegerProperty(default=-1) # See heroclass.py HERO_CLASS
+  hero_settings = ndb.KeyProperty(kind="HeroSettings")
+
+
+class User(ndb.Model):
+  """
+  Models an individual User entry with user_id, display_name, heroes, and
+  game_settings.
+  """
+  user_id = ndb.StringProperty()  # Matches google user ID
+  display_name = ndb.StringProperty()
+  hero = ndb.KeyProperty(kind='Hero', repeated=True)
+  ##game_settings = ndb.KeyProperty(kind='GameSettings')
+
+class Inventory(ndb.Model):
+  """
+  Models a player's inventory. An inventory is a list of items, and a gold
+  count. Items are encoded strings. See item.py.
+  """
+  items = ndb.StringProperty(repeated=True)
+  gold = ndb.IntegerProperty(default=0)
+
+##class GameSettings(ndb.Model):
+##  """
+##  Stores the User's game settings. This will be for global settings across all
+##  heros. Currently Unused.
+##  """  
+
+##class HeroSettings(ndb.Model):
+##  """
+##  Stores the Hero's game settings. This will be for settings for a single hero.
+##  Currently Unused.
+##  """  

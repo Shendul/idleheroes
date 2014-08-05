@@ -15,6 +15,17 @@ class Hero(ndb.Model):
   battle_history = ndb.KeyProperty(kind="BattleOutcome", repeated=True)
 
 
+  class Battler(ndb.Model):
+  """
+  Models the parent of both Monster and Champion classes. to be used in combat to calculate
+  true stats and determine the outcome of a battle.
+  """
+  level = ndb.IntegerProperty(default=1)
+  damage = ndb.IntegerProperty()
+  health_points = ndb.IntegerProperty()
+  ice_resistance = ndb.IntegerProperty()
+
+
 class User(ndb.Model):
   """
   Models an individual User entry with user_id, display_name, heroes, and

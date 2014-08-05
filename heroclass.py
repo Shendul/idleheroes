@@ -13,6 +13,17 @@ class HERO_CLASS:
   WIZARD = 2 # TODO: implement wizard.
 
 
+  class STAT_TYPE:
+  """
+  This class is used to represent an enumlike object. Similar to the above class, this time
+  for attributes.
+  """
+  STRENGTH = 1
+  AGILITY = 2
+  WISDOM = 3
+  CONSTITUTION = 4
+
+
 #Base Stats (level 0 stat, growth per level)
 base_attributes = {
   HERO_CLASS.WARRIOR: {

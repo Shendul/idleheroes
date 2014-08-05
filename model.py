@@ -12,6 +12,7 @@ class Hero(ndb.Model):
   inventory = ndb.KeyProperty(kind='Inventory')
   hero_class = ndb.IntegerProperty(default=-1) # See heroclass.py HERO_CLASS
   hero_settings = ndb.KeyProperty(kind="HeroSettings")
+  battle_history = ndb.KeyProperty(kind="BattleOutcome", repeated=True)
 
 
 class User(ndb.Model):
@@ -31,6 +32,20 @@ class Inventory(ndb.Model):
   """
   items = ndb.StringProperty(repeated=True)
   gold = ndb.IntegerProperty(default=0)
+
+class BattleOutcome(ndb.Model):
+  """
+  Models a battle outcome. A battle outcome has hero hp, enemy hp, enemy type,
+  starttime, rewardExp, rewardGold, rewardItems.
+  """
+  hero_hp = ndb.IntegerProperty()
+  enemy_hp = ndb.IntegerProperty()
+  enemy_type = ndb.StringProperty()
+  start_time = ndb.DateTimeProperty()
+  reward_exp = ndb.IntegerProperty(default=0)
+  reward_gold = ndb.IntegerProperty(default=0)
+  reward_items = ndb.StringProperty(repeated=True)
+
 
 ##class GameSettings(ndb.Model):
 ##  """

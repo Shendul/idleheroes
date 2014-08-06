@@ -1,4 +1,177 @@
 body {
-  font-family: Verdana, Helvetica, sans-serif;
-  background-color: #DDDDDD;
+  font-family: "Roboto";
+  background: radial-gradient(rgba(50,50,50,0.7),rgba(50,50,50,1));
+  font-weight: 200;
+  margin-top: 8px;
+}
+
+b {
+  font-family: "Roboto";
+  font-weight: 300;
+}
+
+/**
+ * Main content styles.
+ */
+.content {
+  width: 800px;
+  background-color: #EEEEEE;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,.33);
+  box-shadow: 3px 3px 5px rgba(0,0,0,.33);
+  border-radius: 10px;
+  min-height: 1000px;
+}
+
+.content-header {
+  font-family: "Roboto";
+  color: #222222;
+  font-weight: 200;
+  font-size: 1.6em;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.content-subheader {
+  font-family: "Roboto";
+  color: #444444;
+  font-weight: 200;
+  font-size: 0.875em;
+  text-align: center;
+}
+
+.error-message {
+  font-family: "Roboto";
+  font-weight: 300;
+}
+
+/**
+ * Login button styles.
+ */
+#customBtn {
+  display: inline-block;
+  background: #dd4b39;
+  color: white;
+  border-radius: 5px;
+  white-space: nowrap;
+  height: 35px;
+}
+#customBtn:hover {
+  background: #e74b37;
+  cursor: hand;
+}
+span.label {
+  font-weight: bold;
+}
+
+div.buttonText {
+  display: inline-block;
+  padding: 10px 45px;
+  font-size: 14px;
+  font-weight: bold;
+  /* Use the Roboto font that is loaded in the <head> */
+  font-family: "Roboto";
+}
+
+/**
+ * Title Bar styles.
+ */
+.title {
+  height: 70px;
+  border-bottom: 1px solid #c5c5c5;
+}
+
+.header-message {
+  color: #444;
+  font-size: 0.875em;
+  font-weight: 100;
+  float: right;
+}
+
+.header-title {
+  font-family: "Roboto";
+  font-weight: 300;
+  color: rgba(50,50,50,0.75);
+  font-size: 3.6em;
+  text-shadow: 1px 2px 3px #eee, 0 0 0 #000, 1px 2px 3px #eee;
+  float: left;
+}
+
+/**
+ * Nav styles.
+ */
+.tab-bar {
+  float: left;
+  margin-top: 18px;
+}
+
+.tab-label {
+  display: block;
+  float: left;
+  margin-left: 20px;
+  font-size: 1.4em;
+}
+
+.tab-label > a {
+  color: #777;
+}
+
+.tab-label > a:hover {
+  color: #222;
+  text-decoration: none;
+}
+
+.tab-label.selected > a {
+  color: #222;
+}
+
+/**
+ * Leaderboard Styles.
+ */
+
+ .leaderboard-table {
+  width: 600px;
+  margin: 20px 90px;
+  border-collapse: collapse;
+  border: 1px solid #c5c5c5;
+}
+
+.leaderboard-table td {
+  padding: 10px;
+  border: 1px solid #c5c5c5;
+}
+
+/**
+ *  Font faces.
+ */
+@font-face {
+  font-family: 'Roboto';
+  src: url('Roboto-Regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('Roboto-Thin-webfont.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('Roboto-Light-webfont.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('Roboto-Medium-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
 }

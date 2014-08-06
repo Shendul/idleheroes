@@ -1,0 +1,17 @@
+{% autoescape true %}
+{% include 'header.html' %}
+<html>
+  <body>
+    <div class='content'>
+      {% include 'title.html' %}
+      <br/>
+      <span><b>Sign in with:</b></span>
+      <span>
+        <a id="customBtn" class="customGPlusSignIn" href="{{ login_url|safe }}">
+          <div class="buttonText">Google</div>
+        </a>
+      </span>
+    </div>
+  </body>
+</html>
+{% endautoescape %}

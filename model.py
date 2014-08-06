@@ -15,10 +15,10 @@ class Hero(ndb.Model):
   battle_history = ndb.KeyProperty(kind="BattleOutcome", repeated=True)
 
 
-class User(ndb.Model):
+class IHUser(ndb.Model):
   """
-  Models an individual User entry with user_id, display_name, heroes, and
-  game_settings.
+  Models an individual Idle Heroes User entry with user_id, display_name,
+  heroes, and game_settings.
   """
   user_id = ndb.StringProperty()  # Matches google user ID
   display_name = ndb.StringProperty()

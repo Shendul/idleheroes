@@ -8,10 +8,11 @@ class BATTLE_STATS:
   """
   HP = 1
   DMG = 2
-  FR = 3
-  IR = 4
-  DEF = 5
-  LVL = 6
-  RLVL = 7
-  NAME = 8
-  LT = 9
+  DMGT = 3
+  FR = 4
+  IR = 5
+  DEF = 6
+  LVL = 7
+  RLVL = 8
+  NAME = 9
+  LT = 10

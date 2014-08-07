@@ -30,6 +30,10 @@ class MainPage(webapp2.RequestHandler):
       ih_user = getCurrentIdleHeroesUser()
       # TODO: Do something with the user...
 
+      template_values = {'display_name': ih_user.display_name}
+      template = JINJA_ENVIRONMENT.get_template('home.html')
+      self.response.write(template.render(template_values))
+
     else:
       # The user is not logged in, show a login button.
       login_url = users.create_login_url(self.request.uri)

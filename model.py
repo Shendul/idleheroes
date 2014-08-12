@@ -11,7 +11,7 @@ class Hero(ndb.Model):
   experience = ndb.IntegerProperty(default=0) # See experience.py
   inventory = ndb.KeyProperty(kind='Inventory')
   hero_class = ndb.IntegerProperty(default=-1) # See heroclass.py HERO_CLASS
-  hero_settings = ndb.KeyProperty(kind="HeroSettings")
+  #hero_settings = ndb.KeyProperty(kind="HeroSettings")
   battle_history = ndb.KeyProperty(kind="BattleOutcome", repeated=True)
 
 

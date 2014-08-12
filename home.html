@@ -5,7 +5,9 @@
     <div class="content">
       {% include 'title.html' %}
       Hello {{display_name}}!
-      Watch this space for updates!
+      {% if no_hero %}
+        You don't has a hero!
+      {% endif %}
     </div>
   </body>
 </html>

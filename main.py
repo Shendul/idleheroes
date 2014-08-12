@@ -28,7 +28,9 @@ class MainPage(webapp2.RequestHandler):
       if users.get_current_user().user_id() in banlist:
         return self.redirect('/banned')
       ih_user = getCurrentIdleHeroesUser()
-      # TODO: Do something with the user...
+      # Check to see if the user has a hero
+      if len(ih_user.hero) == 0:
+        template_values = {'no_hero': True}
 
       template_values = {'display_name': ih_user.display_name}
       template = JINJA_ENVIRONMENT.get_template('home.html')

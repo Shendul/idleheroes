@@ -42,7 +42,7 @@ class MainPage(webapp2.RequestHandler):
 
     else:
       # The user is not logged in, show a login button.
-      login_url = users.create_login_url(self.request.uri)
+      login_url = users.create_login_url(self.request.url)
       template_values = {'login_url': login_url}
       template = JINJA_ENVIRONMENT.get_template('login.html')
       self.response.write(template.render(template_values))

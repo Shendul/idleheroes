@@ -55,4 +55,8 @@ def getBaseStatsForHero(hero_class, level):
         base_stats[hero_class][STAT_TYPE.CONSTITUTION][1]*level,
   }
 
-
+def getHeroValues(ih_hero_model):
+  hero = {}
+  # Determine the stats of the hero
+  # TODO: Check equiped Items.
+  

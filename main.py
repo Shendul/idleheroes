@@ -25,10 +25,12 @@ class MainPage(webapp2.RequestHandler):
   def get(self):
 
     if users.get_current_user():
+      template_values = {}
+      template_values['url_linktext'] = 'Logout'
+      template_values['url'] = users.create_logout_url(self.request.uri)
       #Ignore the banned nerds
       if users.get_current_user().user_id() in banlist:
         return self.redirect('/banned')
-      template_values = {}
       ih_user = getCurrentIdleHeroesUser()
       # Check to see if the user has a hero
       if len(ih_user.hero) == 0:
@@ -42,7 +44,7 @@ class MainPage(webapp2.RequestHandler):
 
     else:
       # The user is not logged in, show a login button.
-      login_url = users.create_login_url(self.request.url)
+      login_url = users.create_login_url(self.request.uri)
       template_values = {'login_url': login_url}
       template = JINJA_ENVIRONMENT.get_template('login.html')
       self.response.write(template.render(template_values))

@@ -8,6 +8,8 @@
       {% if no_hero %}
         You don't has a hero!
         {% include 'herocreation.html' %}
+      {% else %}
+        Your hero: {{hero}}
       {% endif %}
     <a href="{{ url|safe }}">{{ url_linktext }}</a>
     </div>

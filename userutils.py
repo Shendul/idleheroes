@@ -11,7 +11,7 @@ def getCurrentIdleHeroesUser():
       # The IHUser does not exist, so we make one.
       idle_heroes_user = IHUser()
       user = users.get_current_user()
-      idle_heroes_user.user = user.user_id()
+      idle_heroes_user.user_id = user.user_id()
       idle_heroes_user.display_name = user.nickname()
       idle_heroes_user.put()
     else:

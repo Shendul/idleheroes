@@ -23,7 +23,6 @@ banlist = ['103099184899327574218', '103609145815541722591', '116366841012077067
 """  
 class MainPage(webapp2.RequestHandler):
   def get(self):
-
     if users.get_current_user():
       template_values = {}
       template_values['url_linktext'] = 'Logout'
@@ -33,6 +32,7 @@ class MainPage(webapp2.RequestHandler):
         return self.redirect('/banned')
       ih_user = getCurrentIdleHeroesUser()
       # Check to see if the user has a hero
+      logging.exception('user:' + str(ih_user))
       if len(ih_user.hero) == 0:
         template_values['no_hero'] = True
       else:

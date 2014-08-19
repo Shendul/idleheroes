@@ -30,8 +30,27 @@ class Inventory(ndb.Model):
   Models a player's inventory. An inventory is a list of items, and a gold
   count. Items are encoded strings. See item.py.
   """
-  # TODO(shendul): Add equiped properties. String properties for each slot.
-  helmet = ndb.StringProperty() # The equiped helmet
+  # Weapon slots
+  main_hand = ndb.StringProperty() # The main hand weapon or Two handed wep
+  off_hand = ndb.StringProperty() # Off hand weapon or shield ect.
+  # Armor slots
+  head = ndb.StringProperty() # The equiped helmet or head gear
+  body = ndb.StringProperty() # The main armor piece
+  belt = ndb.StringProperty()
+  legs = ndb.StringProperty()
+  feet = ndb.StringProperty()
+  shoulders = ndb.StringProperty()
+  hands = ndb.StringProperty()
+  # Accessory slots
+  left_ring = ndb.StringProperty()
+  right_ring = ndb.StringProperty()
+  left_earring = ndb.StringProperty()
+  right_earring = ndb.StringProperty()
+  necklace = ndb.StringProperty()
+  # Special slots
+  back = ndb.StringProperty()
+  mount = ndb.StringProperty()
+  # Other lists
   items = ndb.StringProperty(repeated=True)
   gold = ndb.IntegerProperty(default=0)
 

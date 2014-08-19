@@ -8,7 +8,7 @@ class MONSTERS:
   This class is used to represent an enumlike object. All monster data will be
   held here.
   """
-  RAT = make_mob(5,2,"normal",1,0,0,1,1,"rat",None)
+  RAT = make_mob(100,55,"normal",5,0,0,1,1,"rat",None)
   RED_SLIME = make_mob(5,2,"normal",1,2,0,1,1,"red_slime",None)
   NERD = make_mob(20,5,"normal",1,0,0,1,1,"nerd",None)
 

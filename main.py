@@ -33,7 +33,6 @@ class MainPage(webapp2.RequestHandler):
         return self.redirect('/banned')
       ih_user = getCurrentIdleHeroesUser()
       # Check to see if the user has a hero
-      logging.exception('user:' + str(ih_user))
       if len(ih_user.hero) == 0:
         template_values['no_hero'] = True
       else:

@@ -5,6 +5,7 @@ import urllib
 from google.appengine.api import users
 from model import *
 from userutils import *
+from heroclass import *
 
 import jinja2
 import webapp2
@@ -36,7 +37,8 @@ class MainPage(webapp2.RequestHandler):
       if len(ih_user.hero) == 0:
         template_values['no_hero'] = True
       else:
-        template_values['hero'] = ih_user.hero[0]
+        # TODO(dreamlane): consider cases where the get fails.
+        template_values['hero'] = getHeroValues(ih_user.hero[0].get())
 
       template_values['display_name'] = ih_user.display_name
       template = JINJA_ENVIRONMENT.get_template('home.html')

@@ -9,7 +9,9 @@
         You don't has a hero!
         {% include 'herocreation.html' %}
       {% else %}
-        Your hero: {{hero}}
+        <div>
+          Your hero's name: {{hero.name}}
+        </div>
       {% endif %}
     <a href="{{ url|safe }}">{{ url_linktext }}</a>
     </div>

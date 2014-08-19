@@ -1,6 +1,8 @@
 ## heroclass.py This file is used to represent all hero class related data and
 ## functions.
 
+from experience import *
+
 class HERO_CLASS:
   """
   This class is used to represent an enumlike object. Essentially it is a map
@@ -58,7 +60,10 @@ def getBaseStatsForHero(hero_class, level):
 def getHeroValues(ih_hero_model):
   hero = {}
   hero['name'] = ih_hero_model.name
+  level = getHeroLevel(ih_hero_model.experience)
+  hero['level'] = level
   # Determine the stats of the hero
+  hero['stats'] = getBaseStatsForHero(ih_hero_model.hero_class, level)
   # TODO: Check equiped Items.
   return hero
   

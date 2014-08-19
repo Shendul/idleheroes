@@ -74,6 +74,8 @@ class CreateHero(webapp2.RequestHandler):
     hero.name = hero_name
     hero.inventory = inventory.put()
     hero.battle_history = []
+    # TODO: Add the class selection to the form once we support other classes.
+    hero.hero_class = HERO_CLASS.WARRIOR
     ih_user.hero.append(hero.put())
     ih_user.put()
     self.redirect("/")

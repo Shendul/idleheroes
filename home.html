@@ -4,14 +4,49 @@
   <body>
     <div class="content">
       {% include 'title.html' %}
-      Hello {{display_name}}!
       {% if no_hero %}
         You don't has a hero!
         {% include 'herocreation.html' %}
       {% else %}
-        <div>
-          Your hero's name: {{hero.name}}
-        </div>
+        <h1>
+        {{hero.name}}
+        </h1>
+        <h2>
+          Level: {{hero.level}}
+        </h2>
+        <h2>
+          Hero Stats
+        </h2>
+        <table>
+          <tr>
+            <th>
+              Strength
+            </th>
+            <th>
+              Agility
+            </th>
+            <th>
+              Wisdom
+            </th>
+            <th>
+              Constitution
+            </th>
+          </tr>
+          <tr>
+            <td>
+              {{hero.stats.1}}
+            </td>
+            <td>
+              {{hero.stats.2}}
+            </td>
+            <td>
+              {{hero.stats.3}}
+            </td>
+            <td>
+              {{hero.stats.4}}
+            </td>
+          </tr>
+        </table>
       {% endif %}
     <a href="{{ url|safe }}">{{ url_linktext }}</a>
     </div>

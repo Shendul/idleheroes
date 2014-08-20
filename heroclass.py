@@ -57,6 +57,10 @@ def getBaseStatsForHero(hero_class, level):
         base_stats[hero_class][STAT_TYPE.CONSTITUTION][1]*level,
   }
 
+equiped_item_keys = ['main_hand', 'off_hand', 'head', 'body', 'belt',
+    'legs', 'feet', 'shoulders', 'hands', 'left_ring', 'right_ring',
+    'left_earring', 'right_earring', 'necklace']
+
 def getHeroValues(ih_hero_model):
   hero = {}
   hero['name'] = ih_hero_model.name
@@ -64,6 +68,9 @@ def getHeroValues(ih_hero_model):
   hero['level'] = level
   # Determine the stats of the hero
   hero['stats'] = getBaseStatsForHero(ih_hero_model.hero_class, level)
-  # TODO: Check equiped Items.
+  # Check equipped items for basic stats
+  for item_key in equipped_item_keys:
+    if ih_hero_model[item_key] != None:
+      #TODO(dreamlane): Parse item string for base attributes.
+      
   return hero
-  

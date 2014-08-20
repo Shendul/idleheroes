@@ -4,7 +4,8 @@
 
 class BATTLE_STATS:
   """
-  This class is used to represent an enumlike object for stats.
+  This class is used to represent an enumlike object for stats, used by mobs
+  and heroes.
   """
   HEALTH = "health"
   MINIMUM_DAMAGE = "minimum_damage"
@@ -12,8 +13,13 @@ class BATTLE_STATS:
   DAMAGE_TYPE = "damage_type"
   FIRE_RESISTANCE = "fire_resistance"
   ICE_RESISTANCE = "ice_resistance"
+  # WATER_RESISTANCE = "water_resistance"
+  # LIGHTNING_RESISTANCE = "lightning_resistance"
+  # HOLY
+  # UNHOLY
   DEFENCE = "defence"
   LEVEL = "level"
   RARITY_LEVEL = "rarity_level"
   NAME = "name"
   LOOT_TABLE = "loot_table"
+  # ABILITIES

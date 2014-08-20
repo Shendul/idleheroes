@@ -8,13 +8,14 @@ from experience import *
 class HERO_CLASS:
   """
   This class is used to represent an enumlike object. Essentially it is a map
-  of type to integer. So you can do things like hero_class = HERO_CLASS.WARRIOR.
-  hero_class will == 1 or HERO_CLASS.WARRIOR. It will be used to make the code
-  a little more readable. In the Hero.hero_class ndb IntegerProperty, warrior
-  will be stored as 1.
+  of type to string. So you can do things like hero_class = HERO_CLASS.WARRIOR.
+  hero_class will == "warrior" or HERO_CLASS.WARRIOR. It will be used to make 
+  the code a little more readable. In the Hero.hero_class ndb StringProperty,
+  warrior will be stored as "warrior".
   """
-  WARRIOR = 1
-  WIZARD = 2 # TODO: implement wizard.
+  NO_CLASS = "no_class"
+  WARRIOR = "warrior"
+  WIZARD = "wizard" # TODO: implement wizard.
 
 
 class STAT_TYPE:

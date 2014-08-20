@@ -1,6 +1,8 @@
 ## heroclass.py This file is used to represent all hero class related data and
 ## functions.
 
+import logging
+
 from experience import *
 
 class HERO_CLASS:
@@ -20,10 +22,10 @@ class STAT_TYPE:
   This class is used to represent an enumlike object. Similar to the above
   class, this time for stats.
   """
-  STRENGTH = 1
-  AGILITY = 2
-  WISDOM = 3
-  CONSTITUTION = 4
+  STRENGTH = 'strength'
+  AGILITY = 'agility'
+  WISDOM = 'wisdom'
+  CONSTITUTION = 'constitution'
 
 
 #Base Stats (level 0 stat, growth per level)
@@ -57,7 +59,7 @@ def getBaseStatsForHero(hero_class, level):
         base_stats[hero_class][STAT_TYPE.CONSTITUTION][1]*level,
   }
 
-equiped_item_keys = ['main_hand', 'off_hand', 'head', 'body', 'belt',
+equipped_item_keys = ['main_hand', 'off_hand', 'head', 'body', 'belt',
     'legs', 'feet', 'shoulders', 'hands', 'left_ring', 'right_ring',
     'left_earring', 'right_earring', 'necklace']
 
@@ -69,8 +71,12 @@ def getHeroValues(ih_hero_model):
   # Determine the stats of the hero
   hero['stats'] = getBaseStatsForHero(ih_hero_model.hero_class, level)
   # Check equipped items for basic stats
+  # TODO(dreamlane): Error handling on the get. Build a model layer.
+  inventory = ih_hero_model.inventory.get()
   for item_key in equipped_item_keys:
-    if ih_hero_model[item_key] != None:
+    logging.info(item_key)
+    if getattr(inventory, item_key) != None:
       #TODO(dreamlane): Parse item string for base attributes.
-      
+      continue
+
   return hero

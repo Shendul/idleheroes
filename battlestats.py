@@ -6,13 +6,14 @@ class BATTLE_STATS:
   """
   This class is used to represent an enumlike object for stats.
   """
-  HP = 1
-  DMG = 2
-  DMGT = 3
-  FR = 4
-  IR = 5
-  DEF = 6
-  LVL = 7
-  RLVL = 8
-  NAME = 9
-  LT = 10
+  HEALTH = "health"
+  MINIMUM_DAMAGE = "minimum_damage"
+  MAXIMUM_DAMAGE = "maximum_damage"
+  DAMAGE_TYPE = "damage_type"
+  FIRE_RESISTANCE = "fire_resistance"
+  ICE_RESISTANCE = "ice_resistance"
+  DEFENCE = "defence"
+  LEVEL = "level"
+  RARITY_LEVEL = "rarity_level"
+  NAME = "name"
+  LOOT_TABLE = "loot_table"

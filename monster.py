@@ -8,9 +8,9 @@ class MONSTERS:
   This class is used to represent an enumlike object. All monster data will be
   held here.
   """
-  RAT = make_mob(100,25,30,"normal",5,0,0,1,1,"rat",None)
-  RED_SLIME = make_mob(5,2,5,"normal",1,2,0,1,1,"red_slime",None)
-  NERD = make_mob(20,5,10,"normal",1,0,0,1,1,"nerd",None)
+  RAT = makeMob(100,25,30,"normal",5,0,0,1,1,"rat",None)
+  RED_SLIME = makeMob(5,2,5,"normal",1,2,0,1,1,"red_slime",None)
+  NERD = makeMob(20,5,10,"normal",1,0,0,1,1,"nerd",None)
 
 
 
@@ -19,7 +19,7 @@ class MONSTERS:
 The below dictionaries are the hardcoded data for certain monsters.
 """
 
-def make_mob(health,minimum_damage,maximum_damage,damage_type,
+def makeMob(health,minimum_damage,maximum_damage,damage_type,
     defence,fire_resistance,ice_resistance,level,rarity_level,name,loot_table):
   return {
     BATTLE_STATS.HEALTH: health,

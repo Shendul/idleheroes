@@ -3,6 +3,7 @@
 
 import logging
 
+from battlestats import *
 from experience import *
 
 class HERO_CLASS:
@@ -50,6 +51,7 @@ def getBaseStatsForHero(hero_class, level):
   Given a HERO_CLASS and level, return the base stats for that hero.
   """
   return {
+  # Get the four base stats.
     STAT_TYPE.STRENGTH: base_stats[hero_class][STAT_TYPE.STRENGTH][0] +
         base_stats[hero_class][STAT_TYPE.STRENGTH][1]*level,
     STAT_TYPE.AGILITY: base_stats[hero_class][STAT_TYPE.AGILITY][0] +
@@ -58,6 +60,20 @@ def getBaseStatsForHero(hero_class, level):
         base_stats[hero_class][STAT_TYPE.WISDOM][1]*level,
     STAT_TYPE.CONSTITUTION: base_stats[hero_class][STAT_TYPE.CONSTITUTION][0] +
         base_stats[hero_class][STAT_TYPE.CONSTITUTION][1]*level,
+  # Get the base stats that are calculated from the four base stats above.
+    BATTLE_STATS.HEALTH: base_stats[hero_class][STAT_TYPE.STRENGTH][0] +
+        base_stats[hero_class][STAT_TYPE.STRENGTH][1]*level + 
+        base_stats[hero_class][STAT_TYPE.CONSTITUTION][0] +
+        base_stats[hero_class][STAT_TYPE.CONSTITUTION][1]*level*3,
+    BATTLE_STATS.FIRE_RESISTANCE: base_stats[hero_class][STAT_TYPE.WISDOM][0] +
+        base_stats[hero_class][STAT_TYPE.WISDOM][1]*level,
+    BATTLE_STATS.ICE_RESISTANCE: base_stats[hero_class][STAT_TYPE.WISDOM][0] +
+        base_stats[hero_class][STAT_TYPE.WISDOM][1]*level,
+  # Defence here below is also to have a random chance of being 75-125% of base.
+    BATTLE_STATS.DEFENCE: base_stats[hero_class][STAT_TYPE.CONSTITUTION][0] +
+        base_stats[hero_class][STAT_TYPE.CONSTITUTION][1]*level + 
+        base_stats[hero_class][STAT_TYPE.AGILITY][0] +
+        base_stats[hero_class][STAT_TYPE.AGILITY][1]*level,
   }
 
 equipped_item_keys = ['main_hand', 'off_hand', 'head', 'body', 'belt',

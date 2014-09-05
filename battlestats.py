@@ -17,7 +17,7 @@ class BATTLE_STATS:
   # LIGHTNING_RESISTANCE = "lightning_resistance"
   # HOLY
   # UNHOLY
-  DEFENCE = "defence"
+  DEFENSE = "defense"
   LEVEL = "level"
   RARITY_LEVEL = "rarity_level"
   NAME = "name"

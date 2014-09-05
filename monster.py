@@ -20,13 +20,13 @@ The below dictionaries are the hardcoded data for certain monsters.
 """
 
 def makeMob(health,minimum_damage,maximum_damage,damage_type,
-    defence,fire_resistance,ice_resistance,level,rarity_level,name,loot_table):
+    defense,fire_resistance,ice_resistance,level,rarity_level,name,loot_table):
   return {
     BATTLE_STATS.HEALTH: health,
     BATTLE_STATS.MINIMUM_DAMAGE: minimum_damage,
     BATTLE_STATS.MAXIMUM_DAMAGE: maximum_damage,
     BATTLE_STATS.DAMAGE_Type: damage_type,
-    BATTLE_STATS.DEFENCE: defence,
+    BATTLE_STATS.DEFENSE: defense,
     BATTLE_STATS.FIRE_RESISTANCE: fire_resistance,
     BATTLE_STATS.ICE_RESISTANCE: ice_resistance,
     BATTLE_STATS.LEVEL: level,

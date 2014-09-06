@@ -25,7 +25,7 @@
 ## Here is an example Common (White) item:
 ##     A00040
 ##     The first char (0) tells us it is a Tunic (A = TUNIC)
-##     The second char (0) tells us its grade is 0 (Cloth Armor).
+##     The second char (0) tells us its grade is 0 (Collar).
 ##     The next char (0) tells us that the item is common (White)
 ##     The next 2 chars (04) tell us the item level is 4.
 ##     Finally the last char (0) tells us that there are no affixes.
@@ -34,7 +34,7 @@
 ## Here is an example Uncommon (Blue) item:
 ##     A11081r0100101a004004
 ##     The first char (0) tells us it is a a Tunic (A = TUNIC)
-##     The second char (1) tells us its grade is 0 (Leather Armor).
+##     The second char (1) tells us its grade is 1 (Shirt).
 ##     The next char (1) tells us that the item is Uncommon (Blue)
 ##     The next 2 chars (08) tell us the item level is 8.
 ##     The next char (1) tells us that there are 1 prefixes.
@@ -91,12 +91,66 @@ class BASE_ITEM:
   BOW = 'c'
   CROSSBOW = 'd' ## TODO: Implement
 
+## A list of all of the armors
+ARMORS = [
+    BASE_ITEM.TUNIC, BASE_ITEM.HAT, BASE_ITEM.PANTS, BASE_ITEM.BOOTS,
+    BASE_ITEM.MANTEL, BASE_ITEM.GLOVES, BASE_ITEM.CHESTPLATE, BASE_ITEM.HELMET,
+    BASE_ITEM.FAULDS, BASE_ITEM.GREAVES, BASE_ITEM.PAULDRONS,
+    BASE_ITEM.GUANTLETS, BASE_ITEM.SHIELD
+]
+
+## A list of all the weapons
+WEAPONS = [
+    BASE_ITEM.ONE_HANDED_SWORD, BASE_ITEM.ONE_HANDED_MACE,
+    BASE_ITEM.ONE_HANDED_AXE, BASE_ITEM.CLAW, BASE_ITEM.ORB,
+    BASE_ITEM.TWO_HANDED_SWORD, BASE_ITEM.QUARTERSTAFF, BASE_ITEM.POLEARM,
+    BASE_ITEM.SPEAR, BASE_ITEM.TWO_HANDED_MACE, BASE_ITEM.SLING,
+    BASE_ITEM.JAVELIN, BASE_ITEM.BOW, BASE_ITEM.CROSSBOW
+]
+
+## A list of the accesories
+ACCESORIES = [
+    BASE_ITEM.RING, BASE_ITEM.AMULET, BASE_ITEM.EARRING
+]
+
+ITEM_DISPLAY_NAME = {
+  BASE_ITEM.TUNIC: [
+      'Collar', 'Shirt'
+  ],
+  BASE_ITEM.HAT: [
+      'Bandana', 'Cap'
+  ],
+  BASE_ITEM.PANTS: [
+      'Loin Cloth', 'Kilt'
+  ],
+  BASE_ITEM.BOOTS: [
+      'Sandals', 'Cloth Wrappings'
+  ]
+}
+
+ITEM_RARITY_DISPLAY_NAME = {
+  '0': 'Common', # NO Affixes
+  '1': 'Uncommon', # 1-2 Affixes
+  '2': 'Rare' # 3-6 Affixes
+  ## TODO: Add more rarities
+}
+
+
+def getItemFromItemString(itemString):
+  item = {}
+  base_item_key = itemString[0]
+  grade_index = int(itemString[1], 16) # We use hex value in this position.
+  rarity_key = itemString[2]
+  ## Get Item Base Display Name
+  item['base_item_display_name'] = ITEM_DISPLAY_NAME[base_item_key][grade_index]
+  item['rarity'] = ITEM_RARITY_DISPLAY_NAME[rarity_key]
+  item['item_level'] = int(itemString[3:5])
+
+  ## We're all done building the item object, return it.
+  return item
 
 
 
 
 
-
-
-
-
+print getItemFromItemString('A11081r0100101a004004')

@@ -49,4 +49,54 @@
 ##        004 = 4 max strength. (attributes don't have ranges so min == max)
 ##     So the item is an Uncommon (Blue) Prefect's Cloth Armor of Strength.
 
+class BASE_ITEM:
+  """
+  This class maps the base item types to their item model characters.
+  """
+  ## Light Armors
+  TUNIC = 'A'
+  HAT = 'B'
+  PANTS = 'C'
+  BOOTS =  'D'
+  MANTEL = 'E'
+  GLOVES = 'F'
+  ## Heavy Armors
+  CHESTPLATE = 'G'
+  HELMET = 'H'
+  FAULDS = 'I'
+  GREAVES = 'J'
+  PAULDRONS = 'K'
+  GUANTLETS = 'L'
+  ## Accesories
+  RING = 'M'
+  AMULET = 'N'
+  EARRING = 'O'
+  ## 1 Handed Weapons
+  ONE_HANDED_SWORD = 'P'
+  ONE_HANDED_AXE = 'Q' ## TODO: Implement
+  ONE_HANDED_MACE = 'R' ## TODO: Implement
+  CLAW = 'S' ## TODO: Implement
+  SHIELD = 'T'
+  ORB = 'U' ## TODO:  Implement
+  ## 2 Handed Weapons
+  TWO_HANDED_SWORD = 'V'
+  QUARTERSTAFF = 'W'
+  POLEARM = 'X'
+  SPEAR = 'Y'
+  TWO_HANDED_MACE = 'Z'
+  ## 1 Handed Ranged Weapons
+  SLING = 'a'
+  JAVELIN = 'b'
+  ## 2 Handed Ranged Weapons
+  BOW = 'c'
+  CROSSBOW = 'd' ## TODO: Implement
+
+
+
+
+
+
+
+
+
 

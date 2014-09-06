@@ -23,8 +23,8 @@
 ##
 ## TODO: Update the examples to be a little more interesting.
 ## Here is an example Common (White) item:
-##     000040
-##     The first char (0) tells us it is a chest piece (0 = chestpiece)
+##     A00040
+##     The first char (0) tells us it is a Tunic (A = TUNIC)
 ##     The second char (0) tells us its grade is 0 (Cloth Armor).
 ##     The next char (0) tells us that the item is common (White)
 ##     The next 2 chars (04) tell us the item level is 4.
@@ -32,8 +32,8 @@
 ##     So the item is a Common (White) Cloth Armor.
 ##
 ## Here is an example Uncommon (Blue) item:
-##     011081r0100101a004004
-##     The first char (0) tells us it is a chest piece (0 = chestpiece)
+##     A11081r0100101a004004
+##     The first char (0) tells us it is a a Tunic (A = TUNIC)
 ##     The second char (1) tells us its grade is 0 (Leather Armor).
 ##     The next char (1) tells us that the item is Uncommon (Blue)
 ##     The next 2 chars (08) tell us the item level is 8.

@@ -378,6 +378,7 @@ def getItemFromItemString(itemString):
 
   elif base_item_key in ACCESORIES:
     ## TODO(dreamlane): Parse through the affixes.
+    pass
 
 
   ## We're all done building the item object, return it.

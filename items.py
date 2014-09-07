@@ -163,6 +163,12 @@ WEAPON_DAMAGE_RANGE = {
   ]
 }
 
+ARMOR_DEFENSE = {
+  BASE_ITEM.TUNIC: [
+    
+  ]
+}
+
 def getItemFromItemString(itemString):
   item = {}
   base_item_key = itemString[0]
@@ -182,6 +188,11 @@ def getItemFromItemString(itemString):
     base_damage['damage_range'] = WEAPON_DAMAGE_RANGE[base_item_key][grade_index]
     damage['type'] = WEAPON_DAMAGE_TYPE
     item['damage'] = damage
+    ## TODO(dreamlane): Add damages from weapon affixes.
+
+  if base_item_key in ARMORS:
+    item['defense'] = 
+
 
   ## We're all done building the item object, return it.
   return item

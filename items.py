@@ -87,44 +87,45 @@ class BASE_ITEM:
   ## 1 Handed Ranged Weapons
   SLING = 'a'
   JAVELIN = 'b'
+  WAND = 'c'
   ## 2 Handed Ranged Weapons
-  BOW = 'c'
-  CROSSBOW = 'd' ## TODO: Implement
+  BOW = 'd'
+  CROSSBOW = 'e' ## TODO: Implement
 
 ## A list of all of the armors
 ARMORS = [
-    BASE_ITEM.TUNIC, BASE_ITEM.HAT, BASE_ITEM.PANTS, BASE_ITEM.BOOTS,
-    BASE_ITEM.MANTEL, BASE_ITEM.GLOVES, BASE_ITEM.CHESTPLATE, BASE_ITEM.HELMET,
-    BASE_ITEM.FAULDS, BASE_ITEM.GREAVES, BASE_ITEM.PAULDRONS,
-    BASE_ITEM.GUANTLETS, BASE_ITEM.SHIELD
+  BASE_ITEM.TUNIC, BASE_ITEM.HAT, BASE_ITEM.PANTS, BASE_ITEM.BOOTS,
+  BASE_ITEM.MANTEL, BASE_ITEM.GLOVES, BASE_ITEM.CHESTPLATE, BASE_ITEM.HELMET,
+  BASE_ITEM.FAULDS, BASE_ITEM.GREAVES, BASE_ITEM.PAULDRONS,
+  BASE_ITEM.GUANTLETS, BASE_ITEM.SHIELD
 ]
 
 ## A list of all the weapons
 WEAPONS = [
-    BASE_ITEM.ONE_HANDED_SWORD, BASE_ITEM.ONE_HANDED_MACE,
-    BASE_ITEM.ONE_HANDED_AXE, BASE_ITEM.CLAW, BASE_ITEM.ORB,
-    BASE_ITEM.TWO_HANDED_SWORD, BASE_ITEM.QUARTERSTAFF, BASE_ITEM.POLEARM,
-    BASE_ITEM.SPEAR, BASE_ITEM.TWO_HANDED_MACE, BASE_ITEM.SLING,
-    BASE_ITEM.JAVELIN, BASE_ITEM.BOW, BASE_ITEM.CROSSBOW
+  BASE_ITEM.ONE_HANDED_SWORD, BASE_ITEM.ONE_HANDED_MACE,
+  BASE_ITEM.ONE_HANDED_AXE, BASE_ITEM.CLAW, BASE_ITEM.ORB,
+  BASE_ITEM.TWO_HANDED_SWORD, BASE_ITEM.QUARTERSTAFF, BASE_ITEM.POLEARM,
+  BASE_ITEM.SPEAR, BASE_ITEM.TWO_HANDED_MACE, BASE_ITEM.SLING,
+  BASE_ITEM.JAVELIN, BASE_ITEM.WAND, BASE_ITEM.BOW, BASE_ITEM.CROSSBOW
 ]
 
 ## A list of the accesories
 ACCESORIES = [
-    BASE_ITEM.RING, BASE_ITEM.AMULET, BASE_ITEM.EARRING
+  BASE_ITEM.RING, BASE_ITEM.AMULET, BASE_ITEM.EARRING
 ]
 
 ITEM_DISPLAY_NAME = {
   BASE_ITEM.TUNIC: [
-      'Collar', 'Shirt'
+    'Collar', 'Shirt'
   ],
   BASE_ITEM.HAT: [
-      'Bandana', 'Cap'
+    'Bandana', 'Cap'
   ],
   BASE_ITEM.PANTS: [
-      'Loin Cloth', 'Kilt'
+    'Loin Cloth', 'Kilt'
   ],
   BASE_ITEM.BOOTS: [
-      'Sandals', 'Cloth Wrappings'
+    'Sandals', 'Cloth Wrappings'
   ]
 }
 
@@ -135,6 +136,29 @@ ITEM_RARITY_DISPLAY_NAME = {
   ## TODO: Add more rarities
 }
 
+class DAMAGE_TYPE:
+  THRUST = 'thrust'
+  SLASH = 'slash'
+  CRUSH = 'crush'
+  FIRE = 'fire'
+  COLD = 'cold'
+  POISON = 'poison'
+
+WEAPON_DAMAGE_TYPE = {
+  BASE_ITEM.ONE_HANDED_SWORD: DAMAGE_TYPE.SLASH,
+  BASE_ITEM.QUARTERSTAFF: DAMAGE_TYPE.CRUSH
+}
+
+WEAPON_DAMAGE_RANGE = {
+  BASE_ITEM.ONE_HANDED_SWORD: [
+    (1, 5), # Grade 0
+    (2, 9) # Grade 1
+  ],
+  BASE_ITEM.ONE_HANDED_AXE: [
+    (2, 4), # Grade 0
+    (3, 7) # Grade 1
+  ]
+}
 
 def getItemFromItemString(itemString):
   item = {}
@@ -146,11 +170,18 @@ def getItemFromItemString(itemString):
   item['rarity'] = ITEM_RARITY_DISPLAY_NAME[rarity_key]
   item['item_level'] = int(itemString[3:5])
 
+  ## Handle Weapon case
+  if base_item_key in WEAPONS:
+    damages = []
+    ## Get the base damage type
+    base_damage = {}
+    base_damage['type'] = WEAPON_DAMAGE_TYPE[base_item_key]
+    base_damage['damage_range'] = WEAPON_DAMAGE_RANGE[base_item_key][grade_index]
+    damage['type'] = WEAPON_DAMAGE_TYPE
+    item['damage'] = damage
+
   ## We're all done building the item object, return it.
   return item
-
-
-
 
 
 print getItemFromItemString('A11081r0100101a004004')

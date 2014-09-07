@@ -49,7 +49,9 @@
 ##        004 = 4 max strength. (attributes don't have ranges so min == max)
 ##     So the item is an Uncommon (Blue) Prefect's Cloth Armor of Strength.
 
-class BASE_ITEM:
+from affixes import *
+
+class ITEM:
   """
   This class maps the base item types to their item model characters.
   """
@@ -94,109 +96,109 @@ class BASE_ITEM:
 
 ## A list of all of the armors
 ARMORS = [
-  BASE_ITEM.TUNIC, BASE_ITEM.HAT, BASE_ITEM.PANTS, BASE_ITEM.BOOTS,
-  BASE_ITEM.MANTEL, BASE_ITEM.GLOVES, BASE_ITEM.CHESTPLATE, BASE_ITEM.HELMET,
-  BASE_ITEM.FAULDS, BASE_ITEM.GREAVES, BASE_ITEM.PAULDRONS,
-  BASE_ITEM.GUANTLETS, BASE_ITEM.SHIELD
+  ITEM.TUNIC, ITEM.HAT, ITEM.PANTS, ITEM.BOOTS,
+  ITEM.MANTEL, ITEM.GLOVES, ITEM.CHESTPLATE, ITEM.HELMET,
+  ITEM.FAULDS, ITEM.GREAVES, ITEM.PAULDRONS,
+  ITEM.GUANTLETS, ITEM.SHIELD
 ]
 
 ## A list of all the weapons
 WEAPONS = [
-  BASE_ITEM.ONE_HANDED_SWORD, BASE_ITEM.ONE_HANDED_MACE,
-  BASE_ITEM.ONE_HANDED_AXE, BASE_ITEM.CLAW, BASE_ITEM.ORB,
-  BASE_ITEM.TWO_HANDED_SWORD, BASE_ITEM.QUARTERSTAFF, BASE_ITEM.POLEARM,
-  BASE_ITEM.SPEAR, BASE_ITEM.TWO_HANDED_MACE, BASE_ITEM.SLING,
-  BASE_ITEM.JAVELIN, BASE_ITEM.WAND, BASE_ITEM.BOW, BASE_ITEM.CROSSBOW
+  ITEM.ONE_HANDED_SWORD, ITEM.ONE_HANDED_MACE,
+  ITEM.ONE_HANDED_AXE, ITEM.CLAW, ITEM.ORB,
+  ITEM.TWO_HANDED_SWORD, ITEM.QUARTERSTAFF, ITEM.POLEARM,
+  ITEM.SPEAR, ITEM.TWO_HANDED_MACE, ITEM.SLING,
+  ITEM.JAVELIN, ITEM.WAND, ITEM.BOW, ITEM.CROSSBOW
 ]
 
 ## A list of the accesories
 ACCESORIES = [
-  BASE_ITEM.RING, BASE_ITEM.AMULET, BASE_ITEM.EARRING
+  ITEM.RING, ITEM.AMULET, ITEM.EARRING
 ]
 
 ITEM_DISPLAY_NAME = {
-  BASE_ITEM.TUNIC: [
+  ITEM.TUNIC: [
     'Collar', 'Shirt'
   ],
-  BASE_ITEM.HAT: [
+  ITEM.HAT: [
     'Bandana', 'Cap'
   ],
-  BASE_ITEM.PANTS: [
+  ITEM.PANTS: [
     'Loin Cloth', 'Kilt'
   ],
-  BASE_ITEM.BOOTS: [
+  ITEM.BOOTS: [
     'Sandals', 'Cloth Wrappings'
   ],
-  BASE_ITEM.MANTEL: [
+  ITEM.MANTEL: [
     'Half Robe', 'King\'s Mantel'
   ],
-  BASE_ITEM.GLOVES: [
+  ITEM.GLOVES: [
     'Hand Wrappings', 'Cloth Gloves'
   ],
-  BASE_ITEM.CHESTPLATE: [
+  ITEM.CHESTPLATE: [
     'Bone Shirt', 'Metal Plate'
   ],
-  BASE_ITEM.HELMET: [
+  ITEM.HELMET: [
     'Skull Mask', 'Sallet'
   ],
-  BASE_ITEM.FAULDS: [
+  ITEM.FAULDS: [
     'Bone Skirt', 'Metal Loincloth'
   ],
-  BASE_ITEM.GREAVES: [
+  ITEM.GREAVES: [
     'Plated Boots', 'Copper Greaves'
   ],
-  BASE_ITEM.PAULDRONS: [
+  ITEM.PAULDRONS: [
     'Metal', 'Spiked'
   ],
-  BASE_ITEM.GUANTLETS: [
+  ITEM.GUANTLETS: [
     'Bone Studded Gloves', 'Copper Gauntlets'
   ],
-  BASE_ITEM.ONE_HANDED_SWORD: [
+  ITEM.ONE_HANDED_SWORD: [
     'Knife', 'Dagger'
   ],
-  BASE_ITEM.ONE_HANDED_MACE: [
+  ITEM.ONE_HANDED_MACE: [
     '', ''
   ],
-  BASE_ITEM.ONE_HANDED_AXE: [
+  ITEM.ONE_HANDED_AXE: [
     '', ''
   ],
-  BASE_ITEM.CLAW: [
+  ITEM.CLAW: [
     '', ''
   ],
-  BASE_ITEM.SHIELD: [
+  ITEM.SHIELD: [
     '', ''
   ],
-  BASE_ITEM.ORB: [
+  ITEM.ORB: [
     '', ''
   ],  
-  BASE_ITEM.TWO_HANDED_SWORD: [
+  ITEM.TWO_HANDED_SWORD: [
     'Dull Longsword', 'Longsword'
   ],
-  BASE_ITEM.QUARTERSTAFF: [
+  ITEM.QUARTERSTAFF: [
     'Branch', 'Wooden Staff'
   ],
-  BASE_ITEM.POLEARM: [
+  ITEM.POLEARM: [
     'Glave', 'Bardiche'
   ],
-  BASE_ITEM.SPEAR: [
+  ITEM.SPEAR: [
     'Wooden Spear', 'Metal Spear'
   ],
-  BASE_ITEM.TWO_HANDED_MACE: [
+  ITEM.TWO_HANDED_MACE: [
     '', ''
   ],
-  BASE_ITEM.SLING: [
+  ITEM.SLING: [
     'Rocks', 'Sling'
   ],
-  BASE_ITEM.JAVELIN: [
+  ITEM.JAVELIN: [
     '', ''
   ],
-  BASE_ITEM.WAND: [
+  ITEM.WAND: [
     '', ''
   ],
-  BASE_ITEM.BOW: [
+  ITEM.BOW: [
     'Shortbow', 'Recurve'
   ],
-  BASE_ITEM.CROSSBOW: [
+  ITEM.CROSSBOW: [
     '', ''
   ]
 }
@@ -218,131 +220,131 @@ class DAMAGE_TYPE:
   POISON = 'poison'
 
 WEAPON_DAMAGE_TYPE = {
-  BASE_ITEM.ONE_HANDED_SWORD: DAMAGE_TYPE.SLASH,
-  BASE_ITEM.ONE_HANDED_AXE: DAMAGE_TYPE.SLASH,
-  BASE_ITEM.ONE_HANDED_MACE: DAMAGE_TYPE.CRUSH,
-  BASE_ITEM.CLAW: DAMAGE_TYPE.THRUST,
-  BASE_ITEM.TWO_HANDED_SWORD: DAMAGE_TYPE.SLASH,
-  BASE_ITEM.QUARTERSTAFF: DAMAGE_TYPE.CRUSH,
-  BASE_ITEM.POLEARM: DAMAGE_TYPE.SLASH,
-  BASE_ITEM.SPEAR: DAMAGE_TYPE.THRUST,
-  BASE_ITEM.TWO_HANDED_MACE: DAMAGE_TYPE.CRUSH,
-  BASE_ITEM.SLING: DAMAGE_TYPE.CRUSH,
-  BASE_ITEM.JAVELIN: DAMAGE_TYPE.THRUST,
-  BASE_ITEM.WAND: DAMAGE_TYPE.FIRE, # TODO: find out what to really put.
-  BASE_ITEM.BOW: DAMAGE_TYPE.THRUST,
-  BASE_ITEM.CROSSBOW: DAMAGE_TYPE.THRUST
+  ITEM.ONE_HANDED_SWORD: DAMAGE_TYPE.SLASH,
+  ITEM.ONE_HANDED_AXE: DAMAGE_TYPE.SLASH,
+  ITEM.ONE_HANDED_MACE: DAMAGE_TYPE.CRUSH,
+  ITEM.CLAW: DAMAGE_TYPE.THRUST,
+  ITEM.TWO_HANDED_SWORD: DAMAGE_TYPE.SLASH,
+  ITEM.QUARTERSTAFF: DAMAGE_TYPE.CRUSH,
+  ITEM.POLEARM: DAMAGE_TYPE.SLASH,
+  ITEM.SPEAR: DAMAGE_TYPE.THRUST,
+  ITEM.TWO_HANDED_MACE: DAMAGE_TYPE.CRUSH,
+  ITEM.SLING: DAMAGE_TYPE.CRUSH,
+  ITEM.JAVELIN: DAMAGE_TYPE.THRUST,
+  ITEM.WAND: DAMAGE_TYPE.FIRE, # TODO: find out what to really put.
+  ITEM.BOW: DAMAGE_TYPE.THRUST,
+  ITEM.CROSSBOW: DAMAGE_TYPE.THRUST
 }
 
 WEAPON_DAMAGE_RANGE = {
-  BASE_ITEM.ONE_HANDED_SWORD: [
+  ITEM.ONE_HANDED_SWORD: [
     (1, 5), # Grade 0
     (2, 9) # Grade 1
   ],
-  BASE_ITEM.ONE_HANDED_AXE: [
+  ITEM.ONE_HANDED_AXE: [
     (2, 4), # Grade 0
     (3, 7) # Grade 1
   ],
-  BASE_ITEM.ONE_HANDED_MACE: [
+  ITEM.ONE_HANDED_MACE: [
     (3, 3), # Grade 0
     (4, 6) # Grade 1
   ],
-  BASE_ITEM.CLAW: [
+  ITEM.CLAW: [
     (1, 5), # Grade 0
     (1, 10) # Grade 1
   ],
-  BASE_ITEM.TWO_HANDED_SWORD: [
+  ITEM.TWO_HANDED_SWORD: [
     (3, 7), # Grade 0
     (5, 11) # Grade 1
   ],
-  BASE_ITEM.QUARTERSTAFF: [
+  ITEM.QUARTERSTAFF: [
     (1, 9), # Grade 0
     (3, 12) # Grade 1
   ],
-  BASE_ITEM.POLEARM: [
+  ITEM.POLEARM: [
     (4, 6), # Grade 0
     (5, 9) # Grade 1
   ],
-  BASE_ITEM.SPEAR: [
+  ITEM.SPEAR: [
     (3, 7), # Grade 0
     (4, 11) # Grade 1
   ],
-  BASE_ITEM.TWO_HANDED_MACE: [
+  ITEM.TWO_HANDED_MACE: [
     (5, 6), # Grade 0
     (6, 8) # Grade 1
   ],
-  BASE_ITEM.SLING: [
+  ITEM.SLING: [
     (3, 3), # Grade 0
     (5, 5) # Grade 1
   ],
-  BASE_ITEM.JAVELIN: [
+  ITEM.JAVELIN: [
     (1, 5), # Grade 0
     (2, 8) # Grade 1
   ],
-  BASE_ITEM.WAND: [
+  ITEM.WAND: [
     (2, 4), # Grade 0
     (3, 7) # Grade 1
   ],
-  BASE_ITEM.BOW: [
+  ITEM.BOW: [
     (3, 7), # Grade 0
     (5, 11) # Grade 1
   ],
-  BASE_ITEM.CROSSBOW: [
+  ITEM.CROSSBOW: [
     (4, 6), # Grade 0
     (7, 9) # Grade 1
   ]
 }
 
 ARMOR_DEFENSE = {
-  BASE_ITEM.TUNIC: [
+  ITEM.TUNIC: [
     10, # Grade 0
     24 # Grade 1
   ],
-  BASE_ITEM.HAT: [
+  ITEM.HAT: [
     4, # Grade 0
     9 # Grade 1
   ],
-  BASE_ITEM.PANTS: [
+  ITEM.PANTS: [
     8, # Grade 0
     18 # Grade 1
   ],
-  BASE_ITEM.BOOTS: [
+  ITEM.BOOTS: [
     5, # Grade 0
     10 # Grade 1
   ],
-  BASE_ITEM.MANTEL: [
+  ITEM.MANTEL: [
     2, # Grade 0
     5 # Grade 1
   ],
-  BASE_ITEM.GLOVES: [
+  ITEM.GLOVES: [
     3, # Grade 0
     8 # Grade 1
   ],
-  BASE_ITEM.CHESTPLATE: [
+  ITEM.CHESTPLATE: [
     13, # Grade 0
     28 # Grade 1
   ],
-  BASE_ITEM.HELMET: [
+  ITEM.HELMET: [
     6, # Grade 0
     13 # Grade 1
   ],
-  BASE_ITEM.FAULDS: [
+  ITEM.FAULDS: [
     10, # Grade 0
     24 # Grade 1
   ],
-  BASE_ITEM.GREAVES: [
+  ITEM.GREAVES: [
     7, # Grade 0
     15 # Grade 1
   ],
-  BASE_ITEM.PAULDRONS: [
+  ITEM.PAULDRONS: [
     5, # Grade 0
     7 # Grade 1
   ],
-  BASE_ITEM.GUANTLETS: [
+  ITEM.GUANTLETS: [
     5, # Grade 0
     15 # Grade 1
   ],
-  BASE_ITEM.SHIELD: [
+  ITEM.SHIELD: [
     5, # Grade 0
     9 # Grade 1
   ]

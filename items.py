@@ -163,10 +163,12 @@ WEAPON_DAMAGE_RANGE = {
   ]
 }
 
+## TODO(shendul): fill this out.
 ARMOR_DEFENSE = {
   BASE_ITEM.TUNIC: [
-    
-  ]
+    10, # Grade 0
+    24 # Grade 1
+  ],
 }
 
 def getItemFromItemString(itemString):

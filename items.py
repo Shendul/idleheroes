@@ -117,86 +117,86 @@ ACCESORIES = [
 ## TODO(shendul): fill this out
 ITEM_DISPLAY_NAME = {
   BASE_ITEM.TUNIC: [
-      'Collar', 'Shirt'
+    'Collar', 'Shirt'
   ],
   BASE_ITEM.HAT: [
-      'Bandana', 'Cap'
+    'Bandana', 'Cap'
   ],
   BASE_ITEM.PANTS: [
-      'Loin Cloth', 'Kilt'
+    'Loin Cloth', 'Kilt'
   ],
   BASE_ITEM.BOOTS: [
-      'Sandals', 'Cloth Wrappings'
-  ]
+    'Sandals', 'Cloth Wrappings'
+  ],
   BASE_ITEM.MANTEL: [
-      'Half Robe', 'King\'s Mantel'
+    'Half Robe', 'King\'s Mantel'
   ],
   BASE_ITEM.GLOVES: [
-      'Hand Wrappings', 'Cloth Gloves'
+    'Hand Wrappings', 'Cloth Gloves'
   ],
   BASE_ITEM.CHESTPLATE: [
-      'Bone Shirt', 'Metal Plate'
+    'Bone Shirt', 'Metal Plate'
   ],
   BASE_ITEM.HELMET: [
-      'Skull Mask', 'Sallet'
+    'Skull Mask', 'Sallet'
   ],
   BASE_ITEM.FAULDS: [
-      'Bone Skirt', 'Metal Loincloth'
+    'Bone Skirt', 'Metal Loincloth'
   ],
   BASE_ITEM.GREAVES: [
-      'Plated Boots', 'Copper Greaves'
+    'Plated Boots', 'Copper Greaves'
   ],
   BASE_ITEM.PAULDRONS: [
-      'Metal', 'Spiked'
+    'Metal', 'Spiked'
   ],
-    BASE_ITEM.GUANTLETS: [
-      'Bone Studded Gloves', 'Copper Gauntlets'
+  BASE_ITEM.GUANTLETS: [
+    'Bone Studded Gloves', 'Copper Gauntlets'
   ],
-    BASE_ITEM.ONE_HANDED_SWORD: [
-      'Knife', 'Dagger'
+  BASE_ITEM.ONE_HANDED_SWORD: [
+    'Knife', 'Dagger'
   ],
-    BASE_ITEM.ONE_HANDED_MACE: [
-      '', ''
+  BASE_ITEM.ONE_HANDED_MACE: [
+    '', ''
   ],
-    BASE_ITEM.ONE_HANDED_AXE: [
-      '', ''
+  BASE_ITEM.ONE_HANDED_AXE: [
+    '', ''
   ],
-    BASE_ITEM.CLAW: [
-      '', ''
+  BASE_ITEM.CLAW: [
+    '', ''
   ],
-    BASE_ITEM.SHIELD: [
-      '', ''
+  BASE_ITEM.SHIELD: [
+    '', ''
   ],
-    BASE_ITEM.ORB: [
-      '', ''
+  BASE_ITEM.ORB: [
+    '', ''
+  ],  
+  BASE_ITEM.TWO_HANDED_SWORD: [
+    'Dull Longsword', 'Longsword'
   ],
-    BASE_ITEM.TWO_HANDED_SWORD: [
-      'Dull Longsword', 'Longsword'
+  BASE_ITEM.QUARTERSTAFF: [
+    'Branch', 'Wooden Staff'
   ],
-    BASE_ITEM.QUARTERSTAFF: [
-      'Branch', 'Wooden Staff'
+  BASE_ITEM.POLEARM: [
+    'Glave', 'Bardiche'
   ],
-    BASE_ITEM.POLEARM: [
-      'Glave', 'Bardiche'
+  BASE_ITEM.SPEAR: [
+    'Wooden Spear', 'Metal Spear'
   ],
-    BASE_ITEM.SPEAR: [
-      'Wooden Spear', 'Metal Spear'
+  BASE_ITEM.TWO_HANDED_MACE: [
+    '', ''
   ],
-    BASE_ITEM.TWO_HANDED_MACE: [
-      '', ''
+  BASE_ITEM.SLING: [
+    'Rocks', 'Sling'
   ],
-    BASE_ITEM.SLING: [
-      'Rocks', 'Sling'
+  BASE_ITEM.JAVELIN: [
+    '', ''
   ],
-    BASE_ITEM.JAVELIN: [
-      '', ''
+  BASE_ITEM.BOW: [
+    'Shortbow', 'Recurve'
   ],
-    BASE_ITEM.BOW: [
-      'Shortbow', 'Recurve'
-  ],
-    BASE_ITEM.CROSSBOW: [
-      '', ''
-  ],
+  BASE_ITEM.CROSSBOW: [
+    '', ''
+  ]
 }
 
 ITEM_RARITY_DISPLAY_NAME = {
@@ -210,6 +210,7 @@ class DAMAGE_TYPE:
   THRUST = 'thrust'
   SLASH = 'slash'
   CRUSH = 'crush'
+  LIGHTING = 'lighting'
   FIRE = 'fire'
   COLD = 'cold'
   POISON = 'poison'
@@ -257,12 +258,17 @@ def getItemFromItemString(itemString):
     base_damage = {}
     base_damage['type'] = WEAPON_DAMAGE_TYPE[base_item_key]
     base_damage['damage_range'] = WEAPON_DAMAGE_RANGE[base_item_key][grade_index]
+    ## TODO(dreamlane): Check for affixes that affect weapon damage.
     damage['type'] = WEAPON_DAMAGE_TYPE
     item['damage'] = damage
     ## TODO(dreamlane): Add damages from weapon affixes.
 
-  if base_item_key in ARMORS:
-    item['defense'] = 
+  elif base_item_key in ARMORS:
+    item['defense'] = ARMOR_DEFENSE[base_item_key]
+    ## TODO(dreamlane): Add defenses from armor affixes.
+
+  elif base_item_key in ACCESORIES:
+    ## TODO(dreamlane): Parse through the affixes.
 
 
   ## We're all done building the item object, return it.

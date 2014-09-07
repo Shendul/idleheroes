@@ -114,6 +114,7 @@ ACCESORIES = [
   BASE_ITEM.RING, BASE_ITEM.AMULET, BASE_ITEM.EARRING
 ]
 
+## TODO(shendul): fill this out
 ITEM_DISPLAY_NAME = {
   BASE_ITEM.TUNIC: [
     'Collar', 'Shirt'
@@ -144,11 +145,13 @@ class DAMAGE_TYPE:
   COLD = 'cold'
   POISON = 'poison'
 
+## TODO(shendul): fill this out.
 WEAPON_DAMAGE_TYPE = {
   BASE_ITEM.ONE_HANDED_SWORD: DAMAGE_TYPE.SLASH,
   BASE_ITEM.QUARTERSTAFF: DAMAGE_TYPE.CRUSH
 }
 
+## TODO(shendul): fill this out, we'll balance later. Make comments on things as needed.
 WEAPON_DAMAGE_RANGE = {
   BASE_ITEM.ONE_HANDED_SWORD: [
     (1, 5), # Grade 0

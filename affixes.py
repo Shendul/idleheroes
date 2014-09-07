@@ -21,7 +21,7 @@ class AFFIX:
   # DEFENSE = 'G'
   # PHYSICAL_RESISTANCE = 'H'
   # ELEMENTAL_RESISTANCE = 'I'
-  # THRUST_RESITANCE = 'J'
+  # THRUST_RESISTANCE = 'J'
   # SLASH_RESISTANCE = 'K'
   # CRUSH_RESISTANCE = 'L'
   # LIGHTNING_RESISTANCE = 'M'
@@ -47,26 +47,86 @@ class AFFIX:
   ## Other
   # REDUCED_REQUIREMENTS = 'Z'
 
-## TODO(shendul): Fill these out
+## TODO(shendul): Finish names
 PREFIX_DISPLAY_NAME = {
   ## TODO: Make different grades of names later.
   ## Attributes
   # AFFIX.HEALTH: 'Burly',
+  # AFFIX.MANA: 'Mystic',
   # AFFIX.STRENGTH: 'Heavy',
+  # AFFIX.AGILITY: 'Swift',
+  # AFFIX.WISDOM: 'Ancient',
+  # AFFIX.CONSTITUTION: 'Manly',
+
+  ## Armor Specific
+  # AFFIX.DEFENSE: 'Stalwart',
+  # AFFIX.PHYSICAL_RESISTANCE: 'Reinforced',
+  # AFFIX.ELEMENTAL_RESISTANCE: 'Weathered',
+  # AFFIX.THRUST_RESISTANCE: 'Shelled',
+  # AFFIX.SLASH_RESISTANCE: 'Hardened',
+  # AFFIX.CRUSH_RESISTANCE: 'Padded',
+  # AFFIX.LIGHTNING_RESISTANCE: 'Rubber',
+  # AFFIX.FIRE_RESISTANCE: 'Flame Retardant',
+  # AFFIX.COLD_RESISTANCE: 'Heated',
+  # AFFIX.POISON_RESISTANCE: '',
+  # AFFIX.THORNS: 'Spiny',
 
   ## Weapon Specific
+  # AFFIX.WEAPON_DAMAGE_PERCENTAGE: '',
   # AFFIX.WEAPON_DAMAGE_FLAT: 'Deadly',
+  # AFFIX.LIGHTNING_DAMAGE: 'Conductive',
+  # AFFIX.FIRE_DAMAGE: 'Fiery',
+  # AFFIX.COLD_DAMAGE: 'Frozen',
+  # AFFIX.POISON_DAMAGE: 'Poisoned',
+
+  ## Accessory Specific
+  # AFFIX.GOLD_FIND: 'Rich',
+  # AFFIX.MAGIC_FIND: '',
+  # AFFIX.EXP_GAIN: 'Practice',
+
+  ## Other
+  # AFFIX.REDUCED_REQUIREMENTS: 'Simple'
 }
 
-## TODO(shendul): Fill these out
+## TODO(shendul): Finish names
 SUFFIX_DISPLAY_NAME = {
   ## TODO: Make different grades of names later.
   ## Attributes
   # AFFIX.HEALTH: 'of Life',
+  # AFFIX.MANA: 'of Energy',
   # AFFIX.STRENGTH: 'of the Hulk',
+  # AFFIX.AGILITY: 'of the Wind',
+  # AFFIX.WISDOM: 'of Wisdom',
+  # AFFIX.CONSTITUTION: 'of the Bear',
+
+  ## Armor Specific
+  # AFFIX.DEFENSE: 'of Endurance',
+  # AFFIX.PHYSICAL_RESISTANCE: 'of the Turtle',
+  # AFFIX.ELEMENTAL_RESISTANCE: 'of Survival',
+  # AFFIX.THRUST_RESISTANCE: 'of the Drake',
+  # AFFIX.SLASH_RESISTANCE: '',
+  # AFFIX.CRUSH_RESISTANCE: '',
+  # AFFIX.LIGHTNING_RESISTANCE: '',
+  # AFFIX.FIRE_RESISTANCE: 'of the Firefighter',
+  # AFFIX.COLD_RESISTANCE: 'of the Viking',
+  # AFFIX.POISON_RESISTANCE: 'of Immunity',
+  # AFFIX.THORNS: 'of the Porcupine',
 
   ## Weapon Specific
+  # AFFIX.WEAPON_DAMAGE_PERCENTAGE: '',
   # AFFIX.WEAPON_DAMAGE_FLAT: 'of Slaying',
+  # AFFIX.LIGHTNING_DAMAGE: '',
+  # AFFIX.FIRE_DAMAGE: 'of Flames',
+  # AFFIX.COLD_DAMAGE: 'of the North',
+  # AFFIX.POISON_DAMAGE: 'of the Viper',
+
+  ## Accessory Specific
+  # AFFIX.GOLD_FIND: 'of the Wealthy',
+  # AFFIX.MAGIC_FIND: 'of Tracking',
+  # AFFIX.EXP_GAIN: 'of Instructing',
+
+  ## Other
+  # AFFIX.REDUCED_REQUIREMENTS: 'of the Cadet'
 }
 
 

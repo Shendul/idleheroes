@@ -117,17 +117,86 @@ ACCESORIES = [
 ## TODO(shendul): fill this out
 ITEM_DISPLAY_NAME = {
   BASE_ITEM.TUNIC: [
-    'Collar', 'Shirt'
+      'Collar', 'Shirt'
   ],
   BASE_ITEM.HAT: [
-    'Bandana', 'Cap'
+      'Bandana', 'Cap'
   ],
   BASE_ITEM.PANTS: [
-    'Loin Cloth', 'Kilt'
+      'Loin Cloth', 'Kilt'
   ],
   BASE_ITEM.BOOTS: [
-    'Sandals', 'Cloth Wrappings'
+      'Sandals', 'Cloth Wrappings'
   ]
+  BASE_ITEM.MANTEL: [
+      'Half Robe', 'King\'s Mantel'
+  ],
+  BASE_ITEM.GLOVES: [
+      'Hand Wrappings', 'Cloth Gloves'
+  ],
+  BASE_ITEM.CHESTPLATE: [
+      'Bone Shirt', 'Metal Plate'
+  ],
+  BASE_ITEM.HELMET: [
+      'Skull Mask', 'Sallet'
+  ],
+  BASE_ITEM.FAULDS: [
+      'Bone Skirt', 'Metal Loincloth'
+  ],
+  BASE_ITEM.GREAVES: [
+      'Plated Boots', 'Copper Greaves'
+  ],
+  BASE_ITEM.PAULDRONS: [
+      'Metal', 'Spiked'
+  ],
+    BASE_ITEM.GUANTLETS: [
+      'Bone Studded Gloves', 'Copper Gauntlets'
+  ],
+    BASE_ITEM.ONE_HANDED_SWORD: [
+      'Knife', 'Dagger'
+  ],
+    BASE_ITEM.ONE_HANDED_MACE: [
+      '', ''
+  ],
+    BASE_ITEM.ONE_HANDED_AXE: [
+      '', ''
+  ],
+    BASE_ITEM.CLAW: [
+      '', ''
+  ],
+    BASE_ITEM.SHIELD: [
+      '', ''
+  ],
+    BASE_ITEM.ORB: [
+      '', ''
+  ],
+    BASE_ITEM.TWO_HANDED_SWORD: [
+      'Dull Longsword', 'Longsword'
+  ],
+    BASE_ITEM.QUARTERSTAFF: [
+      'Branch', 'Wooden Staff'
+  ],
+    BASE_ITEM.POLEARM: [
+      'Glave', 'Bardiche'
+  ],
+    BASE_ITEM.SPEAR: [
+      'Wooden Spear', 'Metal Spear'
+  ],
+    BASE_ITEM.TWO_HANDED_MACE: [
+      '', ''
+  ],
+    BASE_ITEM.SLING: [
+      'Rocks', 'Sling'
+  ],
+    BASE_ITEM.JAVELIN: [
+      '', ''
+  ],
+    BASE_ITEM.BOW: [
+      'Shortbow', 'Recurve'
+  ],
+    BASE_ITEM.CROSSBOW: [
+      '', ''
+  ],
 }
 
 ITEM_RARITY_DISPLAY_NAME = {

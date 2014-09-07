@@ -114,7 +114,6 @@ ACCESORIES = [
   BASE_ITEM.RING, BASE_ITEM.AMULET, BASE_ITEM.EARRING
 ]
 
-## TODO(shendul): fill this out
 ITEM_DISPLAY_NAME = {
   BASE_ITEM.TUNIC: [
     'Collar', 'Shirt'
@@ -191,6 +190,9 @@ ITEM_DISPLAY_NAME = {
   BASE_ITEM.JAVELIN: [
     '', ''
   ],
+  BASE_ITEM.WAND: [
+    '', ''
+  ],
   BASE_ITEM.BOW: [
     'Shortbow', 'Recurve'
   ],
@@ -215,13 +217,23 @@ class DAMAGE_TYPE:
   COLD = 'cold'
   POISON = 'poison'
 
-## TODO(shendul): fill this out.
 WEAPON_DAMAGE_TYPE = {
   BASE_ITEM.ONE_HANDED_SWORD: DAMAGE_TYPE.SLASH,
-  BASE_ITEM.QUARTERSTAFF: DAMAGE_TYPE.CRUSH
+  BASE_ITEM.ONE_HANDED_AXE: DAMAGE_TYPE.SLASH,
+  BASE_ITEM.ONE_HANDED_MACE: DAMAGE_TYPE.CRUSH,
+  BASE_ITEM.CLAW: DAMAGE_TYPE.THRUST,
+  BASE_ITEM.TWO_HANDED_SWORD: DAMAGE_TYPE.SLASH,
+  BASE_ITEM.QUARTERSTAFF: DAMAGE_TYPE.CRUSH,
+  BASE_ITEM.POLEARM: DAMAGE_TYPE.SLASH,
+  BASE_ITEM.SPEAR: DAMAGE_TYPE.THRUST,
+  BASE_ITEM.TWO_HANDED_MACE: DAMAGE_TYPE.CRUSH,
+  BASE_ITEM.SLING: DAMAGE_TYPE.CRUSH,
+  BASE_ITEM.JAVELIN: DAMAGE_TYPE.THRUST,
+  BASE_ITEM.WAND: DAMAGE_TYPE.FIRE, # TODO: find out what to really put.
+  BASE_ITEM.BOW: DAMAGE_TYPE.THRUST,
+  BASE_ITEM.CROSSBOW: DAMAGE_TYPE.THRUST
 }
 
-## TODO(shendul): fill this out, we'll balance later. Make comments on things as needed.
 WEAPON_DAMAGE_RANGE = {
   BASE_ITEM.ONE_HANDED_SWORD: [
     (1, 5), # Grade 0
@@ -230,15 +242,110 @@ WEAPON_DAMAGE_RANGE = {
   BASE_ITEM.ONE_HANDED_AXE: [
     (2, 4), # Grade 0
     (3, 7) # Grade 1
+  ],
+  BASE_ITEM.ONE_HANDED_MACE: [
+    (3, 3), # Grade 0
+    (4, 6) # Grade 1
+  ],
+  BASE_ITEM.CLAW: [
+    (1, 5), # Grade 0
+    (1, 10) # Grade 1
+  ],
+  BASE_ITEM.TWO_HANDED_SWORD: [
+    (3, 7), # Grade 0
+    (5, 11) # Grade 1
+  ],
+  BASE_ITEM.QUARTERSTAFF: [
+    (1, 9), # Grade 0
+    (3, 12) # Grade 1
+  ],
+  BASE_ITEM.POLEARM: [
+    (4, 6), # Grade 0
+    (5, 9) # Grade 1
+  ],
+  BASE_ITEM.SPEAR: [
+    (3, 7), # Grade 0
+    (4, 11) # Grade 1
+  ],
+  BASE_ITEM.TWO_HANDED_MACE: [
+    (5, 6), # Grade 0
+    (6, 8) # Grade 1
+  ],
+  BASE_ITEM.SLING: [
+    (3, 3), # Grade 0
+    (5, 5) # Grade 1
+  ],
+  BASE_ITEM.JAVELIN: [
+    (1, 5), # Grade 0
+    (2, 8) # Grade 1
+  ],
+  BASE_ITEM.WAND: [
+    (2, 4), # Grade 0
+    (3, 7) # Grade 1
+  ],
+  BASE_ITEM.BOW: [
+    (3, 7), # Grade 0
+    (5, 11) # Grade 1
+  ],
+  BASE_ITEM.CROSSBOW: [
+    (4, 6), # Grade 0
+    (7, 9) # Grade 1
   ]
 }
 
-## TODO(shendul): fill this out.
 ARMOR_DEFENSE = {
   BASE_ITEM.TUNIC: [
     10, # Grade 0
     24 # Grade 1
   ],
+  BASE_ITEM.HAT: [
+    4, # Grade 0
+    9 # Grade 1
+  ],
+  BASE_ITEM.PANTS: [
+    8, # Grade 0
+    18 # Grade 1
+  ],
+  BASE_ITEM.BOOTS: [
+    5, # Grade 0
+    10 # Grade 1
+  ],
+  BASE_ITEM.MANTEL: [
+    2, # Grade 0
+    5 # Grade 1
+  ],
+  BASE_ITEM.GLOVES: [
+    3, # Grade 0
+    8 # Grade 1
+  ],
+  BASE_ITEM.CHESTPLATE: [
+    13, # Grade 0
+    28 # Grade 1
+  ],
+  BASE_ITEM.HELMET: [
+    6, # Grade 0
+    13 # Grade 1
+  ],
+  BASE_ITEM.FAULDS: [
+    10, # Grade 0
+    24 # Grade 1
+  ],
+  BASE_ITEM.GREAVES: [
+    7, # Grade 0
+    15 # Grade 1
+  ],
+  BASE_ITEM.PAULDRONS: [
+    5, # Grade 0
+    7 # Grade 1
+  ],
+  BASE_ITEM.GUANTLETS: [
+    5, # Grade 0
+    15 # Grade 1
+  ],
+  BASE_ITEM.SHIELD: [
+    5, # Grade 0
+    9 # Grade 1
+  ]
 }
 
 def getItemFromItemString(itemString):

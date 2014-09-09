@@ -68,11 +68,11 @@ PREFIX_DISPLAY_NAME = {
   # AFFIX.LIGHTNING_RESISTANCE: 'Rubber',
   # AFFIX.FIRE_RESISTANCE: 'Flame Retardant',
   # AFFIX.COLD_RESISTANCE: 'Heated',
-  # AFFIX.POISON_RESISTANCE: '',
+  # AFFIX.POISON_RESISTANCE: 'Alchemist's,
   # AFFIX.THORNS: 'Spiny',
 
   ## Weapon Specific
-  # AFFIX.WEAPON_DAMAGE_PERCENTAGE: '',
+  # AFFIX.WEAPON_DAMAGE_PERCENTAGE: 'Precise',
   # AFFIX.WEAPON_DAMAGE_FLAT: 'Deadly',
   # AFFIX.LIGHTNING_DAMAGE: 'Conductive',
   # AFFIX.FIRE_DAMAGE: 'Fiery',
@@ -81,7 +81,7 @@ PREFIX_DISPLAY_NAME = {
 
   ## Accessory Specific
   # AFFIX.GOLD_FIND: 'Rich',
-  # AFFIX.MAGIC_FIND: '',
+  # AFFIX.MAGIC_FIND: 'Lucky',
   # AFFIX.EXP_GAIN: 'Practice',
 
   ## Other
@@ -104,18 +104,18 @@ SUFFIX_DISPLAY_NAME = {
   # AFFIX.PHYSICAL_RESISTANCE: 'of the Turtle',
   # AFFIX.ELEMENTAL_RESISTANCE: 'of Survival',
   # AFFIX.THRUST_RESISTANCE: 'of the Drake',
-  # AFFIX.SLASH_RESISTANCE: '',
-  # AFFIX.CRUSH_RESISTANCE: '',
-  # AFFIX.LIGHTNING_RESISTANCE: '',
+  # AFFIX.SLASH_RESISTANCE: 'of the Tree',
+  # AFFIX.CRUSH_RESISTANCE: 'of Stone',
+  # AFFIX.LIGHTNING_RESISTANCE: 'of the Earth',
   # AFFIX.FIRE_RESISTANCE: 'of the Firefighter',
   # AFFIX.COLD_RESISTANCE: 'of the Viking',
   # AFFIX.POISON_RESISTANCE: 'of Immunity',
   # AFFIX.THORNS: 'of the Porcupine',
 
   ## Weapon Specific
-  # AFFIX.WEAPON_DAMAGE_PERCENTAGE: '',
+  # AFFIX.WEAPON_DAMAGE_PERCENTAGE: 'of Mutilation',
   # AFFIX.WEAPON_DAMAGE_FLAT: 'of Slaying',
-  # AFFIX.LIGHTNING_DAMAGE: '',
+  # AFFIX.LIGHTNING_DAMAGE: 'of Shocking',
   # AFFIX.FIRE_DAMAGE: 'of Flames',
   # AFFIX.COLD_DAMAGE: 'of the North',
   # AFFIX.POISON_DAMAGE: 'of the Viper',

@@ -16,16 +16,14 @@ class MONSTERS:
 The below dictionaries are the hardcoded data for certain monsters.
 """
 
-def makeMob(health, mana, defense, physical_resistance, elemental_resistance,
-  thrust_resistance, slash_resistance, crush_resistance, lightning_resistance,
-  fire_resistance, cold_resistance, poison_resistance, minimum_damage,
-  maximum_damage, damage_type, level, rarity_level, name, loot_table):
+def makeMob(health, mana, defense, thrust_resistance, slash_resistance,
+  crush_resistance, lightning_resistance, fire_resistance, cold_resistance,
+  poison_resistance, minimum_damage, maximum_damage, damage_type, level,
+  rarity_level, name, loot_table):
   return {
     BATTLESTATS.HEALTH: health,
     BATTLESTATS.MANA: mana,
     BATTLESTATS.DEFENSE: defense,
-    BATTLESTATS.PHYSICAL_RESISTANCE: physical_resistance,
-    BATTLESTATS.ELEMENTAL_RESISTANCE: elemental_resistance,
     BATTLESTATS.THRUST_RESISTANCE: thrust_resistance,
     BATTLESTATS.SLASH_RESISTANCE: slash_resistance,
     BATTLESTATS.CRUSH_RESISTANCE: crush_resistance,

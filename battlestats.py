@@ -10,8 +10,6 @@ class BATTLE_STATS:
   HEALTH = "health"
   MANA = "mana"
   DEFENSE = "defense"
-  PHYSICAL_RESISTANCE = "physical_resistance"
-  ELEMENTAL_RESISTANCE = "elemental_resistance"
   THRUST_RESISTANCE = "thrust_resistance"
   SLASH_RESISTANCE = "slash_resistance"
   CRUSH_RESISTANCE = "crush_resistance"

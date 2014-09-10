@@ -52,7 +52,6 @@ class AFFIX:
   ## Other
   # REDUCED_REQUIREMENTS = 'Z'
 
-## TODO(shendul): Finish names
 PREFIX_DISPLAY_NAME = {
   ## TODO: Make different grades of names later.
   ## Attributes
@@ -65,7 +64,7 @@ PREFIX_DISPLAY_NAME = {
 
   ## Armor Specific
   # AFFIX.DEFENSE: 'Stalwart',
-  # AFFIX.DEFENSE_PERCENTAGE: '',
+  # AFFIX.DEFENSE_PERCENTAGE: 'Vanguard'\s',
   # AFFIX.PHYSICAL_RESISTANCE: 'Reinforced',
   # AFFIX.ELEMENTAL_RESISTANCE: 'Weathered',
   # AFFIX.THRUST_RESISTANCE: 'Shelled',
@@ -74,7 +73,7 @@ PREFIX_DISPLAY_NAME = {
   # AFFIX.LIGHTNING_RESISTANCE: 'Rubber',
   # AFFIX.FIRE_RESISTANCE: 'Flame Retardant',
   # AFFIX.COLD_RESISTANCE: 'Heated',
-  # AFFIX.POISON_RESISTANCE: 'Alchemist's,
+  # AFFIX.POISON_RESISTANCE: 'Alchemist'\s',
   # AFFIX.THORNS: 'Spiny',
 
   ## Weapon Specific
@@ -94,7 +93,6 @@ PREFIX_DISPLAY_NAME = {
   # AFFIX.REDUCED_REQUIREMENTS: 'Simple'
 }
 
-## TODO(shendul): Finish names
 SUFFIX_DISPLAY_NAME = {
   ## TODO: Make different grades of names later.
   ## Attributes
@@ -107,7 +105,7 @@ SUFFIX_DISPLAY_NAME = {
 
   ## Armor Specific
   # AFFIX.DEFENSE: 'of Endurance',
-  # AFFIX.DEFENSE_PERCENTAGE: '',
+  # AFFIX.DEFENSE_PERCENTAGE: 'of Protection',
   # AFFIX.PHYSICAL_RESISTANCE: 'of the Turtle',
   # AFFIX.ELEMENTAL_RESISTANCE: 'of Survival',
   # AFFIX.THRUST_RESISTANCE: 'of the Drake',
@@ -179,7 +177,7 @@ AFFIX_HAS_VALUE_RANGE = {
 
 ## Ranges of possible rolls for affixes, for given item types.
 ## Each grade of affix for each item type has a min range and a max range,
-##   or if the vlaue is not a range each grade will simply have a single
+##   or if the value is not a range each grade will simply have a single
 ##   range of possible values.
 ## The lowest number of the max range must be >= highest number of min range.
 class ITEM_AFFIX_CLASS:
@@ -211,34 +209,422 @@ class ITEM_AFFIX_CLASS:
 PREFIX_ROLL_RANGE_SETS = {
   ## TODO: Balance these
   'body_armor': {
-    AFFIX.HEALTH: [
+    AFFIX.HEALTH: [                    # BODY ARMOR SECTION
       (5, 10), # Grade 0
       (10, 25) # Grade 1
     ],
-    ## TODO: Add all affixes that make sense for body armor
+    AFFIX.MANA: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.STRENGTH: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.AGILITY: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.WISDOM: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.CONSTITUTION: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.DEFENSE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.DEFENSE_PERCENTAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.PHYSICAL_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.ELEMENTAL_RESISTANCE: [                    # BODY ARMOR SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.THRUST_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.SLASH_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.CRUSH_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.LIGHTNING_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.FIRE_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.COLD_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.POISON_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.THORNS: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.GOLD_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.MAGIC_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.EXP_GAIN: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.REDUCED_REQUIREMENTS: [                    # BODY ARMOR SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ]
 
   }, ## END 'body_armor'
 
   'helmets': {
-    AFFIX.HEALTH: [
+    AFFIX.HEALTH: [                    # HELMET SECTION
       (2, 6), # Grade 0
       (6, 18) # Grade 1
     ],
-    ## TODO: Add all affixes that make sense for helmets
+    AFFIX.MANA: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.STRENGTH: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.AGILITY: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.WISDOM: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.CONSTITUTION: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.DEFENSE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.DEFENSE_PERCENTAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.PHYSICAL_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.ELEMENTAL_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.THRUST_RESISTANCE: [                    # HELMET SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.SLASH_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.CRUSH_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.LIGHTNING_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.FIRE_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.COLD_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.POISON_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.THORNS: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.GOLD_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.MAGIC_FIND: [                    # HELMET SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.EXP_GAIN: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.REDUCED_REQUIREMENTS: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ]
 
   }, ## END 'helmets'
 
   'gloves': {
-    ## TODO: Add all affixes that make sense for gloves
+    AFFIX.HEALTH: [                    # GLOVES SECTION
+      (2, 6), # Grade 0
+      (6, 18) # Grade 1
+    ],
+    AFFIX.MANA: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.STRENGTH: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.AGILITY: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.WISDOM: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.CONSTITUTION: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.DEFENSE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.DEFENSE_PERCENTAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.PHYSICAL_RESISTANCE: [                    # GLOVES SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.ELEMENTAL_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.THRUST_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.SLASH_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.CRUSH_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.LIGHTNING_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.FIRE_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.COLD_RESISTANCE: [                    # GLOVES SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.POISON_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.THORNS: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.GOLD_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.MAGIC_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.EXP_GAIN: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.REDUCED_REQUIREMENTS: [                    # GLOVES SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ]
 
   }, ## END 'gloves'
 
   'accessories': {
-    ## TODO: Add all affixes that make sense for accessories
+    AFFIX.HEALTH: [                  # ACCESSORIES SECTION
+      (2, 6), # Grade 0
+      (6, 18) # Grade 1
+    ],
+    AFFIX.MANA: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.STRENGTH: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.AGILITY: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.WISDOM: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.CONSTITUTION: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.DEFENSE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.DEFENSE_PERCENTAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.PHYSICAL_RESISTANCE: [                  # ACCESSORIES SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.ELEMENTAL_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.THRUST_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.SLASH_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.CRUSH_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.LIGHTNING_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.FIRE_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.COLD_RESISTANCE: [                  # ACCESSORIES SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.POISON_RESISTANCE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.THORNS: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.WEAPON_DAMAGE_FLAT: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.LIGHTNING_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.FIRE_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.COLD_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.POISON_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.GOLD_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.MAGIC_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.EXP_GAIN: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.REDUCED_REQUIREMENTS: [                  # ACCESSORIES SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ]
 
   }, ## END 'accessories'
 
   'one_handed_melee_weapons': {
+    AFFIX.HEALTH: [                        # ONE HANDED MELEE SECTION             
+      (2, 6), # Grade 0
+      (6, 18) # Grade 1
+    ],
+    AFFIX.MANA: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.STRENGTH: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.AGILITY: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.WISDOM: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.CONSTITUTION: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
       (5, 20), # Grade 0
       (20, 50) # Grade 1
@@ -247,6 +633,38 @@ PREFIX_ROLL_RANGE_SETS = {
       [(1, 4), (4, 8)], # Grade 0
       [(3, 6), (6, 12)] # Grade 1
     ],
+    AFFIX.LIGHTNING_DAMAGE: [              # ONE HANDED MELEE SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.FIRE_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.COLD_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.POISON_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.GOLD_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.MAGIC_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.EXP_GAIN: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.REDUCED_REQUIREMENTS: [                  # ONE HANDED MELEE SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ]
     ## TODO: Add all affixes that make sense for 1h melee
 
   }, ## END 'one_handed_melee_weapons'
@@ -262,6 +680,30 @@ PREFIX_ROLL_RANGE_SETS = {
   }, ## END 'orbs'
 
   'two_handed_melee_weapons': {
+    AFFIX.HEALTH: [                    # TWO HANDED MELEE SECTION                
+      (2, 6), # Grade 0
+      (6, 18) # Grade 1
+    ],
+    AFFIX.MANA: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.STRENGTH: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.AGILITY: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.WISDOM: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.CONSTITUTION: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
       (5, 20), # Grade 0
       (20, 50) # Grade 1
@@ -270,32 +712,176 @@ PREFIX_ROLL_RANGE_SETS = {
       [(2, 6), (6, 14)], # Grade 0
       [(6, 10), (10, 24)] # Grade 1
     ],
+    AFFIX.LIGHTNING_DAMAGE: [                  # TWO HANDED MELEE SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.FIRE_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.COLD_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.POISON_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.GOLD_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.MAGIC_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.EXP_GAIN: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.REDUCED_REQUIREMENTS: [                  # TWO HANDED MELEE SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ]
     ## TODO: Add all affixes that make sense for 2h melee
 
   }, ## END 'two_handed_melee_weapons'
 
   'one_handed_ranged_weapons': {
+    AFFIX.HEALTH: [                        # ONE HANDED RANGED SECTION            
+      (2, 6), # Grade 0
+      (6, 18) # Grade 1
+    ],
+    AFFIX.MANA: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.STRENGTH: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.AGILITY: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.WISDOM: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.CONSTITUTION: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
       (5, 20), # Grade 0
       (20, 50) # Grade 1
     ],
-    AFFIX.WEAPON_DAMAGE_FLAT: [
+    AFFIX.WEAPON_DAMAGE_FLAT: [                  # ONE HANDED RANGED SECTION
       [(1, 4), (4, 8)], # Grade 0
       [(3, 6), (6, 12)] # Grade 1
     ],
+    AFFIX.LIGHTNING_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.FIRE_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.COLD_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.POISON_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.GOLD_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.MAGIC_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.EXP_GAIN: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.REDUCED_REQUIREMENTS: [                  # ONE HANDED RANGED SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ]
     ## TODO: Add all affixes that make sense for 1h ranged
 
   }, ## END 'one_handed_ranged_weapons'
 
   'two_handed_ranged_weapons': {
+    AFFIX.HEALTH: [                   # TWO HANDED RANGED SECTION                 
+      (2, 6), # Grade 0
+      (6, 18) # Grade 1
+    ],
+    AFFIX.MANA: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.STRENGTH: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.AGILITY: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.WISDOM: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.CONSTITUTION: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
       (5, 20), # Grade 0
       (20, 50) # Grade 1
     ],
-    AFFIX.WEAPON_DAMAGE_FLAT: [
+    AFFIX.WEAPON_DAMAGE_FLAT: [                  # TWO HANDED RANGED SECTION
       [(2, 6), (6, 14)], # Grade 0
       [(6, 10), (10, 24)] # Grade 1
     ],
+    AFFIX.LIGHTNING_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.FIRE_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.COLD_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.POISON_DAMAGE: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.GOLD_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.MAGIC_FIND: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.EXP_GAIN: [
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ],
+    AFFIX.REDUCED_REQUIREMENTS: [                  # TWO HANDED RANGED SECTION
+      (, ), # Grade 0
+      (, ) # Grade 1
+    ]
     ## TODO: Add all affixes that make sense for 2h ranged
 
   }, ## END 'two_handed_ranged_weapons'

@@ -1,5 +1,8 @@
 ## affixes.py
-## This file represents all of the data associated with affixes
+## This file represents all of the data associated with affixes.
+
+from items import *
+
 class AFFIX:
   """
   This class maps the base affix type to a character that will be used in the
@@ -8,6 +11,7 @@ class AFFIX:
   The section comments are basic seperators. When implementing each affix,
   decisions will need to be made regarding which affixes can be used on which
   items.
+  NEXT AVAILABLE CHAR: 'c'
   """
   ## Attributes
   # HEALTH = 'A'
@@ -19,6 +23,7 @@ class AFFIX:
 
   ## Armor Specific
   # DEFENSE = 'G'
+  # DEFENSE_PERCENTAGE = 'b'
   # PHYSICAL_RESISTANCE = 'H'
   # ELEMENTAL_RESISTANCE = 'I'
   # THRUST_RESISTANCE = 'J'
@@ -60,6 +65,7 @@ PREFIX_DISPLAY_NAME = {
 
   ## Armor Specific
   # AFFIX.DEFENSE: 'Stalwart',
+  # AFFIX.DEFENSE_PERCENTAGE: '',
   # AFFIX.PHYSICAL_RESISTANCE: 'Reinforced',
   # AFFIX.ELEMENTAL_RESISTANCE: 'Weathered',
   # AFFIX.THRUST_RESISTANCE: 'Shelled',
@@ -101,6 +107,7 @@ SUFFIX_DISPLAY_NAME = {
 
   ## Armor Specific
   # AFFIX.DEFENSE: 'of Endurance',
+  # AFFIX.DEFENSE_PERCENTAGE: '',
   # AFFIX.PHYSICAL_RESISTANCE: 'of the Turtle',
   # AFFIX.ELEMENTAL_RESISTANCE: 'of Survival',
   # AFFIX.THRUST_RESISTANCE: 'of the Drake',
@@ -129,6 +136,171 @@ SUFFIX_DISPLAY_NAME = {
   # AFFIX.REDUCED_REQUIREMENTS: 'of the Cadet'
 }
 
+## Specifies whether or not the affix has a range value, or has a fixed value.
+AFFIX_HAS_VALUE_RANGE = {
+  ## Attributes
+  # AFFIX.HEALTH: False,
+  # AFFIX.MANA: False,
+  # AFFIX.STRENGTH: False,
+  # AFFIX.AGILITY: False,
+  # AFFIX.WISDOM: False,
+  # AFFIX.CONSTITUTION: False,
+
+  ## Armor Specific
+  # AFFIX.DEFENSE: False,
+  # AFFIX.DEFENSE_PERCENTAGE: False,
+  # AFFIX.PHYSICAL_RESISTANCE: False,
+  # AFFIX.ELEMENTAL_RESISTANCE: False,
+  # AFFIX.THRUST_RESISTANCE: False,
+  # AFFIX.SLASH_RESISTANCE: False,
+  # AFFIX.CRUSH_RESISTANCE: False,
+  # AFFIX.LIGHTNING_RESISTANCE: False,
+  # AFFIX.FIRE_RESISTANCE: False,
+  # AFFIX.COLD_RESISTANCE: False,
+  # AFFIX.POISON_RESISTANCE: False,
+  # AFFIX.THORNS: True,
+
+  ## Weapon Specific
+  # AFFIX.WEAPON_DAMAGE_PERCENTAGE: False,
+  # AFFIX.WEAPON_DAMAGE_FLAT: True,
+  # AFFIX.LIGHTNING_DAMAGE: True,
+  # AFFIX.FIRE_DAMAGE: True,
+  # AFFIX.COLD_DAMAGE: True,
+  # AFFIX.POISON_DAMAGE: True,
+
+  ## Accessory Specific
+  # AFFIX.GOLD_FIND: False,
+  # AFFIX.MAGIC_FIND: False,
+  # AFFIX.EXP_GAIN: False,
+
+  ## Other
+  # AFFIX.REDUCED_REQUIREMENTS: False
+}
+
+## Ranges of possible rolls for affixes, for given item types.
+## Each grade of affix for each item type has a min range and a max range,
+##   or if the vlaue is not a range each grade will simply have a single
+##   range of possible values.
+## The lowest number of the max range must be >= highest number of min range.
+class ITEM_AFFIX_CLASS:
+  ##TODO: Consider differentiating between light and heavy armor for affixes.
+  BODY_ARMOR = [
+    ITEM.TUNIC, ITEM.PANTS, ITEM.MANTEL, ITEM.CHESTPLATE, ITEM.FAULDS,
+    ITEM.PAULDRONS, ITEM.GREAVES, ITEM.BOOTS
+  ]
+  HELMETS = [ITEM.HAT, ITEM.HELMET]
+  GLOVES = [ITEM.GLOVES, ITEM.GUANTLETS]
+  ACCESSORIES = [ITEM.RING, ITEM.AMULET, ITEM.EARRING]
+  ONE_HANDED_MELEE_WEAPONS = [
+    ITEM.ONE_HANDED_SWORD, ITEM.ONE_HANDED_AXE, ITEM.ONE_HANDED_MACE, ITEM.CLAW
+  ]
+  SHIELDS = [ITEM.SHIELD]
+  ORBS = [ITEM.ORB]
+  TWO_HANDED_MELEE_WEAPONS = [
+    ITEM.TWO_HANDED_SWORD, ITEM.TWO_HANDED_MACE, ITEM.QUARTERSTAFF,
+    ITEM.POLEARM, ITEM.SPEAR
+  ]
+  ONE_HANDED_RANGED_WEAPONS = [
+    ITEM.SLING, ITEM.JAVELIN, ITEM.WAND
+  ]
+  TWO_HANDED_RANGED_WEAPONS = [
+    ITEM.BOW, ITEM.CROSSBOW
+  ]
+
+## Sadly, this is going to be a huge unreadable mess of data.
+PREFIX_ROLL_RANGE_SETS = {
+  ## TODO: Balance these
+  'body_armor': {
+    AFFIX.HEALTH: [
+      (5, 10), # Grade 0
+      (10, 25) # Grade 1
+    ],
+    ## TODO: Add all affixes that make sense for body armor
+
+  }, ## END 'body_armor'
+
+  'helmets': {
+    AFFIX.HEALTH: [
+      (2, 6), # Grade 0
+      (6, 18) # Grade 1
+    ],
+    ## TODO: Add all affixes that make sense for helmets
+
+  }, ## END 'helmets'
+
+  'gloves': {
+    ## TODO: Add all affixes that make sense for gloves
+
+  }, ## END 'gloves'
+
+  'accessories': {
+    ## TODO: Add all affixes that make sense for accessories
+
+  }, ## END 'accessories'
+
+  'one_handed_melee_weapons': {
+    AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
+      (5, 20), # Grade 0
+      (20, 50) # Grade 1
+    ],
+    AFFIX.WEAPON_DAMAGE_FLAT: [
+      [(1, 4), (4, 8)], # Grade 0
+      [(3, 6), (6, 12)] # Grade 1
+    ],
+    ## TODO: Add all affixes that make sense for 1h melee
+
+  }, ## END 'one_handed_melee_weapons'
+
+  'shields': {
+    ## TODO: Add all affixes that make sense for shields
+
+  }, ## END 'shields'
+
+  'orbs': {
+    ## TODO: Add all affixes that make sense for orbs
+
+  }, ## END 'orbs'
+
+  'two_handed_melee_weapons': {
+    AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
+      (5, 20), # Grade 0
+      (20, 50) # Grade 1
+    ],
+    AFFIX.WEAPON_DAMAGE_FLAT: [
+      [(2, 6), (6, 14)], # Grade 0
+      [(6, 10), (10, 24)] # Grade 1
+    ],
+    ## TODO: Add all affixes that make sense for 2h melee
+
+  }, ## END 'two_handed_melee_weapons'
+
+  'one_handed_ranged_weapons': {
+    AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
+      (5, 20), # Grade 0
+      (20, 50) # Grade 1
+    ],
+    AFFIX.WEAPON_DAMAGE_FLAT: [
+      [(1, 4), (4, 8)], # Grade 0
+      [(3, 6), (6, 12)] # Grade 1
+    ],
+    ## TODO: Add all affixes that make sense for 1h ranged
+
+  }, ## END 'one_handed_ranged_weapons'
+
+  'two_handed_ranged_weapons': {
+    AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
+      (5, 20), # Grade 0
+      (20, 50) # Grade 1
+    ],
+    AFFIX.WEAPON_DAMAGE_FLAT: [
+      [(2, 6), (6, 14)], # Grade 0
+      [(6, 10), (10, 24)] # Grade 1
+    ],
+    ## TODO: Add all affixes that make sense for 2h ranged
+
+  }, ## END 'two_handed_ranged_weapons'
+
+}
 
 
 

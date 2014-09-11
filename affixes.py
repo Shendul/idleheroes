@@ -93,6 +93,7 @@ AFFIX_HAS_VALUE_RANGE = {
 
   ## Other
   # AFFIX.REDUCED_REQUIREMENTS: False
+  }
   
 PREFIX_DISPLAY_NAME = {
   ## TODO: Make different grades of names later.
@@ -270,7 +271,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.ELEMENTAL_RESISTANCE: [                    # BODY ARMOR SECTION
+#     AFFIX.ELEMENTAL_RESISTANCE: [                         # BODY ARMOR SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
@@ -318,7 +319,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                    # BODY ARMOR SECTION
+#     AFFIX.REDUCED_REQUIREMENTS: [                         # BODY ARMOR SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ]
@@ -326,7 +327,7 @@ AFFIX_ROLL_RANGE_SETS = {
   }, ## END 'body_armor'
 
   'helmets': {
-    AFFIX.HEALTH: [                    # HELMET SECTION
+    AFFIX.HEALTH: [                                             # HELMET SECTION
       item_affix_grade('Burly', 'of Life', 1, (2, 6), None), # Grade 0
       item_affix_grade('Burly', 'of Life', 8, (6, 15), None) # Grade 1
     ],
@@ -366,7 +367,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.THRUST_RESISTANCE: [                    # HELMET SECTION
+#     AFFIX.THRUST_RESISTANCE: [                                # HELMET SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
@@ -402,7 +403,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.MAGIC_FIND: [                    # HELMET SECTION
+#     AFFIX.MAGIC_FIND: [                                       # HELMET SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
@@ -418,7 +419,7 @@ AFFIX_ROLL_RANGE_SETS = {
   }, ## END 'helmets'
 
   'gloves': {
-    AFFIX.HEALTH: [                    # GLOVES SECTION
+    AFFIX.HEALTH: [                                             # GLOVES SECTION
       item_affix_grade('Burly', 'of Life', 1, (2, 6), None), # Grade 0
       item_affix_grade('Burly', 'of Life', 8, (6, 15), None) # Grade 1
     ],
@@ -450,7 +451,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.PHYSICAL_RESISTANCE: [                    # GLOVES SECTION
+#     AFFIX.PHYSICAL_RESISTANCE: [                              # GLOVES SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
@@ -478,7 +479,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.COLD_RESISTANCE: [                    # GLOVES SECTION
+#     AFFIX.COLD_RESISTANCE: [                                  # GLOVES SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
@@ -502,7 +503,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                    # GLOVES SECTION
+#     AFFIX.REDUCED_REQUIREMENTS: [                             # GLOVES SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ]
@@ -510,7 +511,7 @@ AFFIX_ROLL_RANGE_SETS = {
   }, ## END 'gloves'
 
   'accessories': {
-    AFFIX.HEALTH: [                    # ACCESSORIES SECTION
+    AFFIX.HEALTH: [                                        # ACCESSORIES SECTION
       item_affix_grade('Burly', 'of Life', 1, (5, 12), None), # Grade 0
       item_affix_grade('Burly', 'of Life', 8, (10, 30), None) # Grade 1
     ],
@@ -542,7 +543,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.PHYSICAL_RESISTANCE: [                  # ACCESSORIES SECTION
+#     AFFIX.PHYSICAL_RESISTANCE: [                         # ACCESSORIES SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
@@ -570,7 +571,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.COLD_RESISTANCE: [                  # ACCESSORIES SECTION
+#     AFFIX.COLD_RESISTANCE: [                             # ACCESSORIES SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
@@ -618,7 +619,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                  # ACCESSORIES SECTION
+#     AFFIX.REDUCED_REQUIREMENTS: [                        # ACCESSORIES SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ]
@@ -658,7 +659,7 @@ AFFIX_ROLL_RANGE_SETS = {
       item_affix_grade('Deadly', 'of Slaying', 1, (1, 4), 8), # Grade 0
       item_affix_grade('Deadly', 'of Slaying', 6, (3, 6), 12) # Grade 1
     ],
-#     AFFIX.LIGHTNING_DAMAGE: [              # ONE HANDED MELEE SECTION
+#     AFFIX.LIGHTNING_DAMAGE: [                       # ONE HANDED MELEE SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
@@ -686,7 +687,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                  # ONE HANDED MELEE SECTION
+#     AFFIX.REDUCED_REQUIREMENTS: [                   # ONE HANDED MELEE SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ]
@@ -695,7 +696,7 @@ AFFIX_ROLL_RANGE_SETS = {
   }, ## END 'one_handed_melee_weapons'
 
   'shields': {
-    AFFIX.HEALTH: [                                         # SHIELDS SECTION
+    AFFIX.HEALTH: [                                            # SHIELDS SECTION
       item_affix_grade('Burly', 'of Life', 1, (5, 10), None), # Grade 0
       item_affix_grade('Burly', 'of Life', 8, (10, 25), None) # Grade 1
     ],
@@ -731,7 +732,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.ELEMENTAL_RESISTANCE: [                    # SHIELDS SECTION
+#     AFFIX.ELEMENTAL_RESISTANCE: [                            # SHIELDS SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
@@ -779,7 +780,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                    # SHIELDS SECTION
+#     AFFIX.REDUCED_REQUIREMENTS: [                            # SHIELDS SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ]
@@ -824,7 +825,7 @@ AFFIX_ROLL_RANGE_SETS = {
       item_affix_grade('Deadly', 'of Slaying', 1, (2, 8), 16), # Grade 0
       item_affix_grade('Deadly', 'of Slaying', 6, (6, 12), 24) # Grade 1
     ],
-#     AFFIX.LIGHTNING_DAMAGE: [                  # TWO HANDED MELEE SECTION
+#     AFFIX.LIGHTNING_DAMAGE: [                       # TWO HANDED MELEE SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
@@ -852,7 +853,7 @@ AFFIX_ROLL_RANGE_SETS = {
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                  # TWO HANDED MELEE SECTION
+#     AFFIX.REDUCED_REQUIREMENTS: [                   # TWO HANDED MELEE SECTION
 #       (, ), # Grade 0
 #       (, ) # Grade 1
 #     ]

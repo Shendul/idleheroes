@@ -19,7 +19,7 @@ class ITEM:
   GREAVES = 'J'
   PAULDRONS = 'K'
   GUANTLETS = 'L'
-  ## Accesories
+  ## Accessories
   RING = 'M'
   AMULET = 'N'
   EARRING = 'O'
@@ -62,12 +62,12 @@ WEAPONS = [
   ITEM.BOW
 ]
 
-## A list of the accesories
-ACCESORIES = [
+## A list of the accessories
+ACCESSORIES = [
   ITEM.RING, ITEM.AMULET, ITEM.EARRING
 ]
 
-ALL_BASE_ITEMS = ARMORS + WEAPONS + ACCESORIES
+ALL_BASE_ITEMS = ARMORS + WEAPONS + ACCESSORIES
 
 ## Item grade dictionary contains item display names and iLvl requirements for
 ##     each base item and it's grades.

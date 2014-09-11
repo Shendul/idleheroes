@@ -25,11 +25,11 @@ class ITEM:
   EARRING = 'O'
   ## 1 Handed Weapons
   ONE_HANDED_SWORD = 'P'
-  ONE_HANDED_AXE = 'Q' ## TODO: Implement
-  ONE_HANDED_MACE = 'R' ## TODO: Implement
-  CLAW = 'S' ## TODO: Implement
+  ONE_HANDED_AXE = 'Q'
+  ONE_HANDED_MACE = 'R'
+  # CLAW = 'S' ## TODO: Implement
   SHIELD = 'T'
-  ORB = 'U' ## TODO:  Implement
+  # ORB = 'U' ## TODO:  Implement
   ## 2 Handed Weapons
   TWO_HANDED_SWORD = 'V'
   QUARTERSTAFF = 'W'
@@ -38,11 +38,11 @@ class ITEM:
   TWO_HANDED_MACE = 'Z'
   ## 1 Handed Ranged Weapons
   SLING = 'a'
-  JAVELIN = 'b'
-  WAND = 'c'
+  # JAVELIN = 'b' ## TODO: Implement
+  # WAND = 'c' ## TODO: Implement
   ## 2 Handed Ranged Weapons
   BOW = 'd'
-  CROSSBOW = 'e' ## TODO: Implement
+  # CROSSBOW = 'e' ## TODO: Implement
 
 ## A list of all of the armors
 ARMORS = [
@@ -55,10 +55,11 @@ ARMORS = [
 ## A list of all the weapons
 WEAPONS = [
   ITEM.ONE_HANDED_SWORD, ITEM.ONE_HANDED_MACE,
-  ITEM.ONE_HANDED_AXE, ITEM.CLAW, ITEM.ORB,
+  ITEM.ONE_HANDED_AXE, #ITEM.CLAW, ITEM.ORB,
   ITEM.TWO_HANDED_SWORD, ITEM.QUARTERSTAFF, ITEM.POLEARM,
   ITEM.SPEAR, ITEM.TWO_HANDED_MACE, ITEM.SLING,
-  ITEM.JAVELIN, ITEM.WAND, ITEM.BOW, ITEM.CROSSBOW
+  #ITEM.JAVELIN, ITEM.WAND, ITEM.CROSSBOW,
+  ITEM.BOW
 ]
 
 ## A list of the accesories
@@ -66,92 +67,138 @@ ACCESORIES = [
   ITEM.RING, ITEM.AMULET, ITEM.EARRING
 ]
 
-ITEM_DISPLAY_NAME = {
+ALL_BASE_ITEMS = ARMORS + WEAPONS + ACCESORIES
+
+## Item grade dictionary contains item display names and iLvl requirements for
+##     each base item and it's grades.
+def item_grade(name, item_level):
+  return {'name': name, 'item_level': item_level}
+
+ITEM_GRADES = {
   ITEM.TUNIC: [
-    'Collar', 'Shirt'
+    item_grade('Collar', 1), 
+    item_grade('Shirt', 6)
   ],
   ITEM.HAT: [
-    'Bandana', 'Cap'
+    item_grade('Bandana', 2),
+    item_grade('Cap', 8)
   ],
   ITEM.PANTS: [
-    'Loin Cloth', 'Kilt'
+    item_grade('Loin Cloth', 2),
+    item_grade('Kilt', 8)
   ],
   ITEM.BOOTS: [
-    'Sandals', 'Cloth Wrappings'
+    item_grade('Sandals', 1),
+    item_grade('Cloth Wrappings', 6)
   ],
   ITEM.MANTEL: [
-    'Half Robe', 'King\'s Mantel'
+    item_grade('Half Robe', 3), 
+    item_grade('King\'s Mantel', 9)
   ],
   ITEM.GLOVES: [
-    'Hand Wrappings', 'Cloth Gloves'
+    item_grade('Hand Wrappings', 1),
+    item_grade('Cloth Gloves', 5)
   ],
   ITEM.CHESTPLATE: [
-    'Bone Shirt', 'Metal Plate'
+    item_grade('Bone Shirt', 1),
+    item_grade('Metal Plate', 6)
   ],
   ITEM.HELMET: [
-    'Skull Mask', 'Sallet'
+    item_grade('Skull Mask', 2),
+    item_grade('Sallet', 8)
   ],
   ITEM.FAULDS: [
-    'Bone Skirt', 'Metal Loincloth'
+    item_grade('Bone Skirt', 2),
+    item_grade('Metal Loincloth', 7)
   ],
   ITEM.GREAVES: [
-    'Plated Boots', 'Copper Greaves'
+    item_grade('Plated Boots', 1),
+    item_grade('Copper Greaves', 7)
   ],
   ITEM.PAULDRONS: [
-    'Metal', 'Spiked'
+    item_grade('Shoulder Pads', 3),
+    item_grade('Shoulder Guards', 9)
   ],
   ITEM.GUANTLETS: [
-    'Bone Studded Gloves', 'Copper Gauntlets'
+    item_grade('Bone Studded Gloves', 1),
+    item_grade('Copper Gauntlets', 6)
   ],
   ITEM.ONE_HANDED_SWORD: [
-    'Knife', 'Dagger'
+    item_grade('Knife', 1),
+    item_grade('Dagger', 6),
+    item_grade('Copper Sword', 12)
   ],
   ITEM.ONE_HANDED_MACE: [
-    '', ''
+    item_grade('Club', 1),
+    item_grade('Mallet', 6)
   ],
   ITEM.ONE_HANDED_AXE: [
-    '', ''
+    item_grade('Stone Axe', 1),
+    item_grade('Copper Axe', 6)
   ],
-  ITEM.CLAW: [
-    '', ''
-  ],
+  # ITEM.CLAW: [
+  #   '', ''
+  # ],
   ITEM.SHIELD: [
-    '', ''
+    item_grade('Wooden Buckler', 1),
+    item_grade('Round Shield', 6)
   ],
-  ITEM.ORB: [
-    '', ''
-  ],  
+  # ITEM.ORB: [
+  #   '', ''
+  # ],  
   ITEM.TWO_HANDED_SWORD: [
-    'Dull Longsword', 'Longsword'
+    item_grade('Dull Longsword', 2),
+    item_grade('Longsword', 8)
   ],
   ITEM.QUARTERSTAFF: [
-    'Branch', 'Wooden Staff'
+    item_grade('Branch', 1),
+    item_grade('Wooden Staff', 6)
   ],
   ITEM.POLEARM: [
-    'Glave', 'Bardiche'
+    item_grade('Glave', 3),
+    item_grade('Bardiche', 9)
   ],
   ITEM.SPEAR: [
-    'Wooden Spear', 'Metal Spear'
+    item_grade('Wooden Spear', 2),
+    item_grade('Copper Spear', 8)
   ],
   ITEM.TWO_HANDED_MACE: [
-    '', ''
+    item_grade('Tree Branch', 2),
+    item_grade('Maul', 9)
   ],
   ITEM.SLING: [
-    'Rocks', 'Sling'
+    item_grade('Rocks', 1),
+    item_grade('Short Sling', 8),
+    item_grade('Leather Sling', 15)
   ],
-  ITEM.JAVELIN: [
-    '', ''
-  ],
-  ITEM.WAND: [
-    '', ''
-  ],
+  # ITEM.JAVELIN: [
+  #   '', ''
+  # ],
+  # ITEM.WAND: [
+  #   '', ''
+  # ],
   ITEM.BOW: [
-    'Shortbow', 'Recurve'
+    item_grade('Shortbow', 1),
+    item_grade('Recurve', 8)
   ],
-  ITEM.CROSSBOW: [
-    '', ''
-  ]
+  # ITEM.CROSSBOW: [
+  #   '', ''
+  # ],
+  ITEM.RING: [
+    item_grade('Ring', 2)
+  ],
+  ITEM.AMULET: [
+    item_grade('Amulet', 6)
+  ],
+  ITEM.EARRING: [
+    item_grade('Earring', 8)
+  ],
 }
+
+class ITEM_RARITY:
+  COMMON = '0'
+  UNCOMMON = '1'
+  RARE = '2'
 
 ITEM_RARITY_DISPLAY_NAME = {
   '0': 'Common', # NO Affixes
@@ -173,17 +220,17 @@ WEAPON_DAMAGE_TYPE = {
   ITEM.ONE_HANDED_SWORD: DAMAGE_TYPE.SLASH,
   ITEM.ONE_HANDED_AXE: DAMAGE_TYPE.SLASH,
   ITEM.ONE_HANDED_MACE: DAMAGE_TYPE.CRUSH,
-  ITEM.CLAW: DAMAGE_TYPE.THRUST,
+  # ITEM.CLAW: DAMAGE_TYPE.THRUST,
   ITEM.TWO_HANDED_SWORD: DAMAGE_TYPE.SLASH,
   ITEM.QUARTERSTAFF: DAMAGE_TYPE.CRUSH,
   ITEM.POLEARM: DAMAGE_TYPE.SLASH,
   ITEM.SPEAR: DAMAGE_TYPE.THRUST,
   ITEM.TWO_HANDED_MACE: DAMAGE_TYPE.CRUSH,
   ITEM.SLING: DAMAGE_TYPE.CRUSH,
-  ITEM.JAVELIN: DAMAGE_TYPE.THRUST,
-  ITEM.WAND: DAMAGE_TYPE.FIRE, # TODO: find out what to really put.
+  # ITEM.JAVELIN: DAMAGE_TYPE.THRUST,
+  # ITEM.WAND: DAMAGE_TYPE.FIRE, # TODO: find out what to really put.
   ITEM.BOW: DAMAGE_TYPE.THRUST,
-  ITEM.CROSSBOW: DAMAGE_TYPE.THRUST
+  # ITEM.CROSSBOW: DAMAGE_TYPE.THRUST
 }
 
 WEAPON_DAMAGE_RANGE = {
@@ -199,10 +246,10 @@ WEAPON_DAMAGE_RANGE = {
     (3, 3), # Grade 0
     (4, 6) # Grade 1
   ],
-  ITEM.CLAW: [
-    (1, 5), # Grade 0
-    (1, 10) # Grade 1
-  ],
+  # ITEM.CLAW: [
+  #   (1, 5), # Grade 0
+  #   (1, 10) # Grade 1
+  # ],
   ITEM.TWO_HANDED_SWORD: [
     (3, 7), # Grade 0
     (5, 11) # Grade 1
@@ -227,22 +274,22 @@ WEAPON_DAMAGE_RANGE = {
     (3, 3), # Grade 0
     (5, 5) # Grade 1
   ],
-  ITEM.JAVELIN: [
-    (1, 5), # Grade 0
-    (2, 8) # Grade 1
-  ],
-  ITEM.WAND: [
-    (2, 4), # Grade 0
-    (3, 7) # Grade 1
-  ],
+  # ITEM.JAVELIN: [
+  #   (1, 5), # Grade 0
+  #   (2, 8) # Grade 1
+  # ],
+  # ITEM.WAND: [
+  #   (2, 4), # Grade 0
+  #   (3, 7) # Grade 1
+  # ],
   ITEM.BOW: [
     (3, 7), # Grade 0
     (5, 11) # Grade 1
   ],
-  ITEM.CROSSBOW: [
-    (4, 6), # Grade 0
-    (7, 9) # Grade 1
-  ]
+  # ITEM.CROSSBOW: [
+  #   (4, 6), # Grade 0
+  #   (7, 9) # Grade 1
+  # ]
 }
 
 ARMOR_DEFENSE = {

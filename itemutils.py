@@ -14,12 +14,11 @@
 ## 2. Rarity: Common (White), Uncommon (Blue), Rare (Yellow), etc
 ## 3,4. Item Level: 00-99
 ## 5. Prefix Count: This is the number of prefix modifiers the item has.
+## 6. Suffix Count: This is the number of suffix modifiers the item has.
 ## 6 through (6+7*Prefix Count). The prefix properties:
 ##    0. Type: The prefix type.
 ##    1 through 3. Min Value: The min value for the prefix.
 ##    4 through 7. Max Value: The max value for the prefix.
-## 7 + PC*7. Suffix Count: This is the number of suffix modifiers the item has.
-##    Same formatting applies from prefixes.  
 ##
 ## TODO: Update the examples to be a little more interesting.
 ## Here is an example Common (White) item:
@@ -32,17 +31,17 @@
 ##     So the item is a Common (White) Cloth Armor.
 ##
 ## Here is an example Uncommon (Blue) item:
-##     A11081r0100101a004004
+##     A110811r010010a004004
 ##     The first char (0) tells us it is a a Tunic (A = TUNIC)
 ##     The second char (1) tells us its grade is 1 (Shirt).
 ##     The next char (1) tells us that the item is Uncommon (Blue)
 ##     The next 2 chars (08) tell us the item level is 8.
 ##     The next char (1) tells us that there are 1 prefixes.
+##     The next char (1) tells us that there are 1 suffixes.
 ##     The next 7 chars (r010010) describe the first prefix.
 ##        r = fire resist.
 ##        010 = 10 min fire resist,
 ##        010 = 10 max fire resist. (resists don't have ranges so min == max)
-##     The next char (1) tells us that there are 1 suffixes.
 ##     The next 7 chars (a004004) describe the first suffix.
 ##        a = strength.
 ##        004 = 4 min strength,
@@ -50,6 +49,8 @@
 ##     So the item is an Uncommon (Blue) Prefect's Cloth Armor of Strength.
 from affixes import *
 from items import *
+import random
+import math
 
 def getItemFromItemString(itemString):
   item = {}
@@ -85,5 +86,92 @@ def getItemFromItemString(itemString):
   ## We're all done building the item object, return it.
   return item
 
+## TODO: consider loot tables and stuff like that.
+def generateRandomItem(magic_find, item_level):
+  """
+  Generates a random item, and returns the item's model string.
+  """
+  if item_level < 1:
+    print 'error generating item, item level must be greater than 0'
+    return None
+  result = ''
+  base_item = None
+  possible_grades = []
+  while True:
+    base_item = random.choice(ALL_BASE_ITEMS)
+    # Get the list of possible grades, if none, repick.
+    highest_grade = -1
+    for item_grade in ITEM_GRADES[base_item]:
+      if item_level >= item_grade['item_level']:
+       highest_grade += 1
+    if highest_grade > -1:
+      result = base_item # Set the first char of the string.
+      break;
+    else:
+      continue
 
-print getItemFromItemString('A11081r0100101a004004')
+  ## Pick the base item grade
+  item_grade = random.randint(0, highest_grade)
+  result += format(item_grade, 'x') # Second character of the string = grade
+
+  ## Determine rarity
+  rarity_roll = math.pow(random.random(), getMagicFindFactor(magic_find))
+
+  # TODO: adjust rarities, and add more rarities
+  item_rarity = ITEM_RARITY.COMMON
+  if rarity_roll > .90:
+    item_rarity = ITEM_RARITY.RARE
+  elif rarity_roll > .70:
+    item_rarity = ITEM_RARITY.UNCOMMON
+  result += item_rarity # Third Character of the string = rarity
+  result += format(item_level, '02d') # 4th and 5th chars = iLvl
+
+  ## Determine number of affixes on the item.
+  prefix_count = 0
+  suffix_count = 0
+  if item_rarity == ITEM_RARITY.RARE:
+    # TODO: Consider making a non uniform distribution here
+    prefix_count = random.randint(1, 3)
+    min_suffix_count = 1
+    if prefix_count == 1:
+      min_suffix_count = 2
+    suffix_count = random.randint(min_suffix_count, 3)
+  elif item_rarity == ITEM_RARITY.UNCOMMON:
+    prefix_count = random.randint(0, 1)
+    min_suffix_count = 0
+    if prefix_count == 0:
+      min_suffix_count = 1
+    suffix_count = random.randint(min_suffix_count, 1)
+  result += str(prefix_count) # 6th char of the string = prefix count
+  result += str(suffix_count) # 7th char of the string = suffix count
+  
+  ## Generate the prefix strings
+  prefixes = []
+  while (prefix_count > 0):
+    prefixes.append(generateAffix(item_level, base_item))
+    prefix_count -= 1
+
+  ## Generate the suffix strings
+  suffixes = []
+  while (suffix_count > 0):
+    suffixes.append(generateAffix(item_level, base_item))
+    suffix_count -= 1
+
+  ## Build the affix strings into the item.
+  for prefix in prefixes:
+    result += prefix
+  for suffix in suffixes:
+    result += suffix
+  return result
+
+
+def getMagicFindFactor(magic_find):
+  adjusted_magic_find = magic_find
+  if adjusted_magic_find > 500:
+    adjusted_magic_find = 500 + math.sqrt(magic_find - 500)
+  if adjusted_magic_find > 700:
+    adjusted_magic_find = 700
+  return 1-(adjusted_magic_find/1000.00)
+
+
+print generateRandomItem(0, 8)

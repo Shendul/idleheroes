@@ -54,6 +54,46 @@ class AFFIX:
   ## Other
   # REDUCED_REQUIREMENTS = 'Z'
 
+## Specifies whether or not the affix has a range value, or has a fixed value.
+AFFIX_HAS_VALUE_RANGE = {
+  ## Attributes
+  # AFFIX.HEALTH: False,
+  # AFFIX.MANA: False,
+  # AFFIX.STRENGTH: False,
+  # AFFIX.AGILITY: False,
+  # AFFIX.WISDOM: False,
+  # AFFIX.CONSTITUTION: False,
+
+  ## Armor Specific
+  # AFFIX.DEFENSE: False,
+  # AFFIX.DEFENSE_PERCENTAGE: False,
+  # AFFIX.PHYSICAL_RESISTANCE: False,
+  # AFFIX.ELEMENTAL_RESISTANCE: False,
+  # AFFIX.THRUST_RESISTANCE: False,
+  # AFFIX.SLASH_RESISTANCE: False,
+  # AFFIX.CRUSH_RESISTANCE: False,
+  # AFFIX.LIGHTNING_RESISTANCE: False,
+  # AFFIX.FIRE_RESISTANCE: False,
+  # AFFIX.COLD_RESISTANCE: False,
+  # AFFIX.POISON_RESISTANCE: False,
+  # AFFIX.THORNS: True,
+
+  ## Weapon Specific
+  # AFFIX.WEAPON_DAMAGE_PERCENTAGE: False,
+  # AFFIX.WEAPON_DAMAGE_FLAT: True,
+  # AFFIX.LIGHTNING_DAMAGE: True,
+  # AFFIX.FIRE_DAMAGE: True,
+  # AFFIX.COLD_DAMAGE: True,
+  # AFFIX.POISON_DAMAGE: True,
+
+  ## Accessory Specific
+  # AFFIX.GOLD_FIND: False,
+  # AFFIX.MAGIC_FIND: False,
+  # AFFIX.EXP_GAIN: False,  
+
+  ## Other
+  # AFFIX.REDUCED_REQUIREMENTS: False
+  
 PREFIX_DISPLAY_NAME = {
   ## TODO: Make different grades of names later.
   ## Attributes

@@ -94,88 +94,6 @@ AFFIX_HAS_VALUE_RANGE = {
   ## Other
   # AFFIX.REDUCED_REQUIREMENTS: False
   }
-  
-PREFIX_DISPLAY_NAME = {
-  ## TODO: Make different grades of names later.
-  ## Attributes
-  # AFFIX.HEALTH: 'Burly',
-  # AFFIX.MANA: 'Mystic',
-  # AFFIX.STRENGTH: 'Heavy',
-  # AFFIX.AGILITY: 'Swift',
-  # AFFIX.WISDOM: 'Ancient',
-  # AFFIX.CONSTITUTION: 'Manly',
-
-  ## Armor Specific
-  # AFFIX.DEFENSE: 'Stalwart',
-  # AFFIX.DEFENSE_PERCENTAGE: 'Vanguard'\s',
-  # AFFIX.PHYSICAL_RESISTANCE: 'Reinforced',
-  # AFFIX.ELEMENTAL_RESISTANCE: 'Weathered',
-  # AFFIX.THRUST_RESISTANCE: 'Shelled',
-  # AFFIX.SLASH_RESISTANCE: 'Hardened',
-  # AFFIX.CRUSH_RESISTANCE: 'Padded',
-  # AFFIX.LIGHTNING_RESISTANCE: 'Rubber',
-  # AFFIX.FIRE_RESISTANCE: 'Flame Retardant',
-  # AFFIX.COLD_RESISTANCE: 'Heated',
-  # AFFIX.POISON_RESISTANCE: 'Alchemist'\s',
-  # AFFIX.THORNS: 'Spiny',
-
-  ## Weapon Specific
-  # AFFIX.WEAPON_DAMAGE_PERCENTAGE: 'Precise',
-  # AFFIX.WEAPON_DAMAGE_FLAT: 'Deadly',
-  # AFFIX.LIGHTNING_DAMAGE: 'Conductive',
-  # AFFIX.FIRE_DAMAGE: 'Fiery',
-  # AFFIX.COLD_DAMAGE: 'Frozen',
-  # AFFIX.POISON_DAMAGE: 'Poisoned',
-
-  ## Accessory Specific
-  # AFFIX.GOLD_FIND: 'Rich',
-  # AFFIX.MAGIC_FIND: 'Lucky',
-  # AFFIX.EXP_GAIN: 'Practice',
-
-  ## Other
-  # AFFIX.REDUCED_REQUIREMENTS: 'Simple'
-}
-
-SUFFIX_DISPLAY_NAME = {
-  ## TODO: Make different grades of names later.
-  ## Attributes
-  # AFFIX.HEALTH: 'of Life',
-  # AFFIX.MANA: 'of Energy',
-  # AFFIX.STRENGTH: 'of the Hulk',
-  # AFFIX.AGILITY: 'of the Wind',
-  # AFFIX.WISDOM: 'of Wisdom',
-  # AFFIX.CONSTITUTION: 'of the Bear',
-
-  ## Armor Specific
-  # AFFIX.DEFENSE: 'of Endurance',
-  # AFFIX.DEFENSE_PERCENTAGE: 'of Protection',
-  # AFFIX.PHYSICAL_RESISTANCE: 'of the Turtle',
-  # AFFIX.ELEMENTAL_RESISTANCE: 'of Survival',
-  # AFFIX.THRUST_RESISTANCE: 'of the Drake',
-  # AFFIX.SLASH_RESISTANCE: 'of the Tree',
-  # AFFIX.CRUSH_RESISTANCE: 'of Stone',
-  # AFFIX.LIGHTNING_RESISTANCE: 'of the Earth',
-  # AFFIX.FIRE_RESISTANCE: 'of the Firefighter',
-  # AFFIX.COLD_RESISTANCE: 'of the Viking',
-  # AFFIX.POISON_RESISTANCE: 'of Immunity',
-  # AFFIX.THORNS: 'of the Porcupine',
-
-  ## Weapon Specific
-  # AFFIX.WEAPON_DAMAGE_PERCENTAGE: 'of Mutilation',
-  # AFFIX.WEAPON_DAMAGE_FLAT: 'of Slaying',
-  # AFFIX.LIGHTNING_DAMAGE: 'of Shocking',
-  # AFFIX.FIRE_DAMAGE: 'of Flames',
-  # AFFIX.COLD_DAMAGE: 'of the North',
-  # AFFIX.POISON_DAMAGE: 'of the Viper',
-
-  ## Accessory Specific
-  # AFFIX.GOLD_FIND: 'of the Wealthy',
-  # AFFIX.MAGIC_FIND: 'of Tracking',
-  # AFFIX.EXP_GAIN: 'of Instructing',
-
-  ## Other
-  # AFFIX.REDUCED_REQUIREMENTS: 'of the Cadet'
-}
 
 ITEM_AFFIX_CLASS = {
   ##TODO: Consider differentiating between light and heavy armor for affixes.
@@ -235,421 +153,262 @@ def item_affix_grade(
 AFFIX_ROLL_RANGE_SETS = {
   ## TODO: Balance these
   'body_armor': {
-    AFFIX.HEALTH: [                                         # BODY ARMOR SECTION
+    AFFIX.HEALTH: [
       item_affix_grade('Burly', 'of Life', 1, (5, 10), None), # Grade 0
       item_affix_grade('Burly', 'of Life', 8, (10, 25), None) # Grade 1
     ],
 #     AFFIX.MANA: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Mystic', 'of Energy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.STRENGTH: [
       item_affix_grade('Heavy', 'of the Hulk', 1, (2, 8), None), # Grade 0
       item_affix_grade('Heavy', 'of the Hulk', 6, (7, 16), None) # Grade 1
     ],
 #     AFFIX.AGILITY: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Swift', 'of the Wind', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.WISDOM: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Ancient', 'of Wisdom', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.CONSTITUTION: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Manly', 'of the Bear', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.DEFENSE: [
       item_affix_grade('Stalwart', 'of Endurance', 1, (10, 25), None), # Grade 0
       item_affix_grade('Stalwart', 'of Endurance', 6, (25, 50), None) # Grade 1
     ],
 #     AFFIX.DEFENSE_PERCENTAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Vanguard\'s, 'of Protection',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.PHYSICAL_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Reinforced', 'of the Turtle',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-#     AFFIX.ELEMENTAL_RESISTANCE: [                         # BODY ARMOR SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.ELEMENTAL_RESISTANCE: [
+#       item_affix_grade('Weathered', 'of Survival', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.THRUST_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Shelled', 'of the Drake', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.SLASH_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Hardened', 'of the Tree', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.CRUSH_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Padded', 'of Stone', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.LIGHTNING_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Rubber', 'of the Earth', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.FIRE_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Flame Retardent', 'of the Firefighter',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.COLD_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Heated', 'of the Viking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.POISON_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Alchemist\'s, 'of Immunity', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.THORNS: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Spiny', 'of the Procupine', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.GOLD_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Rich', 'of the Wealthy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.MAGIC_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Lucky', 'of Tracking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-#     AFFIX.EXP_GAIN: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                         # BODY ARMOR SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.REDUCED_REQUIREMENTS: [
+#       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ]
 
   }, ## END 'body_armor'
 
   'helmets': {
-    AFFIX.HEALTH: [                                             # HELMET SECTION
-      item_affix_grade('Burly', 'of Life', 1, (2, 6), None), # Grade 0
-      item_affix_grade('Burly', 'of Life', 8, (6, 15), None) # Grade 1
+    AFFIX.HEALTH: [
+      item_affix_grade('Burly', 'of Life', 1, (5, 10), None), # Grade 0
+      item_affix_grade('Burly', 'of Life', 8, (10, 25), None) # Grade 1
     ],
 #     AFFIX.MANA: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Mystic', 'of Energy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.STRENGTH: [
-      item_affix_grade('Heavy', 'of the Hulk', 1, (1, 5), None), # Grade 0
-      item_affix_grade('Heavy', 'of the Hulk', 6, (4, 10), None) # Grade 1
+      item_affix_grade('Heavy', 'of the Hulk', 1, (2, 8), None), # Grade 0
+      item_affix_grade('Heavy', 'of the Hulk', 6, (7, 16), None) # Grade 1
     ],
 #     AFFIX.AGILITY: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Swift', 'of the Wind', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.WISDOM: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Ancient', 'of Wisdom', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.CONSTITUTION: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Manly', 'of the Bear', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.DEFENSE: [
       item_affix_grade('Stalwart', 'of Endurance', 1, (10, 25), None), # Grade 0
       item_affix_grade('Stalwart', 'of Endurance', 6, (25, 50), None) # Grade 1
     ],
 #     AFFIX.DEFENSE_PERCENTAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Vanguard\'s, 'of Protection',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.PHYSICAL_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Reinforced', 'of the Turtle',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.ELEMENTAL_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Weathered', 'of Survival', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-#     AFFIX.THRUST_RESISTANCE: [                                # HELMET SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.THRUST_RESISTANCE: [
+#       item_affix_grade('Shelled', 'of the Drake', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.SLASH_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Hardened', 'of the Tree', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.CRUSH_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Padded', 'of Stone', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.LIGHTNING_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Rubber', 'of the Earth', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.FIRE_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Flame Retardent', 'of the Firefighter',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.COLD_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Heated', 'of the Viking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.POISON_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Alchemist\'s, 'of Immunity', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.THORNS: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Spiny', 'of the Procupine', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.GOLD_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Rich', 'of the Wealthy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-#     AFFIX.MAGIC_FIND: [                                       # HELMET SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.MAGIC_FIND: [
+#       item_affix_grade('Lucky', 'of Tracking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.EXP_GAIN: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Practice', 'of Instructing', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.REDUCED_REQUIREMENTS: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ]
 
   }, ## END 'helmets'
 
   'gloves': {
-    AFFIX.HEALTH: [                                             # GLOVES SECTION
+    AFFIX.HEALTH: [                       
       item_affix_grade('Burly', 'of Life', 1, (2, 6), None), # Grade 0
       item_affix_grade('Burly', 'of Life', 8, (6, 15), None) # Grade 1
     ],
 #     AFFIX.MANA: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Mystic', 'of Energy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.STRENGTH: [
       item_affix_grade('Heavy', 'of the Hulk', 1, (1, 5), None), # Grade 0
       item_affix_grade('Heavy', 'of the Hulk', 6, (4, 10), None) # Grade 1
     ],
 #     AFFIX.AGILITY: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Swift', 'of the Wind', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.WISDOM: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Ancient', 'of Wisdom', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.CONSTITUTION: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Manly', 'of the Bear', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.DEFENSE: [
       item_affix_grade('Stalwart', 'of Endurance', 1, (10, 25), None), # Grade 0
       item_affix_grade('Stalwart', 'of Endurance', 6, (25, 50), None) # Grade 1
     ],
 #     AFFIX.DEFENSE_PERCENTAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Vanguard\'s, 'of Protection',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-#     AFFIX.PHYSICAL_RESISTANCE: [                              # GLOVES SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.ELEMENTAL_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.THRUST_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.SLASH_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.CRUSH_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.LIGHTNING_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.FIRE_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.COLD_RESISTANCE: [                                  # GLOVES SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.POISON_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.THORNS: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.GOLD_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.MAGIC_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.EXP_GAIN: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                             # GLOVES SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ]
-
-  }, ## END 'gloves'
-
-  'accessories': {
-    AFFIX.HEALTH: [                                        # ACCESSORIES SECTION
-      item_affix_grade('Burly', 'of Life', 1, (5, 12), None), # Grade 0
-      item_affix_grade('Burly', 'of Life', 8, (10, 30), None) # Grade 1
-    ],
-#     AFFIX.MANA: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-    AFFIX.STRENGTH: [
-      item_affix_grade('Heavy', 'of the Hulk', 1, (2, 7), None), # Grade 0
-      item_affix_grade('Heavy', 'of the Hulk', 6, (6, 16), None) # Grade 1
-    ],
-#     AFFIX.AGILITY: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.WISDOM: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.CONSTITUTION: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-    AFFIX.DEFENSE: [
-      item_affix_grade('Stalwart', 'of Endurance', 1, (10, 25), None), # Grade 0
-      item_affix_grade('Stalwart', 'of Endurance', 6, (25, 50), None) # Grade 1
-    ],
-#     AFFIX.DEFENSE_PERCENTAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.PHYSICAL_RESISTANCE: [                         # ACCESSORIES SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.PHYSICAL_RESISTANCE: [
+#       item_affix_grade('Reinforced', 'of the Turtle',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.ELEMENTAL_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Weathered', 'of Survival', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.THRUST_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Shelled', 'of the Drake', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.SLASH_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Hardened', 'of the Tree', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.CRUSH_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Padded', 'of Stone', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.LIGHTNING_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Rubber', 'of the Earth', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.FIRE_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Flame Retardent', 'of the Firefighter',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-#     AFFIX.COLD_RESISTANCE: [                             # ACCESSORIES SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.COLD_RESISTANCE: [
+#       item_affix_grade('Heated', 'of the Viking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.POISON_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.THORNS: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.WEAPON_DAMAGE_FLAT: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.LIGHTNING_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.FIRE_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.COLD_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.POISON_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.GOLD_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.MAGIC_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.EXP_GAIN: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                        # ACCESSORIES SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ]
-
-  }, ## END 'accessories'
-
-  'one_handed_melee_weapons': {
-    AFFIX.HEALTH: [                                   # ONE HANDED MELEE SECTION
-      item_affix_grade('Burly', 'of Life', 1, (2, 6), None), # Grade 0
-      item_affix_grade('Burly', 'of Life', 8, (6, 15), None) # Grade 1
-    ],
-#     AFFIX.MANA: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-    AFFIX.STRENGTH: [
-      item_affix_grade('Heavy', 'of the Hulk', 1, (2, 7), None), # Grade 0
-      item_affix_grade('Heavy', 'of the Hulk', 6, (6, 16), None) # Grade 1
-    ],
-#     AFFIX.AGILITY: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.WISDOM: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.CONSTITUTION: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Alchemist\'s, 'of Immunity', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
       item_affix_grade('Precise', 'of Mutilation', 3, (5, 20), None), # Grade 0
@@ -659,130 +418,309 @@ AFFIX_ROLL_RANGE_SETS = {
       item_affix_grade('Deadly', 'of Slaying', 1, (1, 4), 8), # Grade 0
       item_affix_grade('Deadly', 'of Slaying', 6, (3, 6), 12) # Grade 1
     ],
-#     AFFIX.LIGHTNING_DAMAGE: [                       # ONE HANDED MELEE SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.LIGHTNING_DAMAGE: [
+#       item_affix_grade('Conductive', 'of Shocking', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.FIRE_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Fiery', 'of Flames', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.COLD_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Frozen', 'of the North', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.POISON_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Poisoned', 'of the Viper', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.GOLD_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Rich', 'of the Wealthy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.MAGIC_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Lucky', 'of Tracking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-#     AFFIX.EXP_GAIN: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                   # ONE HANDED MELEE SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.REDUCED_REQUIREMENTS: [
+#       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ]
-#     ## TODO: Add all affixes that make sense for 1h melee
 
-  }, ## END 'one_handed_melee_weapons'
+  }, ## END 'gloves'
 
-  'shields': {
-    AFFIX.HEALTH: [                                            # SHIELDS SECTION
+  'accessories': {
+    AFFIX.HEALTH: [
       item_affix_grade('Burly', 'of Life', 1, (5, 10), None), # Grade 0
       item_affix_grade('Burly', 'of Life', 8, (10, 25), None) # Grade 1
     ],
 #     AFFIX.MANA: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Mystic', 'of Energy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.STRENGTH: [
       item_affix_grade('Heavy', 'of the Hulk', 1, (2, 8), None), # Grade 0
       item_affix_grade('Heavy', 'of the Hulk', 6, (7, 16), None) # Grade 1
     ],
 #     AFFIX.AGILITY: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Swift', 'of the Wind', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.WISDOM: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Ancient', 'of Wisdom', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.CONSTITUTION: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Manly', 'of the Bear', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.DEFENSE: [
       item_affix_grade('Stalwart', 'of Endurance', 1, (10, 25), None), # Grade 0
       item_affix_grade('Stalwart', 'of Endurance', 6, (25, 50), None) # Grade 1
     ],
 #     AFFIX.DEFENSE_PERCENTAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Vanguard\'s, 'of Protection',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.PHYSICAL_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Reinforced', 'of the Turtle',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-#     AFFIX.ELEMENTAL_RESISTANCE: [                            # SHIELDS SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.ELEMENTAL_RESISTANCE: [
+#       item_affix_grade('Weathered', 'of Survival', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.THRUST_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Shelled', 'of the Drake', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.SLASH_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Hardened', 'of the Tree', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.CRUSH_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Padded', 'of Stone', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.LIGHTNING_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Rubber', 'of the Earth', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.FIRE_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Flame Retardent', 'of the Firefighter',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.COLD_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Heated', 'of the Viking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.POISON_RESISTANCE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Alchemist\'s, 'of Immunity', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.THORNS: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Spiny', 'of the Procupine', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+    AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
+      item_affix_grade('Precise', 'of Mutilation', 3, (5, 20), None), # Grade 0
+      item_affix_grade('Precise', 'of Mutilation', 9, (20, 50), None) # Grade 1
+    ],
+    AFFIX.WEAPON_DAMAGE_FLAT: [
+      item_affix_grade('Deadly', 'of Slaying', 1, (1, 4), 8), # Grade 0
+      item_affix_grade('Deadly', 'of Slaying', 6, (3, 6), 12) # Grade 1
+    ],
+#     AFFIX.LIGHTNING_DAMAGE: [
+#       item_affix_grade('Conductive', 'of Shocking', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
+#     ],
+#     AFFIX.FIRE_DAMAGE: [
+#       item_affix_grade('Fiery', 'of Flames', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
+#     ],
+#     AFFIX.COLD_DAMAGE: [
+#       item_affix_grade('Frozen', 'of the North', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
+#     ],
+#     AFFIX.POISON_DAMAGE: [
+#       item_affix_grade('Poisoned', 'of the Viper', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.GOLD_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Rich', 'of the Wealthy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.MAGIC_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Lucky', 'of Tracking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.EXP_GAIN: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Practice', 'of Instructing', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                            # SHIELDS SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.REDUCED_REQUIREMENTS: [
+#       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ]
+
+  }, ## END 'accessories'
+
+  'one_handed_melee_weapons': {
+    AFFIX.HEALTH: [
+      item_affix_grade('Burly', 'of Life', 1, (2, 6), None), # Grade 0
+      item_affix_grade('Burly', 'of Life', 8, (6, 15), None) # Grade 1
+    ],
+#     AFFIX.MANA: [
+#       item_affix_grade('Mystic', 'of Energy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+    AFFIX.STRENGTH: [
+      item_affix_grade('Heavy', 'of the Hulk', 1, (2, 7), None), # Grade 0
+      item_affix_grade('Heavy', 'of the Hulk', 6, (6, 16), None) # Grade 1
+    ],
+#     AFFIX.AGILITY: [
+#       item_affix_grade('Swift', 'of the Wind', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.WISDOM: [
+#       item_affix_grade('Ancient', 'of Wisdom', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.CONSTITUTION: [
+#       item_affix_grade('Manly', 'of the Bear', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+    AFFIX.DEFENSE: [
+      item_affix_grade('Stalwart', 'of Endurance', 1, (10, 25), None), # Grade 0
+      item_affix_grade('Stalwart', 'of Endurance', 6, (25, 50), None) # Grade 1
+    ],
+#     AFFIX.DEFENSE_PERCENTAGE: [
+#       item_affix_grade('Vanguard\'s, 'of Protection',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+    AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
+      item_affix_grade('Precise', 'of Mutilation', 3, (5, 20), None), # Grade 0
+      item_affix_grade('Precise', 'of Mutilation', 9, (20, 50), None) # Grade 1
+    ],
+    AFFIX.WEAPON_DAMAGE_FLAT: [
+      item_affix_grade('Deadly', 'of Slaying', 1, (1, 4), 8), # Grade 0
+      item_affix_grade('Deadly', 'of Slaying', 6, (3, 6), 12) # Grade 1
+    ],
+#     AFFIX.LIGHTNING_DAMAGE: [
+#       item_affix_grade('Conductive', 'of Shocking', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
+#     ],
+#     AFFIX.FIRE_DAMAGE: [
+#       item_affix_grade('Fiery', 'of Flames', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
+#     ],
+#     AFFIX.COLD_DAMAGE: [
+#       item_affix_grade('Frozen', 'of the North', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
+#     ],
+#     AFFIX.POISON_DAMAGE: [
+#       item_affix_grade('Poisoned', 'of the Viper', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
+#     ],
+#     AFFIX.GOLD_FIND: [
+#       item_affix_grade('Rich', 'of the Wealthy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.MAGIC_FIND: [
+#       item_affix_grade('Lucky', 'of Tracking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.EXP_GAIN: [
+#       item_affix_grade('Practice', 'of Instructing', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.REDUCED_REQUIREMENTS: [
+#       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ]
+#     ## TODO: Add all affixes that make sense for 1h melee
+
+  }, ## END 'one_handed_melee_weapons'
+
+  'shields': {
+    AFFIX.HEALTH: [
+      item_affix_grade('Burly', 'of Life', 1, (5, 10), None), # Grade 0
+      item_affix_grade('Burly', 'of Life', 8, (10, 25), None) # Grade 1
+    ],
+    AFFIX.STRENGTH: [
+      item_affix_grade('Heavy', 'of the Hulk', 1, (2, 8), None), # Grade 0
+      item_affix_grade('Heavy', 'of the Hulk', 6, (7, 16), None) # Grade 1
+    ],
+#     AFFIX.CONSTITUTION: [
+#       item_affix_grade('Manly', 'of the Bear', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+    AFFIX.DEFENSE: [
+      item_affix_grade('Stalwart', 'of Endurance', 1, (10, 25), None), # Grade 0
+      item_affix_grade('Stalwart', 'of Endurance', 6, (25, 50), None) # Grade 1
+    ],
+#     AFFIX.DEFENSE_PERCENTAGE: [
+#       item_affix_grade('Vanguard\'s, 'of Protection',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.PHYSICAL_RESISTANCE: [
+#       item_affix_grade('Reinforced', 'of the Turtle',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.ELEMENTAL_RESISTANCE: [
+#       item_affix_grade('Weathered', 'of Survival', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.THRUST_RESISTANCE: [
+#       item_affix_grade('Shelled', 'of the Drake', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.SLASH_RESISTANCE: [
+#       item_affix_grade('Hardened', 'of the Tree', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.CRUSH_RESISTANCE: [
+#       item_affix_grade('Padded', 'of Stone', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.LIGHTNING_RESISTANCE: [
+#       item_affix_grade('Rubber', 'of the Earth', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.FIRE_RESISTANCE: [
+#       item_affix_grade('Flame Retardent', 'of the Firefighter',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.COLD_RESISTANCE: [
+#       item_affix_grade('Heated', 'of the Viking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.POISON_RESISTANCE: [
+#       item_affix_grade('Alchemist\'s, 'of Immunity', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.THORNS: [
+#       item_affix_grade('Spiny', 'of the Procupine', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.GOLD_FIND: [
+#       item_affix_grade('Rich', 'of the Wealthy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.MAGIC_FIND: [
+#       item_affix_grade('Lucky', 'of Tracking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+#     AFFIX.REDUCED_REQUIREMENTS: [
+#       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ]
 
   }, ## END 'shields'
@@ -793,29 +731,38 @@ AFFIX_ROLL_RANGE_SETS = {
 #   }, ## END 'orbs'
 
   'two_handed_melee_weapons': {
-    AFFIX.HEALTH: [                                   # TWO HANDED MELEE SECTION
+    AFFIX.HEALTH: [                         
       item_affix_grade('Burly', 'of Life', 1, (4, 12), None), # Grade 0
       item_affix_grade('Burly', 'of Life', 8, (12, 30), None) # Grade 1
     ],
 #     AFFIX.MANA: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Mystic', 'of Energy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.STRENGTH: [
       item_affix_grade('Heavy', 'of the Hulk', 1, (4, 14), None), # Grade 0
       item_affix_grade('Heavy', 'of the Hulk', 6, (12, 32), None) # Grade 1
     ],
 #     AFFIX.AGILITY: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Swift', 'of the Wind', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.WISDOM: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Ancient', 'of Wisdom', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.CONSTITUTION: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Manly', 'of the Bear', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
+#     ],
+    AFFIX.DEFENSE: [
+      item_affix_grade('Stalwart', 'of Endurance', 1, (10, 25), None), # Grade 0
+      item_affix_grade('Stalwart', 'of Endurance', 6, (25, 50), None) # Grade 1
+    ],
+#     AFFIX.DEFENSE_PERCENTAGE: [
+#       item_affix_grade('Vanguard\'s, 'of Protection',
+#                        1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
       item_affix_grade('Precise', 'of Mutilation', 3, (7, 30), None), # Grade 0
@@ -825,65 +772,65 @@ AFFIX_ROLL_RANGE_SETS = {
       item_affix_grade('Deadly', 'of Slaying', 1, (2, 8), 16), # Grade 0
       item_affix_grade('Deadly', 'of Slaying', 6, (6, 12), 24) # Grade 1
     ],
-#     AFFIX.LIGHTNING_DAMAGE: [                       # TWO HANDED MELEE SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.LIGHTNING_DAMAGE: [
+#       item_affix_grade('Conductive', 'of Shocking', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.FIRE_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Fiery', 'of Flames', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.COLD_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Frozen', 'of the North', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.POISON_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Poisoned', 'of the Viper', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.GOLD_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Rich', 'of the Wealthy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.MAGIC_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Lucky', 'of Tracking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.EXP_GAIN: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Practice', 'of Instructing', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                   # TWO HANDED MELEE SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.REDUCED_REQUIREMENTS: [
+#       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ]
 
   }, ## END 'two_handed_melee_weapons'
 
   'one_handed_ranged_weapons': {
-    AFFIX.HEALTH: [                                  # ONE HANDED RANGED SECTION
+    AFFIX.HEALTH: [
       item_affix_grade('Burly', 'of Life', 1, (2, 6), None), # Grade 0
       item_affix_grade('Burly', 'of Life', 8, (6, 15), None) # Grade 1
     ],
 #     AFFIX.MANA: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Mystic', 'of Energy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.STRENGTH: [
       item_affix_grade('Heavy', 'of the Hulk', 1, (2, 7), None), # Grade 0
       item_affix_grade('Heavy', 'of the Hulk', 6, (6, 16), None) # Grade 1
     ],
 #     AFFIX.AGILITY: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Swift', 'of the Wind', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.WISDOM: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Ancient', 'of Wisdom', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.CONSTITUTION: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Manly', 'of the Bear', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
       item_affix_grade('Precise', 'of Mutilation', 3, (5, 20), None), # Grade 0
@@ -894,66 +841,65 @@ AFFIX_ROLL_RANGE_SETS = {
       item_affix_grade('Deadly', 'of Slaying', 6, (3, 6), 12) # Grade 1
     ],
 #     AFFIX.LIGHTNING_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Conductive', 'of Shocking', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.FIRE_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Fiery', 'of Flames', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.COLD_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Frozen', 'of the North', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.POISON_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Poisoned', 'of the Viper', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.GOLD_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Rich', 'of the Wealthy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.MAGIC_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Lucky', 'of Tracking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.EXP_GAIN: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Practice', 'of Instructing', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                  # ONE HANDED RANGED SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.REDUCED_REQUIREMENTS: [
+#       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ]
 #     ## TODO: Add all affixes that make sense for 1h ranged
 
   }, ## END 'one_handed_ranged_weapons'
 
   'two_handed_ranged_weapons': {
-    AFFIX.HEALTH: [                                  # TWO HANDED RANGED SECTION
+    AFFIX.HEALTH: [
       item_affix_grade('Burly', 'of Life', 1, (4, 12), None), # Grade 0
       item_affix_grade('Burly', 'of Life', 8, (12, 30), None) # Grade 1
     ],
 #     AFFIX.MANA: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Mystic', 'of Energy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.STRENGTH: [
       item_affix_grade('Heavy', 'of the Hulk', 1, (4, 14), None), # Grade 0
       item_affix_grade('Heavy', 'of the Hulk', 6, (12, 32), None) # Grade 1
     ],
 #     AFFIX.AGILITY: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Swift', 'of the Wind', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.WISDOM: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Ancient', 'of Wisdom', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.CONSTITUTION: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
-#     ],
+#       item_affix_grade('Manly', 'of the Bear', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
       item_affix_grade('Precise', 'of Mutilation', 3, (7, 30), None), # Grade 0
       item_affix_grade('Precise', 'of Mutilation', 9, (30, 75), None) # Grade 1
@@ -963,38 +909,38 @@ AFFIX_ROLL_RANGE_SETS = {
       item_affix_grade('Deadly', 'of Slaying', 6, (6, 12), 24) # Grade 1
     ],
 #     AFFIX.LIGHTNING_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Conductive', 'of Shocking', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.FIRE_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Fiery', 'of Flames', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.COLD_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Frozen', 'of the North', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.POISON_DAMAGE: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Poisoned', 'of the Viper', 1, (, ), ), # Grade 0
+#       item_affix_grade('', '', 6, (, ), ) # Grade 1
 #     ],
 #     AFFIX.GOLD_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Rich', 'of the Wealthy', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.MAGIC_FIND: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Lucky', 'of Tracking', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
 #     AFFIX.EXP_GAIN: [
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#       item_affix_grade('Practice', 'of Instructing', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-#     AFFIX.REDUCED_REQUIREMENTS: [                  # TWO HANDED RANGED SECTION
-#       (, ), # Grade 0
-#       (, ) # Grade 1
+#     AFFIX.REDUCED_REQUIREMENTS: [
+#       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
+#       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ]
-#     ## TODO: Add all affixes that make sense for 2h ranged
+      ## TODO: Add all affixes that make sense for 2h ranged
 
   }, ## END 'two_handed_ranged_weapons'
 

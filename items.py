@@ -180,7 +180,7 @@ ITEM_GRADES = {
   # ],
   ITEM.BOW: [
     item_grade('Shortbow', 1),
-    item_grade('Recurve', 8)
+    item_grade('Recurve Bow', 8)
   ],
   # ITEM.CROSSBOW: [
   #   '', ''

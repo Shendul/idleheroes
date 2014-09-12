@@ -118,8 +118,9 @@ def getItemFromItemString(itemString):
       display_name = display_name + ' ' + suffix_name
 
   elif rarity_key == ITEM_RARITY.RARE:
-    ## TODO: Make a rare name generator to replace this nonsense.
-    display_name = 'Rare ' + display_name
+    prefix_name = random.choice(RARE_PREFIX_LIST)
+    suffix_name = RARE_SUFFIX_LIST[base_item_key]
+    display_name = prefix_name + ' ' + suffix_name
 
   item['display_name'] = display_name
   item['item_level'] = int(itemString[3:5])

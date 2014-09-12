@@ -120,7 +120,7 @@ ITEM_AFFIX_DISPLAY_NAME = {
   # AFFIX.THORNS: True,
 
   ## Weapon Specific
-  AFFIX.WEAPON_DAMAGE_PERCENTAGE: "%\ Increased Weapon Damage",
+  AFFIX.WEAPON_DAMAGE_PERCENTAGE: "% Increased Weapon Damage",
   AFFIX.WEAPON_DAMAGE_FLAT: "Increased Weapon Damage",
   # AFFIX.LIGHTNING_DAMAGE: True,
   # AFFIX.FIRE_DAMAGE: True,
@@ -234,6 +234,47 @@ def item_affix_grade(
     'minValueRange': minValueRange, 
     'maxValue': maxValue # None, unless the affix is a damage affix.
   }
+
+# Used to generate the name for rare items
+RARE_PREFIX_LIST = [
+    'Armageddon', 'Beast', 'Blood', 'Brimestone', 'Shadow', 'Hailstone',
+    'Epic', 'Genisis', 'Choas', 'Eagle', 'Gale', 'Havoc', 'Soul', 'Rift',
+    'Cruel', 'Vengeful', 'Elite', 'Godly', 'Legendary', 'Radical', 'Aaron Sucks'
+]
+
+RARE_SUFFIX_LIST = {
+  ITEM.TUNIC: 'Suit',
+  ITEM.HAT: 'Crest',
+  ITEM.PANTS: 'Chaps',
+  ITEM.BOOTS: 'Slippers',
+  ITEM.MANTEL: 'Cloak',
+  ITEM.GLOVES: 'Clutches',
+  ITEM.CHESTPLATE: 'Hide',
+  ITEM.HELMET: 'Visor',
+  ITEM.FAULDS: 'Kneecap',
+  ITEM.GREAVES: 'Spur',
+  ITEM.PAULDRONS: 'Carapace',
+  ITEM.GUANTLETS: 'Fist',
+  ITEM.ONE_HANDED_SWORD: 'Edge',
+  ITEM.ONE_HANDED_MACE: 'Grinder',
+  ITEM.ONE_HANDED_AXE: 'Razor',
+  # ITEM.CLAW: ,
+  ITEM.SHIELD: 'Aegis',
+  # ITEM.ORB: ,  
+  ITEM.TWO_HANDED_SWORD: 'Sever',
+  ITEM.QUARTERSTAFF: 'Breaker',
+  ITEM.POLEARM: 'Fang',
+  ITEM.SPEAR: 'Lance',
+  ITEM.TWO_HANDED_MACE: 'Star',
+  ITEM.SLING: 'Nock',
+  # ITEM.JAVELIN: ,
+  # ITEM.WAND: ,
+  ITEM.BOW: 'Quill',
+  # ITEM.CROSSBOW: ,
+  ITEM.RING: 'Band',
+  ITEM.AMULET: 'Heart',
+  ITEM.EARRING: 'Loop',
+}
 
 ## Sadly, this is going to be a huge unreadable mess of data.
 AFFIX_GRADES = {

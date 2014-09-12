@@ -35,6 +35,8 @@ class ACTOR_STAT:
   ## Meta stats
   GOLD_FIND = "gold_find"  # Should be a multiplier (float)
   MAGIC_FIND = "magic_find"  # Should be an integer
+  # KARMA = 'karma'
+  # FAME = 'fame'
   # EXP_BONUS = "exp_bonus"  ## TODO: implement exp gain
   NAME = "name"
   # LOOT_TABLE = "loot_table" ## TODO: implement loot tables

@@ -2,7 +2,7 @@
 ## and functions.
 
 
-class BATTLE_STATS:
+class ACTOR_STAT:
   """
   This class is used to represent an enumlike object for stats, used by mobs
   and heroes.

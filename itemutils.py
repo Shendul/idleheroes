@@ -31,22 +31,24 @@
 ##     So the item is a Common (White) Cloth Armor.
 ##
 ## Here is an example Uncommon (Blue) item:
-##     A110811r010010a004004
+##     A110811H0002002a0004008
 ##     The first char (0) tells us it is a a Tunic (A = TUNIC)
 ##     The second char (1) tells us its grade is 1 (Shirt).
 ##     The next char (1) tells us that the item is Uncommon (Blue)
 ##     The next 2 chars (08) tell us the item level is 8.
 ##     The next char (1) tells us that there are 1 prefixes.
 ##     The next char (1) tells us that there are 1 suffixes.
-##     The next 7 chars (r010010) describe the first prefix.
-##        r = fire resist.
-##        010 = 10 min fire resist,
-##        010 = 10 max fire resist. (resists don't have ranges so min == max)
-##     The next 7 chars (a004004) describe the first suffix.
-##        a = strength.
-##        004 = 4 min strength,
-##        004 = 4 max strength. (attributes don't have ranges so min == max)
-##     So the item is an Uncommon (Blue) Prefect's Cloth Armor of Strength.
+##     The next 8 chars (H0010010) describe the first prefix.
+##        H = physical resist.
+##        0 = grade 0
+##        002 = 10 min physical resist,
+##        002 = 10 max physical resist. (resists don't have ranges so min == max)
+##     The next 8 chars (a0004008) describe the first suffix.
+##        a = thorns.
+##        0 = grade 0
+##        004 = 4 min thorns,
+##        008 = 8 max thorns.
+##     So the item is an Uncommon (Blue) Reinforced Cloth Armor of the Porcupine.
 from affixes import *
 from items import *
 import random
@@ -57,9 +59,66 @@ def getItemFromItemString(itemString):
   base_item_key = itemString[0]
   grade_index = int(itemString[1], 16) # We use hex value in this position.
   rarity_key = itemString[2]
-  ## Get Item Base Display Name
-  item['base_item_display_name'] = ITEM_DISPLAY_NAME[base_item_key][grade_index]
   item['rarity'] = ITEM_RARITY_DISPLAY_NAME[rarity_key]
+
+  ## Build the list of prefixes and suffixes
+  item_affix_class_key = ITEM_AFFIX_CLASS[base_item_key] 
+  prefixes = []
+  suffixes = []
+  suffix_count = int(itemString[6])
+  index = 7
+  for i in range(int(itemString[5])):
+    prefix = {}
+    prefix['affix_type'] = itemString[index]
+    prefix['affix_grade'] = itemString[index + 1]
+    if AFFIX_HAS_VALUE_RANGE[prefix['affix_type']]:
+      prefix['has_value_range'] = True
+      prefix['min_value'] = int(itemString[index+2:index+5])
+      prefix['max_value'] = int(itemString[index+5:index+8])
+    else:
+      prefix['has_value_range'] = False
+      prefix['value'] = int(itemString[index+2:index+8])
+    index += 8
+    prefixes.append(prefix)
+
+  for i in range(int(itemString[6])):
+    suffix = {}
+    suffix['affix_type'] = itemString[index]
+    suffix['affix_grade'] = itemString[index + 1]
+    if AFFIX_HAS_VALUE_RANGE[suffix['affix_type']]:
+      suffix['has_value_range'] = True
+      suffix['min_value'] = int(itemString[index+2:index+5])
+      suffix['max_value'] = int(itemString[index+5:index+8])
+    else:
+      suffix['has_value_range'] = False
+      suffix['value'] = int(itemString[index+2:index+8])
+    index += 8
+    prefixes.append(suffix)
+
+  ## Get Item Display Name
+  display_name = ITEM_DISPLAY_NAME[base_item_key][grade_index]
+  if rarity_key == ITEM_RARITY.UNCOMMON:
+    # Not the worse time in the world to do a sanity check here.
+    if len(prefixes) > 1 or len(suffixes) > 1:
+      print 'Somehow a magic item has more than 1 prefix or suffix'
+      return None
+    ## Use the prefix and suffix names
+    if len(prefixes) == 1:
+      affix_type = [prefixes[0]['affix_type']]
+      affix_grade = [prefixes[0]['affix_grade']]
+      prefix_name = AFFIX_GRADES[item_affix_class_key][affix_type][affix_grade][0]
+      display_name = prefix_name + ' ' + display_name
+    if len(suffixes) == 1:
+      affix_type = [suffixes[0]['affix_type']]
+      affix_grade = [suffixes[0]['affix_grade']]
+      suffix_name = AFFIX_GRADES[item_affix_class_key][affix_type][affix_grade][1]
+      display_name = display_name + ' ' + suffix_name
+
+  elif rarity_key == ITEM_RARITY.RARE:
+    ## TODO: Make a rare name generator to replace this nonsense.
+    display_name = 'Rare ' + display_name
+
+  item['display_name'] = display_name
   item['item_level'] = int(itemString[3:5])
 
   ## Handle Weapon case
@@ -69,19 +128,12 @@ def getItemFromItemString(itemString):
     base_damage = {}
     base_damage['type'] = WEAPON_DAMAGE_TYPE[base_item_key]
     base_damage['damage_range'] = WEAPON_DAMAGE_RANGE[base_item_key][grade_index]
-    ## TODO(dreamlane): Check for affixes that affect weapon damage.
-    damage['type'] = WEAPON_DAMAGE_TYPE
-    item['damage'] = damage
-    ## TODO(dreamlane): Add damages from weapon affixes.
 
   elif base_item_key in ARMORS:
     item['defense'] = ARMOR_DEFENSE[base_item_key]
-    ## TODO(dreamlane): Add defenses from armor affixes.
+    ## TODO: consider the case of shield, which needs a block value.
 
-  elif base_item_key in ACCESORIES:
-    ## TODO(dreamlane): Parse through the affixes.
-    pass
-
+  ## Add properties for all of the affixes, for now just make
 
   ## We're all done building the item object, return it.
   return item

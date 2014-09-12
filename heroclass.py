@@ -19,7 +19,7 @@ class HERO_CLASS:
   WIZARD = "wizard" # TODO: implement wizard.
 
 
-class STAT_TYPE:
+class ATTRIBUTE:
   """
   This class is used to represent an enumlike object. Similar to the above
   class, this time for stats.
@@ -33,16 +33,16 @@ class STAT_TYPE:
 #Base Stats (level 0 stat, growth per level)
 base_stats = {
   HERO_CLASS.WARRIOR: {
-    STAT_TYPE.STRENGTH: (22, 3),
-    STAT_TYPE.AGILITY: (14, 1),
-    STAT_TYPE.WISDOM: (9, 1),
-    STAT_TYPE.CONSTITUTION: (22, 3)
+    ATTRIBUTE.STRENGTH: (22, 3),
+    ATTRIBUTE.AGILITY: (14, 1),
+    ATTRIBUTE.WISDOM: (9, 1),
+    ATTRIBUTE.CONSTITUTION: (22, 3)
   },
   HERO_CLASS.WIZARD: {
-    STAT_TYPE.STRENGTH: (9, 1),
-    STAT_TYPE.AGILITY: (23, 2),
-    STAT_TYPE.WISDOM: (22, 3),
-    STAT_TYPE.CONSTITUTION: (18, 2)
+    ATTRIBUTE.STRENGTH: (9, 1),
+    ATTRIBUTE.AGILITY: (23, 2),
+    ATTRIBUTE.WISDOM: (22, 3),
+    ATTRIBUTE.CONSTITUTION: (18, 2)
   }
 }
 
@@ -52,28 +52,28 @@ def getBaseStatsForHero(hero_class, level):
   """
   return {
     # Get the four base stats.
-    STAT_TYPE.STRENGTH: base_stats[hero_class][STAT_TYPE.STRENGTH][0] +
-        base_stats[hero_class][STAT_TYPE.STRENGTH][1]*level,
-    STAT_TYPE.AGILITY: base_stats[hero_class][STAT_TYPE.AGILITY][0] +
-        base_stats[hero_class][STAT_TYPE.AGILITY][1]*level,
-    STAT_TYPE.WISDOM: base_stats[hero_class][STAT_TYPE.WISDOM][0] +
-        base_stats[hero_class][STAT_TYPE.WISDOM][1]*level,
-    STAT_TYPE.CONSTITUTION: base_stats[hero_class][STAT_TYPE.CONSTITUTION][0] +
-        base_stats[hero_class][STAT_TYPE.CONSTITUTION][1]*level,
+    ATTRIBUTE.STRENGTH: base_stats[hero_class][ATTRIBUTE.STRENGTH][0] +
+        base_stats[hero_class][ATTRIBUTE.STRENGTH][1]*level,
+    ATTRIBUTE.AGILITY: base_stats[hero_class][ATTRIBUTE.AGILITY][0] +
+        base_stats[hero_class][ATTRIBUTE.AGILITY][1]*level,
+    ATTRIBUTE.WISDOM: base_stats[hero_class][ATTRIBUTE.WISDOM][0] +
+        base_stats[hero_class][ATTRIBUTE.WISDOM][1]*level,
+    ATTRIBUTE.CONSTITUTION: base_stats[hero_class][ATTRIBUTE.CONSTITUTION][0] +
+        base_stats[hero_class][ATTRIBUTE.CONSTITUTION][1]*level,
     # Get the base stats that are calculated from the four base stats above.
-    BATTLE_STATS.HEALTH: base_stats[hero_class][STAT_TYPE.STRENGTH][0] +
-        base_stats[hero_class][STAT_TYPE.STRENGTH][1]*level + 
-        base_stats[hero_class][STAT_TYPE.CONSTITUTION][0] +
-        base_stats[hero_class][STAT_TYPE.CONSTITUTION][1]*level*3,
-    BATTLE_STATS.FIRE_RESISTANCE: base_stats[hero_class][STAT_TYPE.WISDOM][0] +
-        base_stats[hero_class][STAT_TYPE.WISDOM][1]*level,
-    BATTLE_STATS.ICE_RESISTANCE: base_stats[hero_class][STAT_TYPE.WISDOM][0] +
-        base_stats[hero_class][STAT_TYPE.WISDOM][1]*level,
+    ACTOR_STAT.HEALTH: base_stats[hero_class][ATTRIBUTE.STRENGTH][0] +
+        base_stats[hero_class][ATTRIBUTE.STRENGTH][1]*level + 
+        base_stats[hero_class][ATTRIBUTE.CONSTITUTION][0] +
+        base_stats[hero_class][ATTRIBUTE.CONSTITUTION][1]*level*3,
+    ACTOR_STAT.FIRE_RESISTANCE: base_stats[hero_class][ATTRIBUTE.WISDOM][0] +
+        base_stats[hero_class][ATTRIBUTE.WISDOM][1]*level,
+    ACTOR_STAT.ICE_RESISTANCE: base_stats[hero_class][ATTRIBUTE.WISDOM][0] +
+        base_stats[hero_class][ATTRIBUTE.WISDOM][1]*level,
     # Defense here below is also to have a random chance of being 75-125% of base.
-    BATTLE_STATS.DEFENSE: base_stats[hero_class][STAT_TYPE.CONSTITUTION][0] +
-        base_stats[hero_class][STAT_TYPE.CONSTITUTION][1]*level + 
-        base_stats[hero_class][STAT_TYPE.AGILITY][0] +
-        base_stats[hero_class][STAT_TYPE.AGILITY][1]*level,
+    ACTOR_STAT.DEFENSE: base_stats[hero_class][ATTRIBUTE.CONSTITUTION][0] +
+        base_stats[hero_class][ATTRIBUTE.CONSTITUTION][1]*level + 
+        base_stats[hero_class][ATTRIBUTE.AGILITY][0] +
+        base_stats[hero_class][ATTRIBUTE.AGILITY][1]*level,
   }
 
 equipped_item_keys = ['main_hand', 'off_hand', 'head', 'body', 'belt',

@@ -150,7 +150,7 @@ def item_affix_grade(
   }
 
 ## Sadly, this is going to be a huge unreadable mess of data.
-AFFIX_ROLL_RANGE_SETS = {
+AFFIX_GRADES = {
   ## TODO: Balance these
   'body_armor': {
     AFFIX.HEALTH: [
@@ -1014,7 +1014,7 @@ def generateAffix(item_level, base_item):
   result = {}
   # Get the item affix class for this item
   item_affix_class_key = ITEM_AFFIX_CLASS[base_item]
-  item_affix_class = AFFIX_ROLL_RANGE_SETS[item_affix_class_key]
+  item_affix_class = AFFIX_GRADES[item_affix_class_key]
   ## Get the affix and grade.
   while True:
     affix = random.choice(list(item_affix_class.keys()))

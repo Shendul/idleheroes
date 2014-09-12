@@ -1,7 +1,7 @@
 ## monster.py This file is used to represent all monster related data and
 ## functions.
 
-from battlestats import *
+from battle import *
 
 class MONSTERS:
   """
@@ -21,21 +21,21 @@ def makeMob(health, mana, defense, thrust_resistance, slash_resistance,
   poison_resistance, minimum_damage, maximum_damage, damage_type, level,
   rarity_level, name, loot_table):
   return {
-    BATTLESTATS.HEALTH: health,
-    BATTLESTATS.MANA: mana,
-    BATTLESTATS.DEFENSE: defense,
-    BATTLESTATS.THRUST_RESISTANCE: thrust_resistance,
-    BATTLESTATS.SLASH_RESISTANCE: slash_resistance,
-    BATTLESTATS.CRUSH_RESISTANCE: crush_resistance,
-    BATTLESTATS.LIGHTNING_RESISTANCE: lightning_resistance,
-    BATTLESTATS.FIRE_RESISTANCE: fire_resistance,
-    BATTLESTATS.COLD_RESISTANCE: cold_resistance,
-    BATTLESTATS.POISON_RESISTANCE: poison_resistance,
-    BATTLESTATS.MINIMUM_DAMAGE: minimum_damage,
-    BATTLESTATS.MAXIMUM_DAMAGE: maximum_damage,
-    BATTLESTATS.DAMAGE_TYPE: damage_type,
-    BATTLESTATS.LEVEL: level,
-    BATTLESTATS.RARITY_LEVEL: rarity_level,
-    BATTLESTATS.NAME: name,
-    BATTLESTATS.LOOT_TABLE: loot_table
+    ACTOR_STAT.HEALTH: health,
+    ACTOR_STAT.MANA: mana,
+    ACTOR_STAT.DEFENSE: defense,
+    ACTOR_STAT.THRUST_RESISTANCE: thrust_resistance,
+    ACTOR_STAT.SLASH_RESISTANCE: slash_resistance,
+    ACTOR_STAT.CRUSH_RESISTANCE: crush_resistance,
+    ACTOR_STAT.LIGHTNING_RESISTANCE: lightning_resistance,
+    ACTOR_STAT.FIRE_RESISTANCE: fire_resistance,
+    ACTOR_STAT.COLD_RESISTANCE: cold_resistance,
+    ACTOR_STAT.POISON_RESISTANCE: poison_resistance,
+    ACTOR_STAT.MINIMUM_DAMAGE: minimum_damage,
+    ACTOR_STAT.MAXIMUM_DAMAGE: maximum_damage,
+    ACTOR_STAT.DAMAGE_TYPE: damage_type,
+    ACTOR_STAT.LEVEL: level,
+    ACTOR_STAT.RARITY_LEVEL: rarity_level,
+    ACTOR_STAT.NAME: name,
+    ACTOR_STAT.LOOT_TABLE: loot_table
   }

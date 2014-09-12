@@ -120,7 +120,7 @@ ITEM_AFFIX_DISPLAY_NAME = {
   # AFFIX.THORNS: True,
 
   ## Weapon Specific
-  AFFIX.WEAPON_DAMAGE_PERCENTAGE: "% Increased Weapon Damage",
+  AFFIX.WEAPON_DAMAGE_PERCENTAGE: "%\ Increased Weapon Damage",
   AFFIX.WEAPON_DAMAGE_FLAT: "Increased Weapon Damage",
   # AFFIX.LIGHTNING_DAMAGE: True,
   # AFFIX.FIRE_DAMAGE: True,

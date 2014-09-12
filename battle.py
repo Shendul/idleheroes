@@ -1,4 +1,4 @@
-## battlestats.py This file is used to represent all battle related stat data
+## battle.py This file is used to represent all battle related stat data
 ## and functions.
 
 class ACTOR_STAT:

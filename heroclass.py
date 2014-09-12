@@ -3,7 +3,7 @@
 
 import logging
 
-from battlestats import *
+from battle import *
 from experience import *
 
 class HERO_CLASS:

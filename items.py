@@ -217,6 +217,7 @@ class DAMAGE_TYPE:
   POISON = 'poison'
 
 WEAPON_DAMAGE_TYPE = {
+  ## Make sure each damage here is in the weapon damage affix to actor stat map.
   ITEM.ONE_HANDED_SWORD: DAMAGE_TYPE.SLASH,
   ITEM.ONE_HANDED_AXE: DAMAGE_TYPE.SLASH,
   ITEM.ONE_HANDED_MACE: DAMAGE_TYPE.CRUSH,

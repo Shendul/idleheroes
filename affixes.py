@@ -679,15 +679,6 @@ AFFIX_GRADES = {
 #       item_affix_grade('Manly', 'of the Bear', 1, (, ), None), # Grade 0
 #       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
-    AFFIX.DEFENSE: [
-      item_affix_grade('Stalwart', 'of Endurance', 1, (10, 25), None), # Grade 0
-      item_affix_grade('Stalwart', 'of Endurance', 6, (25, 50), None) # Grade 1
-    ],
-#     AFFIX.DEFENSE_PERCENTAGE: [
-#       item_affix_grade('Vanguard\'s, 'of Protection',
-#                        1, (, ), None), # Grade 0
-#       item_affix_grade('', '', 8, (, ), None) # Grade 1
-#     ],
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
       item_affix_grade('Precise', 'of Mutilation', 3, (5, 20), None), # Grade 0
       item_affix_grade('Precise', 'of Mutilation', 9, (20, 50), None) # Grade 1
@@ -839,15 +830,6 @@ AFFIX_GRADES = {
 #     ],
 #     AFFIX.CONSTITUTION: [
 #       item_affix_grade('Manly', 'of the Bear', 1, (, ), None), # Grade 0
-#       item_affix_grade('', '', 8, (, ), None) # Grade 1
-#     ],
-    AFFIX.DEFENSE: [
-      item_affix_grade('Stalwart', 'of Endurance', 1, (10, 25), None), # Grade 0
-      item_affix_grade('Stalwart', 'of Endurance', 6, (25, 50), None) # Grade 1
-    ],
-#     AFFIX.DEFENSE_PERCENTAGE: [
-#       item_affix_grade('Vanguard\'s, 'of Protection',
-#                        1, (, ), None), # Grade 0
 #       item_affix_grade('', '', 8, (, ), None) # Grade 1
 #     ],
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [

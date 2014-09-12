@@ -26,6 +26,7 @@
 ##     some of which are automatically uncommon or rare and some kind of gold roll.
 ##     So the quest is a Common (White) Rescue Mission.
 
+from bonusobjectives import *
 from quest import *
 import random
 import math
@@ -78,9 +79,11 @@ def generateRandomQuest(fame):
   ## Determine number of bonus objectives on the quest.
   bonus_objective_count = 0
   if quest_rarity == QUEST_RARITY.RARE:
-    bonus_objective_count = random.randint(1, 3)
+    bonus_objective_count = random.randint(2, 4)
+  elif quest_rarity == QUEST_RARITY.UNCOMMON:
+    bonus_objective_count = random.randint(1, 2)
   result += str(bonus_objective_count) # 4th char of the string = bonus obj num
-  """ (Work in progress)
+
   ## Generate the bonus objective strings
   bonus_objectives = []
   while (bonus_objective_count > 0):
@@ -90,7 +93,6 @@ def generateRandomQuest(fame):
   ## Build the bonus objective strings into the quest.
   for objective in bonus_objectives:
     result += objective
-"""
   return result
 
 print generateRandomQuest(1)

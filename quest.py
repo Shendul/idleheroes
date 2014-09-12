@@ -65,22 +65,22 @@ QUEST_GRADES = {
     quest_grade('Explore Cave', 1), 
   ],
   QUEST.FIND_RARE_MATERIAL: [
-    quest_grade('Find Gold', 1), 
+   quest_grade('Find Gold', 1), 
   ],
   QUEST.RAID_NEUTRAL: [
     quest_grade('Raid Farmer\'s Barn For Loot', 1), 
-  ],
-  QUEST.BEG_FOR_LOOT: [
-    quest_grade('Beg Like a Homeless Man', 1), 
-  ],
-  QUEST.STEAL: [
-    quest_grade('Steal From Beggars', 1), 
   ],
   QUEST.ATTRACT_MONSTERS: [
     quest_grade('Bait Rats Into The Town', 1), 
   ],
   QUEST.SUMMON_ENEMIES: [
     quest_grade('Attempt Demonic Ritual', 1), 
+  ],
+  QUEST.BEG_FOR_LOOT: [
+    quest_grade('Beg Like a Homeless Man', 1), 
+  ],
+  QUEST.STEAL: [
+    quest_grade('Steal From Beggars', 1), 
   ]
 }
 

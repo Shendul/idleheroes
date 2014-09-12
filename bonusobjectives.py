@@ -10,11 +10,29 @@ class OBJECTIVE:
   This class maps the base bonus objective type to a character that will be 
   used in the quest string.
   Uncomment each objective after implementation for the objective is completed.
-  NEXT AVAILABLE CHAR: 'A'
+  NEXT AVAILABLE CHAR: 'D'
   """
 
-DONT_DIE = 'A'
-FAST_COMPLETION = 'B'
+  DONT_DIE = 'A'
+  FAST_COMPLETION = 'B'
+  LONGER_JOB = 'C'
+
+QUEST_OBJECTIVE_CLASS = {
+  QUEST.RESCUE_MISSION: 'mob',
+  QUEST.TRAIN: 'mob',
+  QUEST.SLAY_THE_BOSS: 'mob' ,
+  QUEST.ARREST_CRIMINAL: 'mob',
+  QUEST.DEFEND_THE_CARAVAN: 'mob',
+  QUEST.CLEAR_OUT_MONSTER_NEST: 'mob',
+  QUEST.DUNGEON_CRAWL:  'mob',
+  QUEST.FIND_RARE_MATERIAL:  'mob',
+  QUEST.RAID_NEUTRAL:  'mob',
+  QUEST.ATTRACT_MONSTERS: 'mob',
+  QUEST.SUMMON_ENEMIES: 'mob',
+
+  QUEST.BEG_FOR_LOOT: 'non_mob',
+  QUEST.STEAL: 'non_mob'
+}
 
 def quest_objective_grade(
     objective_discription, fame):
@@ -25,33 +43,27 @@ def quest_objective_grade(
   }
 
 OBJECTIVE_GRADES = {
-  ## TODO: Balance these
+  'mob': {
     OBJECTIVE.DONT_DIE: [
-    quest_objective_grade('Less Than Five Deaths', 1) # Grade 0
-    quest_objective_grade('Less Than Three Deaths', 50)  # Grade 1
+      quest_objective_grade('Less Than Five Deaths', 1), # Grade 0
+      quest_objective_grade('Less Than Three Deaths', 50)  # Grade 1
+    ],
+    OBJECTIVE.FAST_COMPLETION: [
+      quest_objective_grade('', 1), # Grade 0
+      quest_objective_grade('', 50)  # Grade 1
     ]
+  },
 
+  'non_mob': {
+    OBJECTIVE.LONGER_JOB: [
+      quest_objective_grade('', 1), # Grade 0
+      quest_objective_grade('', 50)  # Grade 1
+    ]
+  }
 
-  def rollForObjective():
-  ## We use a power law here for the roll.
-  ## Rather than a uniform distribution, high rolls are much harder to get.
-  ## Increasing the power here decreases the strength of rolls.
-  ## Example: if random() returns a .750000 (a highish roll) a power of 3
-  ## reduces this roll to a .421875.
-  ## Current rough distribution: 
-  ##   0-.25: 63%
-  ##   .25-.50: 16%
-  ##   .50-.75: 11%
-  ##   .75-.100: 9% (.95-.100: 1.7%)
-  ## This means roughly 79% of rolls will be less than half of the possible
-  ##     value on objectives, and only about 1 in 50 rolls will max an objective.
-  ## This will make perfect quests extremely rare, and therefore we can make them
-  ##     extremely powerful.
-  ## If we increase from a power of three, we make lower rolls more common, and
-  ##    higher rolls more rare.
-  return math.pow(random.random(), 3)
+}
 
-def generateObjective(fame, base_quest):
+def generateBonusObjective(fame, base_quest):
   """
   This function is used to generate an objective based on fame.
   It returns a string representation of the objective
@@ -61,8 +73,8 @@ def generateObjective(fame, base_quest):
     return None
   result = ''
   # Get the quest objective class for this quest
-  quest_objective_class_key = base_quest
-  quest_objective_class = AFFIX_GRADES[quest_objective_class_key]
+  quest_objective_class_key = QUEST_OBJECTIVE_CLASS[base_quest]
+  quest_objective_class = OBJECTIVE_GRADES[quest_objective_class_key]
   ## Get the objective and grade.
   while True:
     objective = random.choice(list(quest_objective_class.keys()))
@@ -79,22 +91,4 @@ def generateObjective(fame, base_quest):
   ## pick the grade
   objective_grade_index = random.randint(0, highest_grade)
   result += format(objective_grade_index, 'x') # 2nd char of the objective = grade.
-  quest_objective_grade = quest_objective_class[objective][objective_grade_index]
-
-  ## Roll for values
-  roll = rollForObjective()
-  minRoll, maxRoll = quest_objective_grade['minValueRange']
-  # Two-Point form equation maps the rolled number to the objective value range.
-  # We round the result to the nearest whole number.
-  value = int(round((roll-0.0)*(maxRoll-minRoll) + minRoll, 0))
-  if quest_objective_grade['maxValue'] != None:
-    # Roll the max
-    roll = rollForObjective()
-    minRoll = value + 1
-    maxRoll = quest_objective_grade['maxValue']
-    maxValue = int(round((roll-0.0)*(maxRoll-minRoll) + minRoll, 0))
-    result += format(value, "03d") + format(maxValue, "03d")
-    return result
-  else :
-    result += format(value, "06d")
-    return result  
+  return result  

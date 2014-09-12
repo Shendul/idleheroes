@@ -71,6 +71,7 @@ ALL_BASE_ITEMS = ARMORS + WEAPONS + ACCESSORIES
 
 ## Item grade dictionary contains item display names and iLvl requirements for
 ##     each base item and it's grades.
+## TODO: roll the base ranges and attribute reqs into this.
 def item_grade(name, item_level):
   return {'name': name, 'item_level': item_level}
 
@@ -237,7 +238,8 @@ WEAPON_DAMAGE_TYPE = {
 WEAPON_DAMAGE_RANGE = {
   ITEM.ONE_HANDED_SWORD: [
     (1, 5), # Grade 0
-    (2, 9) # Grade 1
+    (2, 9), # Grade 1
+    (15, 20) # Grade 2
   ],
   ITEM.ONE_HANDED_AXE: [
     (2, 4), # Grade 0
@@ -273,7 +275,8 @@ WEAPON_DAMAGE_RANGE = {
   ],
   ITEM.SLING: [
     (3, 3), # Grade 0
-    (5, 5) # Grade 1
+    (5, 5), # Grade 1
+    (12, 9000) # Grade 1
   ],
   # ITEM.JAVELIN: [
   #   (1, 5), # Grade 0

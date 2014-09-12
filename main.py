@@ -6,6 +6,7 @@ from google.appengine.api import users
 from model import *
 from userutils import *
 from heroclass import *
+from itemutils import *
 
 import jinja2
 import webapp2
@@ -80,9 +81,16 @@ class CreateHero(webapp2.RequestHandler):
     ih_user.put()
     self.redirect("/")
 
+class GenerateItem(webapp2.RequestHandler):
+  def get(self):
+    item = getItemFromItemString(generateRandomItem(0, 12))
+    template = JINJA_ENVIRONMENT.get_template('itembutton.html')
+    template_values = {'item': item}
+    self.response.write(template.render(template_values))
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/banned', Banned),
-    ('/heroCreation', CreateHero)
+    ('/heroCreation', CreateHero),
+    ('/generateItem', GenerateItem)
 ], debug=True)

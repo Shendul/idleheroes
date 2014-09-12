@@ -175,3 +175,18 @@ div.buttonText {
   font-weight: 300;
   font-style: normal;
 }
+
+.item-description-table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.item-description-table td {
+  padding: 10px 30px;
+}
+
+.item-description-table td:first-child {
+  font-weight: bold;
+  text-align: right;
+}

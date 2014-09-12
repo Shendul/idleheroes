@@ -55,6 +55,7 @@ import random
 import math
 
 def getItemFromItemString(itemString):
+  print itemString
   item = {}
   base_item_key = itemString[0]
   grade_index = int(itemString[1], 16) # We use hex value in this position.
@@ -70,7 +71,8 @@ def getItemFromItemString(itemString):
   for i in range(int(itemString[5])):
     prefix = {}
     prefix['affix_type'] = itemString[index]
-    prefix['affix_grade'] = itemString[index + 1]
+    prefix['affix_grade'] = int(itemString[index + 1], 16)
+    prefix['display_name'] = ITEM_AFFIX_DISPLAY_NAME[prefix['affix_type']]
     if AFFIX_HAS_VALUE_RANGE[prefix['affix_type']]:
       prefix['has_value_range'] = True
       prefix['min_value'] = int(itemString[index+2:index+5])
@@ -84,7 +86,8 @@ def getItemFromItemString(itemString):
   for i in range(int(itemString[6])):
     suffix = {}
     suffix['affix_type'] = itemString[index]
-    suffix['affix_grade'] = itemString[index + 1]
+    suffix['affix_grade'] = int(itemString[index + 1], 16)
+    suffix['display_name'] = ITEM_AFFIX_DISPLAY_NAME[suffix['affix_type']]
     if AFFIX_HAS_VALUE_RANGE[suffix['affix_type']]:
       suffix['has_value_range'] = True
       suffix['min_value'] = int(itemString[index+2:index+5])
@@ -93,10 +96,10 @@ def getItemFromItemString(itemString):
       suffix['has_value_range'] = False
       suffix['value'] = int(itemString[index+2:index+8])
     index += 8
-    prefixes.append(suffix)
+    suffixes.append(suffix)
 
   ## Get Item Display Name
-  display_name = ITEM_DISPLAY_NAME[base_item_key][grade_index]
+  display_name = ITEM_GRADES[base_item_key][grade_index]['name']
   if rarity_key == ITEM_RARITY.UNCOMMON:
     # Not the worse time in the world to do a sanity check here.
     if len(prefixes) > 1 or len(suffixes) > 1:
@@ -104,14 +107,14 @@ def getItemFromItemString(itemString):
       return None
     ## Use the prefix and suffix names
     if len(prefixes) == 1:
-      affix_type = [prefixes[0]['affix_type']]
-      affix_grade = [prefixes[0]['affix_grade']]
-      prefix_name = AFFIX_GRADES[item_affix_class_key][affix_type][affix_grade][0]
+      affix_type = prefixes[0]['affix_type']
+      affix_grade = prefixes[0]['affix_grade']
+      prefix_name = AFFIX_GRADES[item_affix_class_key][affix_type][affix_grade]['prefix_name']
       display_name = prefix_name + ' ' + display_name
     if len(suffixes) == 1:
-      affix_type = [suffixes[0]['affix_type']]
-      affix_grade = [suffixes[0]['affix_grade']]
-      suffix_name = AFFIX_GRADES[item_affix_class_key][affix_type][affix_grade][1]
+      affix_type = suffixes[0]['affix_type']
+      affix_grade = suffixes[0]['affix_grade']
+      suffix_name = AFFIX_GRADES[item_affix_class_key][affix_type][affix_grade]['suffix_name']
       display_name = display_name + ' ' + suffix_name
 
   elif rarity_key == ITEM_RARITY.RARE:
@@ -130,10 +133,12 @@ def getItemFromItemString(itemString):
     base_damage['damage_range'] = WEAPON_DAMAGE_RANGE[base_item_key][grade_index]
 
   elif base_item_key in ARMORS:
-    item['defense'] = ARMOR_DEFENSE[base_item_key]
+    item['defense'] = ARMOR_DEFENSE[base_item_key][grade_index]
     ## TODO: consider the case of shield, which needs a block value.
 
-  ## Add properties for all of the affixes, for now just make
+  ## Add properties for all of the affixes, for now just make key value pairs.
+  item['prefixes'] = prefixes
+  item['suffixes'] = suffixes
 
   ## We're all done building the item object, return it.
   return item
@@ -224,6 +229,3 @@ def getMagicFindFactor(magic_find):
   if adjusted_magic_find > 700:
     adjusted_magic_find = 700
   return 1-(adjusted_magic_find/1000.00)
-
-
-print generateRandomItem(0, 8)

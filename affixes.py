@@ -58,15 +58,15 @@ class AFFIX:
 ## Specifies whether or not the affix has a range value, or has a fixed value.
 AFFIX_HAS_VALUE_RANGE = {
   ## Attributes
-  # AFFIX.HEALTH: False,
+  AFFIX.HEALTH: False,
   # AFFIX.MANA: False,
-  # AFFIX.STRENGTH: False,
+  AFFIX.STRENGTH: False,
   # AFFIX.AGILITY: False,
   # AFFIX.WISDOM: False,
   # AFFIX.CONSTITUTION: False,
 
   ## Armor Specific
-  # AFFIX.DEFENSE: False,
+  AFFIX.DEFENSE: False,
   # AFFIX.DEFENSE_PERCENTAGE: False,
   # AFFIX.PHYSICAL_RESISTANCE: False,
   # AFFIX.ELEMENTAL_RESISTANCE: False,
@@ -80,8 +80,8 @@ AFFIX_HAS_VALUE_RANGE = {
   # AFFIX.THORNS: True,
 
   ## Weapon Specific
-  # AFFIX.WEAPON_DAMAGE_PERCENTAGE: False,
-  # AFFIX.WEAPON_DAMAGE_FLAT: True,
+  AFFIX.WEAPON_DAMAGE_PERCENTAGE: False,
+  AFFIX.WEAPON_DAMAGE_FLAT: True,
   # AFFIX.LIGHTNING_DAMAGE: True,
   # AFFIX.FIRE_DAMAGE: True,
   # AFFIX.COLD_DAMAGE: True,
@@ -94,7 +94,47 @@ AFFIX_HAS_VALUE_RANGE = {
 
   ## Other
   # AFFIX.REDUCED_REQUIREMENTS: False ## TODO: implement item requirements.
-  }
+}
+
+ITEM_AFFIX_DISPLAY_NAME = {
+  ## Attributes
+  AFFIX.HEALTH: "Health Points",
+  # AFFIX.MANA: False,
+  AFFIX.STRENGTH: "Strength",
+  # AFFIX.AGILITY: False,
+  # AFFIX.WISDOM: False,
+  # AFFIX.CONSTITUTION: False,
+
+  ## Armor Specific
+  AFFIX.DEFENSE: "Defense",
+  # AFFIX.DEFENSE_PERCENTAGE: False,
+  # AFFIX.PHYSICAL_RESISTANCE: False,
+  # AFFIX.ELEMENTAL_RESISTANCE: False,
+  # AFFIX.THRUST_RESISTANCE: False,
+  # AFFIX.SLASH_RESISTANCE: False,
+  # AFFIX.CRUSH_RESISTANCE: False,
+  # AFFIX.LIGHTNING_RESISTANCE: False,
+  # AFFIX.FIRE_RESISTANCE: False,
+  # AFFIX.COLD_RESISTANCE: False,
+  # AFFIX.POISON_RESISTANCE: False,
+  # AFFIX.THORNS: True,
+
+  ## Weapon Specific
+  AFFIX.WEAPON_DAMAGE_PERCENTAGE: "% Increased Weapon Damage",
+  AFFIX.WEAPON_DAMAGE_FLAT: "Increased Weapon Damage",
+  # AFFIX.LIGHTNING_DAMAGE: True,
+  # AFFIX.FIRE_DAMAGE: True,
+  # AFFIX.COLD_DAMAGE: True,
+  # AFFIX.POISON_DAMAGE: True,
+
+  ## Accessory Specific
+  # AFFIX.GOLD_FIND: False,
+  # AFFIX.MAGIC_FIND: False,
+  # AFFIX.EXP_GAIN: False,  
+
+  ## Other
+  # AFFIX.REDUCED_REQUIREMENTS: False ## TODO: implement item requirements.
+}
 
 ITEM_AFFIX_CLASS = {
   ##TODO: Consider differentiating between light and heavy armor for affixes.
@@ -1057,25 +1097,27 @@ def generateAffix(item_level, base_item):
   if item_level < 1:
     print 'error generating affix, item level must be greater than 0'
     return None
-  result = {}
+  result = ''
   # Get the item affix class for this item
   item_affix_class_key = ITEM_AFFIX_CLASS[base_item]
   item_affix_class = AFFIX_GRADES[item_affix_class_key]
   ## Get the affix and grade.
   while True:
     affix = random.choice(list(item_affix_class.keys()))
-    possible_grades = []
+    highest_grade = -1
     for affix_grade in item_affix_class[affix]:
       if item_level >= affix_grade['item_level']:
-        possible_grades.append(affix_grade)
-    if len(possible_grades) > 0:
+        highest_grade += 1
+    if highest_grade > -1:
       result = affix # Set the first char of the string.
       break;
     else:
       continue
   
   ## pick the grade
-  item_affix_grade = random.choice(possible_grades)
+  affix_grade_index = random.randint(0, highest_grade)
+  result += format(affix_grade_index, 'x') # 2nd char of the affix = grade.
+  item_affix_grade = item_affix_class[affix][affix_grade_index]
 
   ## Roll for values
   roll = rollForAffix()

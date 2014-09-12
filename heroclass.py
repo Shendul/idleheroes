@@ -67,7 +67,7 @@ def getBaseStatsForHero(hero_class, level):
         base_stats[hero_class][ATTRIBUTE.CONSTITUTION][1]*level*3,
     ACTOR_STAT.FIRE_RESISTANCE: base_stats[hero_class][ATTRIBUTE.WISDOM][0] +
         base_stats[hero_class][ATTRIBUTE.WISDOM][1]*level,
-    ACTOR_STAT.ICE_RESISTANCE: base_stats[hero_class][ATTRIBUTE.WISDOM][0] +
+    ACTOR_STAT.COLD_RESISTANCE: base_stats[hero_class][ATTRIBUTE.WISDOM][0] +
         base_stats[hero_class][ATTRIBUTE.WISDOM][1]*level,
     # Defense here below is also to have a random chance of being 75-125% of base.
     ACTOR_STAT.DEFENSE: base_stats[hero_class][ATTRIBUTE.CONSTITUTION][0] +

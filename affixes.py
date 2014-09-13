@@ -243,6 +243,7 @@ RARE_PREFIX_LIST = [
 ]
 
 RARE_SUFFIX_LIST = {
+  ## TODO: Make each of these a list of possible names to add variety.
   ITEM.TUNIC: 'Suit',
   ITEM.HAT: 'Crest',
   ITEM.PANTS: 'Chaps',

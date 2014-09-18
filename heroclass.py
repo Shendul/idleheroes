@@ -48,35 +48,10 @@ HERO_BASE_STATS = {
   }
 }
 
-def getBaseStatsForHero(hero_class, level):
-  """
-  Given a HERO_CLASS and level, return the base stats for that hero.
-  """
-  return {
-    # Get the four base stats.
-    ATTRIBUTE.STRENGTH: HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][1]*level,
-    ATTRIBUTE.AGILITY: HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][1]*level,
-    ATTRIBUTE.WISDOM: HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*level,
-    ATTRIBUTE.CONSTITUTION: HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*level,
-    # Get the base stats that are calculated from the four base stats above.
-    ACTOR_STAT.HEALTH: HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][1]*level + 
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*level*3,
-    ACTOR_STAT.FIRE_RESISTANCE: HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*level,
-    ACTOR_STAT.COLD_RESISTANCE: HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*level,
-    # Defense here below is also to have a random chance of being 75-125% of base.
-    ACTOR_STAT.DEFENSE: HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*level + 
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][1]*level,
-  }
+## Function for adding two digit tuples.
+def addDamages(base, change):
+  result = (base[0] + change[0], base[1] + change[1])
+  return result
 
 equipped_item_keys = ['main_hand', 'off_hand', 'head', 'body', 'belt',
     'legs', 'feet', 'shoulders', 'hands', 'left_ring', 'right_ring',
@@ -139,25 +114,51 @@ def getHeroGear(inventory):
   result['mount'] = getItemFromItemString(inventory.mount)
   return result
 
-
+## TODO Make item affixes effect these.
 def getBattleActorFromHero(hero):
   ## TODO: Finish this function.
   actor = {}
   level = getHeroLevel(hero.experience)
   gear = getHeroGear(hero.inventory.get())
   hero_class = hero.hero_class
+  ## base stats.
   strength = (HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][0] + 
-      HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][1]*level)
+    HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][1]*level)
   agility = (HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][1]*level)
+    HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][1]*level)
   wisdom = (HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*level)
+    HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*level)
   constitution = (HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][0] +
-        HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*level)
+    HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*level)
+
+  for item in gear:
+    if len(item['prefixes']) > 0:
+      for prefix in prefixes:
+        if prefix['affix_type'] == AFFIX.STRENGTH:
+          strength += prefix['value']
+        if prefix['affix_type'] == AFFIX.AGILITY:
+          agility += prefix['value']
+        if prefix['affix_type'] == AFFIX.WISDOM:
+          wisdom += prefix['value']
+        if prefix['affix_type'] == AFFIX.CONSTITUTION:
+          constitution += prefix['value']
+
+    if len(item['suffixes']) > 0:
+      for suffix in suffixes:
+        if suffix['affix_type'] == AFFIX.STRENGTH:
+          strength += suffix['value']
+        if suffix['affix_type'] == AFFIX.AGILITY:
+          agility += suffix['value']
+        if suffix['affix_type'] == AFFIX.WISDOM:
+          wisdom += suffix['value']
+        if suffix['affix_type'] == AFFIX.CONSTITUTION:
+          constitution += suffix['value']
+
+  
   getHeroHealth(strength, constitution, level, gear, actor)
-  #getHeroDefense(agility, constitution, level, gear, actor)
-  #getHeroResists(wisdom, level, gear, actor)
-  #getHeroDamages(hero, actor)
+  getHeroDefense(agility, constitution, level, gear, actor)
+  getHeroResists(wisdom, constitution, level, gear, actor)
+  getHeroDamages(hero, level, gear, actor)
   #getHeroMetaStats(hero, actor)
   return actor
 
@@ -174,6 +175,209 @@ def getHeroHealth(strength, constitution, level, gear, actor):
       for suffix in suffixes:
         if suffix['affix_type'] == AFFIX.HEALTH:
           actor['health'] += prefix['value']
+
+def getHeroDefense(agility, constitution, level, gear, actor):
+  ## Get base defense
+  actor['defense'] = agility*level + constitution*level / 4
+  ## Add def from items.
+  for item in gear:
+    actor['defence'] += item['defense']
+    if len(item['prefixes']) > 0:
+      for prefix in prefixes:
+
+        if prefix['affix_type'] == AFFIX.DEFENSE:
+          actor['defense'] += prefix['value']
+
+        elif prefix['affix_type'] == AFFIX.DEFENSE_PERCENTAGE:
+          actor['defense'] += (prefix['value']/100.0)*actor['defense']
+
+    if len(item['suffixes']) > 0:
+      for suffix in suffixes:
+
+        if suffix['affix_type'] == AFFIX.DEFENSE:
+          actor['defense'] += prefix['value']
+
+        elif suffix['affix_type'] == AFFIX.DEFENSE_PERCENTAGE:
+          actor['defense'] += actor['defense']*suffix['value']
+
+def getHeroResists(wisdom, constitution, level, gear, actor):
+  ## Get base resists
+  actor['thrust_resistance'] = constitution*level
+  actor['slash_resistance'] = constitution*level
+  actor['crush_resistance'] = constitution*level
+  actor['lightning_resistance'] = wisdom*level
+  actor['fire_resistance'] = wisdom*level
+  actor['cold_resistance'] = wisdom*level
+  actor['poison_resistance'] = wisdom*level
+  ## Add resists from items.
+  for item in gear:
+    if len(item['prefixes']) > 0:
+      for prefix in prefixes:
+
+        if prefix['affix_type'] == AFFIX.THRUST_RESISTANCE:
+          actor['thrust_resistance'] += prefix['value']
+
+        elif prefix['affix_type'] == AFFIX.SLASH_RESISTANCE:
+          actor['slash_resistance'] += prefix['value']
+
+        elif prefix['affix_type'] == AFFIX.CRUSH_RESISTANCE:
+          actor['crush_resistance'] += prefix['value']
+
+        elif prefix['affix_type'] == AFFIX.LIGHTNING_RESISTANCE:
+          actor['lightning_resistance'] += prefix['value']
+
+        elif prefix['affix_type'] == AFFIX.FIRE_RESISTANCE:
+          actor['fire_resistance'] += prefix['value']
+
+        elif prefix['affix_type'] == AFFIX.COLD_RESISTANCE:
+          actor['cold_resistance'] += prefix['value']
+
+        elif prefix['affix_type'] == AFFIX.POISON_RESISTANCE:
+          actor['poison_resistance'] += prefix['value']
+
+        elif prefix['affix_type'] == AFFIX.PHYSICAL_RESISTANCE:
+          actor['thrust_resistance'] += prefix['value']
+          actor['slash_resistance'] += prefix['value']
+          actor['crush_resistance'] += prefix['value']
+
+        elif prefix['affix_type'] == AFFIX.ELEMENTAL_RESISTANCE:
+          actor['lightning_resistance'] += prefix['value']
+          actor['fire_resistance'] += prefix['value']
+          actor['cold_resistance'] += prefix['value']
+          actor['poison_resistance'] += prefix['value']
+
+    if len(item['suffixes']) > 0:
+      for suffix in suffixes:
+
+        if suffix['affix_type'] == AFFIX.THRUST_RESISTANCE:
+          actor['thrust_resistance'] += prefix['value']
+
+        elif suffix['affix_type'] == AFFIX.SLASH_RESISTANCE:
+          actor['slash_resistance'] += prefix['value']
+
+        elif suffix['affix_type'] == AFFIX.CRUSH_RESISTANCE:
+          actor['crush_resistance'] += prefix['value']
+
+        elif suffix['affix_type'] == AFFIX.LIGHTNING_RESISTANCE:
+          actor['lightning_resistance'] += prefix['value']
+
+        elif suffix['affix_type'] == AFFIX.FIRE_RESISTANCE:
+          actor['fire_resistance'] += prefix['value']
+
+        elif suffix['affix_type'] == AFFIX.COLD_RESISTANCE:
+          actor['cold_resistance'] += prefix['value']
+
+        elif suffix['affix_type'] == AFFIX.POISON_RESISTANCE:
+          actor['poison_resistance'] += prefix['value']
+
+        elif suffix['affix_type'] == AFFIX.PHYSICAL_RESISTANCE:
+          actor['thrust_resistance'] += prefix['value']
+          actor['slash_resistance'] += prefix['value']
+          actor['crush_resistance'] += prefix['value']
+
+        elif suffix['affix_type'] == AFFIX.ELEMENTAL_RESISTANCE:
+          actor['lightning_resistance'] += prefix['value']
+          actor['fire_resistance'] += prefix['value']
+          actor['cold_resistance'] += prefix['value']
+          actor['poison_resistance'] += prefix['value']
+
+def getHeroDamages(hero, level, gear, actor):
+  ## Get base damages
+  actor['thrust_damage'] = (0,0)
+  actor['slash_damage'] = (0,0)
+  actor['crush_damage'] = (0,0)
+  actor['lightning_damage'] = (0,0)
+  actor['fire_damage'] = (0,0)
+  actor['cold_damage'] = (0,0)
+  actor['poison_damage'] = (0,0)
+  actor['thorns_damage'] = (0,0)
+  ## Add dmg from items.
+  for item in gear:
+    ## TODO: account for duel wielding if we have it.
+    if base_damage['type'] == 'thrust':
+      actor['thrust_damage'] = base_damage['damage_range']
+
+    elif base_damage['type'] == 'slash':
+      actor['slash_damage'] = base_damage['damage_range']
+
+    elif base_damage['type'] == 'crush':
+      actor['crush_damage'] = base_damage['damage_range']
+
+    if len(item['prefixes']) > 0:
+      for prefix in prefixes:
+
+        if prefix['affix_type'] == AFFIX.WEAPON_DAMAGE_FLAT:
+          if base_damage['type'] == 'thrust':
+            actor['thrust_damage'] = addDamages(actor['thrust_damage'], prefix['value'])
+          elif base_damage['type'] == 'slash':
+            actor['slash_damage'] = addDamages(actor['slash_damage'], prefix['value'])
+          elif base_damage['type'] == 'crush':
+            actor['crush_damage'] = addDamages(actor['crush_damage'], prefix['value'])
+
+        if prefix['affix_type'] == AFFIX.WEAPON_DAMAGE_PERCENTAGE:
+          dmgPercent = prefix['value']/100.0
+          if base_damage['type'] == 'thrust':
+            actor['thrust_damage'][0] += actor['thrust_damage'][0]*dmgPercent
+            actor['thrust_damage'][1] += actor['thrust_damage'][1]*dmgPercent
+          elif base_damage['type'] == 'slash':
+            actor['slash_damage'][0] += actor['slash_damage'][0]*dmgPercent
+            actor['slash_damage'][1] += actor['slash_damage'][1]*dmgPercent
+          elif base_damage['type'] == 'crush':
+            actor['crush_damage'][0] += actor['crush_damage'][0]*dmgPercent
+            actor['crush_damage'][1] += actor['crush_damage'][1]*dmgPercent 
+
+        if prefix['affix_type'] == AFFIX.LIGHTNING_DAMAGE:
+          actor['lightning_damage'] = addDamages(actor['lightning_damage'], prefix['value'])
+
+        if prefix['affix_type'] == AFFIX.FIRE_DAMAGE:
+          actor['fire_damage'] = addDamages(actor['fire_damage'], prefix['value'])
+
+        if prefix['affix_type'] == AFFIX.COLD_DAMAGE:
+          actor['cold_damage'] = addDamages(actor['cold_damage'], prefix['value'])
+
+        if prefix['affix_type'] == AFFIX.POISON_DAMAGE:
+          actor['poison_damage'] = addDamages(actor['poison_damage'], prefix['value'])
+
+        if prefix['affix_type'] == AFFIX.THORNS_DAMAGE:
+          actor['thorns_damage'] = addDamages(actor['thorns_damage'], prefix['value'])
+
+    if len(item['suffixes']) > 0:
+      for suffix in suffixes:
+
+        if suffix['affix_type'] == AFFIX.WEAPON_DAMAGE_FLAT:
+          if base_damage['type'] == 'thrust':
+            actor['thrust_damage'] = addDamages(actor['thrust_damage'], suffix['value'])
+          elif base_damage['type'] == 'slash':
+            actor['slash_damage'] = addDamages(actor['slash_damage'], suffix['value'])
+          elif base_damage['type'] == 'crush':
+            actor['crush_damage'] = addDamages(actor['crush_damage'], suffix['value'])
+
+        if suffix['affix_type'] == AFFIX.WEAPON_DAMAGE_PERCENTAGE:
+          dmgPercent = suffix['value']/100.0
+          if base_damage['type'] == 'thrust':
+            actor['thrust_damage'][0] += actor['thrust_damage'][0]*dmgPercent
+            actor['thrust_damage'][1] += actor['thrust_damage'][1]*dmgPercent
+          elif base_damage['type'] == 'slash':
+            actor['slash_damage'][0] += actor['slash_damage'][0]*dmgPercent
+            actor['slash_damage'][1] += actor['slash_damage'][1]*dmgPercent
+          elif base_damage['type'] == 'crush':
+            actor['crush_damage'][0] += actor['crush_damage'][0]*dmgPercent
+            actor['crush_damage'][1] += actor['crush_damage'][1]*dmgPercent 
+
+        if suffix['affix_type'] == AFFIX.LIGHTNING_DAMAGE:
+          actor['lightning_damage'] = addDamages(actor['lightning_damage'], suffix['value'])
+
+        if suffix['affix_type'] == AFFIX.FIRE_DAMAGE:
+          actor['fire_damage'] = addDamages(actor['fire_damage'], suffix['value'])
+
+        if suffix['affix_type'] == AFFIX.COLD_DAMAGE:
+          actor['cold_damage'] = addDamages(actor['cold_damage'], suffix['value'])
+
+        if suffix['affix_type'] == AFFIX.POISON_DAMAGE:
+          actor['poison_damage'] = addDamages(actor['poison_damage'], suffix['value'])
+
+        if suffix['affix_type'] == AFFIX.THORNS_DAMAGE:
+          actor['thorns_damage'] = addDamages(actor['thorns_damage'], suffix['value'])
 
 ## TODO(shendul): make the other getHeroxxxx() functions.
 

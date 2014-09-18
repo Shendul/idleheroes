@@ -12,10 +12,14 @@ class OBJECTIVE:
   Uncomment each objective after implementation for the objective is completed.
   NEXT AVAILABLE CHAR: 'D'
   """
+  ## quests with mobs
+  DONT_DIE = 'A' ## stay under certain amount of deaths, or health loss.
+  FAST_COMPLETION = 'B' ## Complete the quest within a time limit.
+  STRONGER_MOBS = 'D' ## increases max mob level that can spawn.
+  MORE_MOBS = 'E' ## increase the amount of monsters that can spawn.
 
-  DONT_DIE = 'A'
-  FAST_COMPLETION = 'B'
-  LONGER_JOB = 'C'
+  ## quests without mobs
+  LONGER_JOB = 'C' ## add time req to complete the quest
 
 QUEST_OBJECTIVE_CLASS = {
   QUEST.RESCUE_MISSION: 'mob',
@@ -49,15 +53,23 @@ OBJECTIVE_GRADES = {
       quest_objective_grade('Less Than Three Deaths', 50)  # Grade 1
     ],
     OBJECTIVE.FAST_COMPLETION: [
-      quest_objective_grade('', 1), # Grade 0
-      quest_objective_grade('', 50)  # Grade 1
+      quest_objective_grade('Like a Turtle', 1), # Grade 0 (75%)
+      quest_objective_grade('Like a Wolf', 50)  # Grade 1 (60%)
+    ],
+    OBJECTIVE.STRONGER_MOBS: [
+      quest_objective_grade('+2 to mob level', 1), # Grade 0
+      quest_objective_grade('+4 to mob level', 50)  # Grade 1
+    ],
+    OBJECTIVE.MORE_MOBS: [
+      quest_objective_grade('25% more mobs', 1), # Grade 0
+      quest_objective_grade('50% more mobs', 50)  # Grade 1
     ]
   },
 
   'non_mob': {
     OBJECTIVE.LONGER_JOB: [
-      quest_objective_grade('', 1), # Grade 0
-      quest_objective_grade('', 50)  # Grade 1
+      quest_objective_grade('30 more minutes!', 1), # Grade 0
+      quest_objective_grade('Give me another hour!', 50)  # Grade 1
     ]
   }
 

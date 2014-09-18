@@ -5,21 +5,22 @@ class QUEST:
   This class maps the base quest types to their quest model characters.
   """
   # Quests that increase Karma
-  RESCUE_MISSION = 'A'
-  TRAIN = 'B'
-  SLAY_THE_BOSS = 'C'
-  ARREST_CRIMINAL =  'D'
+  RESCUE_MISSION = 'A' ## Kill mobs to get to a person needing rescue.
+  TRAIN = 'B' ## Timed mission, help train someone weaker than you.
+  SLAY_THE_BOSS = 'C' ## Fight through mobs to get to BIG mob.
+  ARREST_CRIMINAL =  'D' ## Timed mission based off of rolls to find person, fight
+                         ## mobs as you go. Subdue enemy
   # Quests that are Neutral
-  DEFEND_THE_CARAVAN = 'E'
-  CLEAR_OUT_MONSTER_NEST = 'F'
-  DUNGEON_CRAWL = 'G'
-  FIND_RARE_MATERIAL = 'H'
+  DEFEND_THE_CARAVAN = 'E' ## Timed mission, defend until destination reached.
+  CLEAR_OUT_MONSTER_NEST = 'F' ## Kill certain amount of mobs.
+  DUNGEON_CRAWL = 'G' ## Random amount of mobs/ time to complete. High loot.
+  FIND_RARE_MATERIAL = 'H' ## search for material for a merchant, rare loot.
   # Quests that decrease Karma
-  RAID_NEUTRAL = 'I'
-  BEG_FOR_LOOT = 'J'
-  STEAL = 'K'
-  ATTRACT_MONSTERS = 'L'
-  SUMMON_ENEMIES = 'M'
+  RAID_NEUTRAL = 'I' ## fight humans for loot.
+  BEG_FOR_LOOT = 'J' ## timed: no fighting.
+  STEAL = 'K' ## rolls based off of agility or something. No fighting.
+  ATTRACT_MONSTERS = 'L' ## timed: fight mobs
+  SUMMON_ENEMIES = 'M' ## same as above.
 
 GOOD_QUESTS = [
   QUEST.RESCUE_MISSION, QUEST.TRAIN, QUEST.SLAY_THE_BOSS,
@@ -70,17 +71,17 @@ QUEST_GRADES = {
   QUEST.RAID_NEUTRAL: [
     quest_grade('Raid Farmer\'s Barn For Loot', 1), 
   ],
-  QUEST.ATTRACT_MONSTERS: [
-    quest_grade('Bait Rats Into The Town', 1), 
-  ],
-  QUEST.SUMMON_ENEMIES: [
-    quest_grade('Attempt Demonic Ritual', 1), 
-  ],
   QUEST.BEG_FOR_LOOT: [
     quest_grade('Beg Like a Homeless Man', 1), 
   ],
   QUEST.STEAL: [
     quest_grade('Steal From Beggars', 1), 
+  ],
+  QUEST.ATTRACT_MONSTERS: [
+    quest_grade('Bait Rats Into The Town', 1), 
+  ],
+  QUEST.SUMMON_ENEMIES: [
+    quest_grade('Attempt Demonic Ritual', 1), 
   ]
 }
 

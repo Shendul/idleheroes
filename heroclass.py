@@ -114,7 +114,6 @@ def getHeroGear(inventory):
   result['mount'] = getItemFromItemString(inventory.mount)
   return result
 
-## TODO Make item affixes effect these.
 def getBattleActorFromHero(hero):
   ## TODO: Finish this function.
   actor = {}
@@ -159,7 +158,7 @@ def getBattleActorFromHero(hero):
   getHeroDefense(agility, constitution, level, gear, actor)
   getHeroResists(wisdom, constitution, level, gear, actor)
   getHeroDamages(hero, level, gear, actor)
-  #getHeroMetaStats(hero, actor)
+  getHeroMetaStats(hero, actor)
   return actor
 
 def getHeroHealth(strength, constitution, level, gear, actor):
@@ -379,6 +378,21 @@ def getHeroDamages(hero, level, gear, actor):
         if suffix['affix_type'] == AFFIX.THORNS_DAMAGE:
           actor['thorns_damage'] = addDamages(actor['thorns_damage'], suffix['value'])
 
-## TODO(shendul): make the other getHeroxxxx() functions.
+def getHeroMetaStats(hero, level, gear, actor):
+  ## TODO: add remaining meta stats
+  for item in gear:
+    if len(item['prefixes']) > 0:
+      for prefix in prefixes:
+        if prefix['affix_type'] == AFFIX.GOLD_FIND:
+          actor['gold_find'] += prefix['value']
 
+        if prefix['affix_type'] == AFFIX.MAGIC_FIND:
+          actor['magic_find'] += prefix['value']
 
+    if len(item['suffixes']) > 0:
+      for suffix in suffixes:
+        if suffix['affix_type'] == AFFIX.GOLD_FIND:
+          actor['gold_find'] += suffix['value']
+
+        if suffix['affix_type'] == AFFIX.MAGIC_FIND:
+          actor['magic_find'] += suffix['value']

@@ -7,6 +7,7 @@ from model import *
 from userutils import *
 from heroclass import *
 from itemutils import *
+from battle import *
 
 import jinja2
 import webapp2
@@ -32,7 +33,7 @@ class MainPage(webapp2.RequestHandler):
       #Ignore the banned nerds
       if users.get_current_user().user_id() in banlist:
         return self.redirect('/banned')
-      ih_user = getCurrentIdleHeroesUser()
+      ih_user = getCurrentIdleHeroesUser(self)
       # Check to see if the user has a hero
       if len(ih_user.hero) == 0:
         template_values['no_hero'] = True
@@ -58,11 +59,7 @@ class Banned(webapp2.RequestHandler):
 
 class CreateHero(webapp2.RequestHandler):
   def post(self):
-    ih_user = getCurrentIdleHeroesUser()
-    if ih_user == None:
-      # TODO(dreamlane): Redirect to a useful place.
-      return self.redirect('/abyss')
-      logging.exception('Could not get user on hero creation!')
+    ih_user = getCurrentIdleHeroesUser(self)
     hero_name = self.request.get('hero_name')
     if hero_name:
       if len(hero_name) > 30:
@@ -88,9 +85,20 @@ class GenerateItem(webapp2.RequestHandler):
     template_values = {'item': item}
     self.response.write(template.render(template_values))
 
+class Battle(webapp2.RequestHandler):
+  def get(self):
+    ## get the hero actor
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = getBattleActorFromHero(ih_user.hero[0].get())
+
+    ## get the mob
+    ## simulate the battle (ignoring time)
+    ## display the results
+
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/banned', Banned),
     ('/heroCreation', CreateHero),
-    ('/generateItem', GenerateItem)
+    ('/generateItem', GenerateItem),
+    ('/battle', Battle)
 ], debug=True)

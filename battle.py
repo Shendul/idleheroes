@@ -42,3 +42,5 @@ class ACTOR_STAT:
   # LOOT_TABLE = "loot_table" ## TODO: implement loot tables
 
   # ABILITIES ##TODO: Implement abilities
+
+

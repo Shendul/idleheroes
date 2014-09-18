@@ -5,6 +5,8 @@ import logging
 
 from battle import *
 from experience import *
+from itemutils import *
+from affixes import *
 
 class HERO_CLASS:
   """
@@ -31,7 +33,7 @@ class ATTRIBUTE:
 
 
 #Base Stats (level 0 stat, growth per level)
-base_stats = {
+HERO_BASE_STATS = {
   HERO_CLASS.WARRIOR: {
     ATTRIBUTE.STRENGTH: (22, 3),
     ATTRIBUTE.AGILITY: (14, 1),
@@ -52,28 +54,28 @@ def getBaseStatsForHero(hero_class, level):
   """
   return {
     # Get the four base stats.
-    ATTRIBUTE.STRENGTH: base_stats[hero_class][ATTRIBUTE.STRENGTH][0] +
-        base_stats[hero_class][ATTRIBUTE.STRENGTH][1]*level,
-    ATTRIBUTE.AGILITY: base_stats[hero_class][ATTRIBUTE.AGILITY][0] +
-        base_stats[hero_class][ATTRIBUTE.AGILITY][1]*level,
-    ATTRIBUTE.WISDOM: base_stats[hero_class][ATTRIBUTE.WISDOM][0] +
-        base_stats[hero_class][ATTRIBUTE.WISDOM][1]*level,
-    ATTRIBUTE.CONSTITUTION: base_stats[hero_class][ATTRIBUTE.CONSTITUTION][0] +
-        base_stats[hero_class][ATTRIBUTE.CONSTITUTION][1]*level,
+    ATTRIBUTE.STRENGTH: HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][1]*level,
+    ATTRIBUTE.AGILITY: HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][1]*level,
+    ATTRIBUTE.WISDOM: HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*level,
+    ATTRIBUTE.CONSTITUTION: HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*level,
     # Get the base stats that are calculated from the four base stats above.
-    ACTOR_STAT.HEALTH: base_stats[hero_class][ATTRIBUTE.STRENGTH][0] +
-        base_stats[hero_class][ATTRIBUTE.STRENGTH][1]*level + 
-        base_stats[hero_class][ATTRIBUTE.CONSTITUTION][0] +
-        base_stats[hero_class][ATTRIBUTE.CONSTITUTION][1]*level*3,
-    ACTOR_STAT.FIRE_RESISTANCE: base_stats[hero_class][ATTRIBUTE.WISDOM][0] +
-        base_stats[hero_class][ATTRIBUTE.WISDOM][1]*level,
-    ACTOR_STAT.COLD_RESISTANCE: base_stats[hero_class][ATTRIBUTE.WISDOM][0] +
-        base_stats[hero_class][ATTRIBUTE.WISDOM][1]*level,
+    ACTOR_STAT.HEALTH: HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][1]*level + 
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*level*3,
+    ACTOR_STAT.FIRE_RESISTANCE: HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*level,
+    ACTOR_STAT.COLD_RESISTANCE: HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*level,
     # Defense here below is also to have a random chance of being 75-125% of base.
-    ACTOR_STAT.DEFENSE: base_stats[hero_class][ATTRIBUTE.CONSTITUTION][0] +
-        base_stats[hero_class][ATTRIBUTE.CONSTITUTION][1]*level + 
-        base_stats[hero_class][ATTRIBUTE.AGILITY][0] +
-        base_stats[hero_class][ATTRIBUTE.AGILITY][1]*level,
+    ACTOR_STAT.DEFENSE: HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*level + 
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][1]*level,
   }
 
 equipped_item_keys = ['main_hand', 'off_hand', 'head', 'body', 'belt',
@@ -97,3 +99,82 @@ def getHeroValues(ih_hero_model):
       continue
 
   return hero
+
+def getHeroGear(inventory):
+  result = {
+    'main_hand': None,
+    'off_hand': None,
+    'head': None,
+    'body': None,
+    'belt': None,
+    'legs': None,
+    'feet': None,
+    'shoulders': None,
+    'hands': None,
+    # Accessory slots
+    'left_ring': None,
+    'right_ring': None,
+    'left_earring': None,
+    'right_earring': None,
+    'necklace': None,
+    # Special slots
+    'back': None,
+    'mount': None,
+  }
+  result['main_hand'] = getItemFromItemString(inventory.main_hand)
+  result['off_hand'] = getItemFromItemString(inventory.off_hand)
+  result['head'] = getItemFromItemString(inventory.head)
+  result['body'] = getItemFromItemString(inventory.body)
+  result['belt'] = getItemFromItemString(inventory.belt)
+  result['legs'] = getItemFromItemString(inventory.legs)
+  result['feet'] = getItemFromItemString(inventory.feet)
+  result['shoulders'] = getItemFromItemString(inventory.shoulders)
+  result['hands'] = getItemFromItemString(inventory.hands)
+  result['left_ring'] = getItemFromItemString(inventory.left_ring)
+  result['right_ring'] = getItemFromItemString(inventory.right_ring)
+  result['left_earring'] = getItemFromItemString(inventory.left_earring)
+  result['right_earring'] = getItemFromItemString(inventory.right_earring)
+  result['necklace'] = getItemFromItemString(inventory.necklace)
+  result['back'] = getItemFromItemString(inventory.back)
+  result['mount'] = getItemFromItemString(inventory.mount)
+  return result
+
+
+def getBattleActorFromHero(hero):
+  ## TODO: Finish this function.
+  actor = {}
+  level = getHeroLevel(hero.experience)
+  gear = getHeroGear(hero.inventory.get())
+  hero_class = hero.hero_class
+  strength = (HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][0] + 
+      HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][1]*level)
+  agility = (HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][1]*level)
+  wisdom = (HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*level)
+  constitution = (HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][0] +
+        HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*level)
+  getHeroHealth(strength, constitution, level, gear, actor)
+  #getHeroDefense(agility, constitution, level, gear, actor)
+  #getHeroResists(wisdom, level, gear, actor)
+  #getHeroDamages(hero, actor)
+  #getHeroMetaStats(hero, actor)
+  return actor
+
+def getHeroHealth(strength, constitution, level, gear, actor):
+  ## Get base health
+  actor['health'] = strength*level + constitution*level
+  ## Add hp from items.
+  for item in gear:
+    if len(item['prefixes']) > 0:
+      for prefix in prefixes:
+        if prefix['affix_type'] == AFFIX.HEALTH:
+          actor['health'] += prefix['value']
+    if len(item['suffixes']) > 0:
+      for suffix in suffixes:
+        if suffix['affix_type'] == AFFIX.HEALTH:
+          actor['health'] += prefix['value']
+
+## TODO(shendul): make the other getHeroxxxx() functions.
+
+

@@ -55,7 +55,8 @@ import random
 import math
 
 def getItemFromItemString(itemString):
-  print itemString
+  if itemString == None:
+    return None
   item = {}
   base_item_key = itemString[0]
   grade_index = int(itemString[1], 16) # We use hex value in this position.
@@ -137,7 +138,7 @@ def getItemFromItemString(itemString):
     item['defense'] = ARMOR_DEFENSE[base_item_key][grade_index]
     ## TODO: consider the case of shield, which needs a block value.
 
-  ## Add properties for all of the affixes, for now just make key value pairs.
+  ## Add properties for all of the affixes.
   item['prefixes'] = prefixes
   item['suffixes'] = suffixes
 

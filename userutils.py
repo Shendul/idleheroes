@@ -1,7 +1,7 @@
 from google.appengine.api import users
 from model import *
 
-def getCurrentIdleHeroesUser():
+def getCurrentIdleHeroesUser(self):
   #Make sure there is a user.
   if users.get_current_user():
     idle_heroes_user_query = IHUser.query(IHUser.user_id ==
@@ -21,4 +21,6 @@ def getCurrentIdleHeroesUser():
     
   # There is no currently logged in user. Fail. TODO: add grace!
   else:
-    return None
+    # TODO(dreamlane): Redirect to a useful place.
+    return self.redirect('/abyss')
+    logging.exception('Could not get user on hero creation!')

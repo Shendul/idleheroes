@@ -152,28 +152,28 @@ def getBattleActorFromHero(hero):
 
 def getHeroHealth(strength, constitution, level, gear, actor):
   ## Get base health
-  actor['health'] = strength*level + constitution*level
+  actor[ACTOR_STAT.HEALTH] = strength*level + constitution*level
   ## Add hp from items.
   for item in gear:
     if len(item['affixes']) > 0:
       for affix in item['affixes']:
         if affix['affix_type'] == AFFIX.HEALTH:
-          actor['health'] += affix['value']
+          actor[ACTOR_STAT.HEALTH] += affix['value']
 
 def getHeroDefense(agility, constitution, level, gear, actor):
   ## Get base defense
-  actor['defense'] = agility*level + constitution*level / 4
+  actor[ACTOR_STAT.DEFENSE] = agility*level + constitution*level / 4
   ## Add def from items.
   for item in gear:
-    actor['defence'] += item['defense']
+    actor[ACTOR_STAT.DEFENSE] += item[ACTOR_STAT.DEFENSE]
     if len(item['affixes']) > 0:
       for affix in item['affixes']:
 
         if affix['affix_type'] == AFFIX.DEFENSE:
-          actor['defense'] += affix['value']
+          actor[ACTOR_STAT.DEFENSE] += affix['value']
 
         elif affix['affix_type'] == AFFIX.DEFENSE_PERCENTAGE:
-          actor['defense'] += (affix['value']/100.0)*actor['defense']
+          actor[ACTOR_STAT.DEFENSE] += (affix['value']/100.0)*actor[ACTOR_STAT.DEFENSE]
 
 def getHeroResists(wisdom, constitution, level, gear, actor):
   ## Get base resists
@@ -233,7 +233,7 @@ def getHeroDamages(hero, level, gear, actor):
   actor[ACTOR_STAT.THORNS_DAMAGE] = (0,0)
   ## Add dmg from items.
   for item in gear:
-    ## TODO: account for duel wielding if we have it.
+    ## TODO: account for duel wielding if we have it. If so just add to each type.
     if base_damage['type'] == DAMAGE_TYPE.THRUST:
       actor[ACTOR_STAT.THRUST_DAMAGE] = base_damage['damage_range']
 
@@ -289,7 +289,7 @@ def getHeroMetaStats(hero, level, gear, actor):
     if len(item['affixes']) > 0:
       for affix in item['affixes']:
         if affix['affix_type'] == AFFIX.GOLD_FIND:
-          actor['gold_find'] += affix['value']
+          actor[ACTOR_STAT.GOLD_FIND] += affix['value']
 
         if affix['affix_type'] == AFFIX.MAGIC_FIND:
-          actor['magic_find'] += affix['value']
+          actor[ACTOR_STAT.MAGIC_FIND] += affix['value']

@@ -6,6 +6,7 @@ import logging
 from battle import *
 from experience import *
 from itemutils import *
+from items import *
 from affixes import *
 
 class HERO_CLASS:
@@ -176,109 +177,111 @@ def getHeroDefense(agility, constitution, level, gear, actor):
 
 def getHeroResists(wisdom, constitution, level, gear, actor):
   ## Get base resists
-  actor['thrust_resistance'] = constitution*level
-  actor['slash_resistance'] = constitution*level
-  actor['crush_resistance'] = constitution*level
-  actor['lightning_resistance'] = wisdom*level
-  actor['fire_resistance'] = wisdom*level
-  actor['cold_resistance'] = wisdom*level
-  actor['poison_resistance'] = wisdom*level
+  actor[ACTOR_STAT.THRUST_RESISTANCE] = constitution*level
+  actor[ACTOR_STAT.SLASH_RESISTANCE] = constitution*level
+  actor[ACTOR_STAT.CRUSH_RESISTANCE] = constitution*level
+  actor[ACTOR_STAT.LIGHTNING_RESISTANCE] = wisdom*level
+  actor[ACTOR_STAT.FIRE_RESISTANCE] = wisdom*level
+  actor[ACTOR_STAT.COLD_RESISTANCE] = wisdom*level
+  actor[ACTOR_STAT.POISON_RESISTANCE] = wisdom*level
   ## Add resists from items.
   for item in gear:
     if len(item['affixes']) > 0:
       for affix in item['affixes']:
 
         if affix['affix_type'] == AFFIX.THRUST_RESISTANCE:
-          actor['thrust_resistance'] += affix['value']
+          actor[ACTOR_STAT.THRUST_RESISTANCE] += affix['value']
 
         elif affix['affix_type'] == AFFIX.SLASH_RESISTANCE:
-          actor['slash_resistance'] += affix['value']
+          actor[ACTOR_STAT.SLASH_RESISTANCE] += affix['value']
 
         elif affix['affix_type'] == AFFIX.CRUSH_RESISTANCE:
-          actor['crush_resistance'] += affix['value']
+          actor[ACTOR_STAT.CRUSH_RESISTANCE] += affix['value']
 
         elif affix['affix_type'] == AFFIX.LIGHTNING_RESISTANCE:
-          actor['lightning_resistance'] += affix['value']
+          actor[ACTOR_STAT.LIGHTNING_RESISTANCE] += affix['value']
 
         elif affix['affix_type'] == AFFIX.FIRE_RESISTANCE:
-          actor['fire_resistance'] += affix['value']
+          actor[ACTOR_STAT.FIRE_RESISTANCE] += affix['value']
 
         elif affix['affix_type'] == AFFIX.COLD_RESISTANCE:
-          actor['cold_resistance'] += affix['value']
+          actor[ACTOR_STAT.COLD_RESISTANCE] += affix['value']
 
         elif affix['affix_type'] == AFFIX.POISON_RESISTANCE:
-          actor['poison_resistance'] += affix['value']
+          actor[ACTOR_STAT.POISON_RESISTANCE] += affix['value']
 
         elif affix['affix_type'] == AFFIX.PHYSICAL_RESISTANCE:
-          actor['thrust_resistance'] += affix['value']
-          actor['slash_resistance'] += affix['value']
-          actor['crush_resistance'] += affix['value']
+          actor[ACTOR_STAT.THRUST_RESISTANCE] += affix['value']
+          actor[ACTOR_STAT.SLASH_RESISTANCE] += affix['value']
+          actor[ACTOR_STAT.CRUSH_RESISTANCE] += affix['value']
 
         elif affix['affix_type'] == AFFIX.ELEMENTAL_RESISTANCE:
-          actor['lightning_resistance'] += affix['value']
-          actor['fire_resistance'] += affix['value']
-          actor['cold_resistance'] += affix['value']
-          actor['poison_resistance'] += affix['value']
+          actor[ACTOR_STAT.LIGHTNING_RESISTANCE] += affix['value']
+          actor[ACTOR_STAT.FIRE_RESISTANCE] += affix['value']
+          actor[ACTOR_STAT.COLD_RESISTANCE] += affix['value']
+          actor[ACTOR_STAT.POISON_RESISTANCE] += affix['value']
 
 def getHeroDamages(hero, level, gear, actor):
   ## Get base damages
-  actor['thrust_damage'] = (0,0)
-  actor['slash_damage'] = (0,0)
-  actor['crush_damage'] = (0,0)
-  actor['lightning_damage'] = (0,0)
-  actor['fire_damage'] = (0,0)
-  actor['cold_damage'] = (0,0)
-  actor['poison_damage'] = (0,0)
-  actor['thorns_damage'] = (0,0)
+  actor[ACTOR_STAT.THRUST_DAMAGE] = (0,0)
+  actor[ACTOR_STAT.SLASH_DAMAGE] = (0,0)
+  actor[ACTOR_STAT.CRUSH_DAMAGE] = (0,0)
+  actor[ACTOR_STAT.LIGHTNING_DAMAGE] = (0,0)
+  actor[ACTOR_STAT.FIRE_DAMAGE] = (0,0)
+  actor[ACTOR_STAT.COLD_DAMAGE] = (0,0)
+  actor[ACTOR_STAT.POISON_DAMAGE] = (0,0)
+  actor[ACTOR_STAT.THORNS_DAMAGE] = (0,0)
   ## Add dmg from items.
   for item in gear:
     ## TODO: account for duel wielding if we have it.
-    if base_damage['type'] == 'thrust':
-      actor['thrust_damage'] = base_damage['damage_range']
+    if base_damage['type'] == DAMAGE_TYPE.THRUST:
+      actor[ACTOR_STAT.THRUST_DAMAGE] = base_damage['damage_range']
 
-    elif base_damage['type'] == 'slash':
-      actor['slash_damage'] = base_damage['damage_range']
+    elif base_damage['type'] == DAMAGE_TYPE.SLASH:
+      actor[ACTOR_STAT.SLASH_DAMAGE] = base_damage['damage_range']
 
-    elif base_damage['type'] == 'crush':
-      actor['crush_damage'] = base_damage['damage_range']
+    elif base_damage['type'] == DAMAGE_TYPE.CRUSH:
+      actor[ACTOR_STAT.CRUSH_DAMAGE] = base_damage['damage_range']
 
     if len(item['affixes']) > 0:
       for affix in item['affixes']:
 
         if affix['affix_type'] == AFFIX.WEAPON_DAMAGE_FLAT:
-          if base_damage['type'] == 'thrust':
-            actor['thrust_damage'] = addDamages(actor['thrust_damage'], affix['value'])
-          elif base_damage['type'] == 'slash':
-            actor['slash_damage'] = addDamages(actor['slash_damage'], affix['value'])
-          elif base_damage['type'] == 'crush':
-            actor['crush_damage'] = addDamages(actor['crush_damage'], affix['value'])
+          if base_damage['type'] == DAMAGE_TYPE.THRUST:
+            actor[ACTOR_STAT.THRUST_DAMAGE] = addDamages(
+                actor[ACTOR_STAT.THRUST_DAMAGE], affix['value'])
+          elif base_damage['type'] == DAMAGE_TYPE.SLASH:
+            actor[ACTOR_STAT.SLASH_DAMAGE] = addDamages(
+              actor[ACTOR_STAT.SLASH_DAMAGE], affix['value'])
+          elif base_damage['type'] == DAMAGE_TYPE.CRUSH:
+            actor[ACTOR_STAT.CRUSH_DAMAGE] = addDamages(actor[ACTOR_STAT.CRUSH_DAMAGE], affix['value'])
 
         if affix['affix_type'] == AFFIX.WEAPON_DAMAGE_PERCENTAGE:
           dmgPercent = affix['value']/100.0
-          if base_damage['type'] == 'thrust':
-            actor['thrust_damage'][0] += actor['thrust_damage'][0]*dmgPercent
-            actor['thrust_damage'][1] += actor['thrust_damage'][1]*dmgPercent
-          elif base_damage['type'] == 'slash':
-            actor['slash_damage'][0] += actor['slash_damage'][0]*dmgPercent
-            actor['slash_damage'][1] += actor['slash_damage'][1]*dmgPercent
-          elif base_damage['type'] == 'crush':
-            actor['crush_damage'][0] += actor['crush_damage'][0]*dmgPercent
-            actor['crush_damage'][1] += actor['crush_damage'][1]*dmgPercent 
+          if base_damage['type'] == DAMAGE_TYPE.THRUST:
+            actor[ACTOR_STAT.THRUST_DAMAGE][0] += actor[ACTOR_STAT.THRUST_DAMAGE][0]*dmgPercent
+            actor[ACTOR_STAT.THRUST_DAMAGE][1] += actor[ACTOR_STAT.THRUST_DAMAGE][1]*dmgPercent
+          elif base_damage['type'] == DAMAGE_TYPE.SLASH:
+            actor[ACTOR_STAT.SLASH_DAMAGE][0] += actor[ACTOR_STAT.SLASH_DAMAGE][0]*dmgPercent
+            actor[ACTOR_STAT.SLASH_DAMAGE][1] += actor[ACTOR_STAT.SLASH_DAMAGE][1]*dmgPercent
+          elif base_damage['type'] == DAMAGE_TYPE.CRUSH:
+            actor[ACTOR_STAT.CRUSH_DAMAGE][0] += actor[ACTOR_STAT.CRUSH_DAMAGE][0]*dmgPercent
+            actor[ACTOR_STAT.CRUSH_DAMAGE][1] += actor[ACTOR_STAT.CRUSH_DAMAGE][1]*dmgPercent 
 
         if affix['affix_type'] == AFFIX.LIGHTNING_DAMAGE:
-          actor['lightning_damage'] = addDamages(actor['lightning_damage'], affix['value'])
+          actor[ACTOR_STAT.LIGHTNING_DAMAGE] = addDamages(actor[ACTOR_STAT.LIGHTNING_DAMAGE], affix['value'])
 
         if affix['affix_type'] == AFFIX.FIRE_DAMAGE:
-          actor['fire_damage'] = addDamages(actor['fire_damage'], affix['value'])
+          actor[ACTOR_STAT.FIRE_DAMAGE] = addDamages(actor[ACTOR_STAT.FIRE_DAMAGE], affix['value'])
 
         if affix['affix_type'] == AFFIX.COLD_DAMAGE:
-          actor['cold_damage'] = addDamages(actor['cold_damage'], affix['value'])
+          actor[ACTOR_STAT.COLD_DAMAGE] = addDamages(actor[ACTOR_STAT.COLD_DAMAGE], affix['value'])
 
         if affix['affix_type'] == AFFIX.POISON_DAMAGE:
-          actor['poison_damage'] = addDamages(actor['poison_damage'], affix['value'])
+          actor[ACTOR_STAT.POISON_DAMAGE] = addDamages(actor[ACTOR_STAT.POISON_DAMAGE], affix['value'])
 
         if affix['affix_type'] == AFFIX.THORNS_DAMAGE:
-          actor['thorns_damage'] = addDamages(actor['thorns_damage'], affix['value'])
+          actor[ACTOR_STAT.THORNS_DAMAGE] = addDamages(actor[ACTOR_STAT.THORNS_DAMAGE], affix['value'])
 
 def getHeroMetaStats(hero, level, gear, actor):
   ## TODO: add remaining meta stats

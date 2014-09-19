@@ -12,6 +12,8 @@ from battle import *
 import jinja2
 import webapp2
 
+import random
+
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -89,10 +91,12 @@ class Battle(webapp2.RequestHandler):
   def get(self):
     ## get the hero actor
     ih_user = getCurrentIdleHeroesUser(self)
-    hero = getBattleActorFromHero(ih_user.hero[0].get())
+    hero_actor = getBattleActorFromHero(ih_user.hero[0].get())
 
-    ## get the mob
+    ## get the mob actor
+    mob_actor = random.choice(ALL_MOBS)
     ## simulate the battle (ignoring time)
+    battle_result = getBattleResult(hero_actor, mob_actor)
     ## display the results
 
 application = webapp2.WSGIApplication([

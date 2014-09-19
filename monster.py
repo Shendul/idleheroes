@@ -3,39 +3,83 @@
 
 from battle import *
 
-class MONSTERS:
+class MONSTER:
   """
   This class is used to represent an enumlike object. All monster data will be
   held here.
   """
-  RAT = makeMob(100,0,25,5,5,0,0,0,0,0,0,0,2,5,"Thrust",1,1,"rat",None)
+  def makeMobActor(health, defense, accuracy, thrust_resistance, slash_resistance,
+      crush_resistance, lightning_resistance, fire_resistance, cold_resistance,
+      poison_resistance, thrust_damage, slash_damage, crush_damage, lightning_damage,
+      fire_damage, cold_damage, poison_damage, thorns_damage, name, loot_table):
+    """ Takes the mob parameters and returns a mob actor. """
+    return {
+      ACTOR_STAT.HEALTH: health,
+      ACTOR_STAT.DEFENSE: defense,
+      ACTOR_STAT.ACCURACY: accuracy,
+      ACTOR_STAT.THRUST_RESISTANCE: thrust_resistance,
+      ACTOR_STAT.SLASH_RESISTANCE: slash_resistance,
+      ACTOR_STAT.CRUSH_RESISTANCE: crush_resistance,
+      ACTOR_STAT.LIGHTNING_RESISTANCE: lightning_resistance,
+      ACTOR_STAT.FIRE_RESISTANCE: fire_resistance,
+      ACTOR_STAT.COLD_RESISTANCE: cold_resistance,
+      ACTOR_STAT.POISON_RESISTANCE: poison_resistance,
+      ACTOR_STAT.THRUST_DAMAGE: thrust_damage,
+      ACTOR_STAT.SLASH_DAMAGE: slash_damage,
+      ACTOR_STAT.CRUSH_DAMAGE: crush_damage,
+      ACTOR_STAT.LIGHTNING_DAMAGE: lightning_damage,
+      ACTOR_STAT.FIRE_DAMAGE: fire_damage,
+      ACTOR_STAT.COLD_DAMAGE: cold_damage,
+      ACTOR_STAT.POISON_DAMAGE: poison_damage,
+      ACTOR_STAT.THORNS_DAMAGE: thorns_damage,
+      ACTOR_STAT.NAME: name,
+      # ACTOR_STAT.LOOT_TABLE: loot_table
+    }
 
+  RAT = makeMobActor(
+      20, # Health
+      20, # Defense
+      20, # Accuracy
+      0, # Thrust Resist
+      5, # Slash Resist
+      5, # Crush Resist
+      0, # Lightning Resist
+      0, # Fire Resist
+      5, # Cold Resist
+      10, # Poison Resist
+      None, # Thrust Damage
+      (2, 6), # Slash Damage
+      None, # Crush Damage
+      None, # Lightning Damage
+      None, # Fire Damage
+      None, # Cold Damage
+      None, # Poison Damage
+      None, # Thorns Damage
+      "Rat", # Name
+      None # Loot Table
+  )
+  SNAKE = makeMobActor(
+      18, # Health
+      30, # Defense
+      45, # Accuracy
+      5, # Thrust Resist
+      0, # Slash Resist
+      5, # Crush Resist
+      0, # Lightning Resist
+      0, # Fire Resist
+      0, # Cold Resist
+      10, # Poison Resist
+      (1,3), # Thrust Damage
+      None, # Slash Damage
+      None, # Crush Damage
+      None, # Lightning Damage
+      None, # Fire Damage
+      None, # Cold Damage
+      (1, 3), # Poison Damage
+      None, # Thorns Damage
+      "Snake", # Name
+      None # Loot Table
+  )
 
-
-"""
-The below dictionaries are the hardcoded data for certain monsters.
-"""
-
-def makeMob(health, mana, defense, thrust_resistance, slash_resistance,
-  crush_resistance, lightning_resistance, fire_resistance, cold_resistance,
-  poison_resistance, minimum_damage, maximum_damage, damage_type, level,
-  rarity_level, name, loot_table):
-  return {
-    ACTOR_STAT.HEALTH: health,
-    ACTOR_STAT.MANA: mana,
-    ACTOR_STAT.DEFENSE: defense,
-    ACTOR_STAT.THRUST_RESISTANCE: thrust_resistance,
-    ACTOR_STAT.SLASH_RESISTANCE: slash_resistance,
-    ACTOR_STAT.CRUSH_RESISTANCE: crush_resistance,
-    ACTOR_STAT.LIGHTNING_RESISTANCE: lightning_resistance,
-    ACTOR_STAT.FIRE_RESISTANCE: fire_resistance,
-    ACTOR_STAT.COLD_RESISTANCE: cold_resistance,
-    ACTOR_STAT.POISON_RESISTANCE: poison_resistance,
-    ACTOR_STAT.MINIMUM_DAMAGE: minimum_damage,
-    ACTOR_STAT.MAXIMUM_DAMAGE: maximum_damage,
-    ACTOR_STAT.DAMAGE_TYPE: damage_type,
-    ACTOR_STAT.LEVEL: level,
-    ACTOR_STAT.RARITY_LEVEL: rarity_level,
-    ACTOR_STAT.NAME: name,
-    ACTOR_STAT.LOOT_TABLE: loot_table
-  }
+## TODO: Create lists of mobs to choose from, and figure out how to organize them.
+ALL_MOBS = [MONSTER.RAT, MONSTER.SNAKE]

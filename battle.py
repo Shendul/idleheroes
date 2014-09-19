@@ -1,6 +1,10 @@
 ## battle.py This file is used to represent all battle related stat data
 ## and functions.
 
+import math
+import random
+import mathutils
+
 class ACTOR_STAT:
   """
   This class is used to represent an enumlike object for stats, used by mobs
@@ -14,6 +18,7 @@ class ACTOR_STAT:
   # MANA = "mana" ## TODO: implement Mana
   # BLOCK = 'block' ## TODO: implement blocking
   DEFENSE = "defense" # Represents how easy you take a hit.
+  ACCURACY = "accuracy" # Represents how easy you hit something.
   THRUST_RESISTANCE = "thrust_resistance"
   SLASH_RESISTANCE = "slash_resistance"
   CRUSH_RESISTANCE = "crush_resistance"
@@ -43,4 +48,86 @@ class ACTOR_STAT:
 
   # ABILITIES ##TODO: Implement abilities
 
+  # In Battle stats
+  CURRENT_HP = "current_hp"
+
+ATTACK_DAMAGE_LIST = [
+  ACTOR_STAT.THRUST_DAMAGE, ACTOR_STAT.SLASH_DAMAGE,
+  ACTOR_STAT.CRUSH_DAMAGE, ACTOR_STAT.LIGHTNING_DAMAGE,
+  ACTOR_STAT.FIRE_DAMAGE, ACTOR_STAT.COLD_DAMAGE,
+  ACTOR_STAT.POISON_DAMAGE]
+
+DAMAGE_TYPE_TO_RESIST_MAP = {
+  ACTOR_STAT.THRUST_DAMAGE: ACTOR_STAT.THRUST_RESISTANCE,
+  ACTOR_STAT.SLASH_DAMAGE: ACTOR_STAT.SLASH_RESISTANCE,
+  ACTOR_STAT.CRUSH_DAMAGE: ACTOR_STAT.CRUSH_RESISTANCE,
+  ACTOR_STAT.LIGHTNING_DAMAGE: ACTOR_STAT.LIGHTNING_RESISTANCE,
+  ACTOR_STAT.FIRE_DAMAGE: ACTOR_STAT.FIRE_RESISTANCE,
+  ACTOR_STAT.COLD_DAMAGE: ACTOR_STAT.COLD_RESISTANCE,
+  ACTOR_STAT.POISON_DAMAGE: ACTOR_STAT.POISON_RESISTANCE
+}
+
+## TODO: Make the battle process more interesting. Battle Design Doc?
+def getBattleResult(hero_actor, mob_actor, debug_mode):
+  ## Initialize the actors' current HP
+  hero_actor[ACTOR_STAT.CURRENT_HP] = hero_actor[ACTOR_STAT.HEALTH]
+  mob_actor[ACTOR_STAT.CURRENT_HP] = mob_actor[ACTOR_STAT.HEALTH]
+  battle_going = True
+  turn = 0
+  while battle_going:
+    turn += 1
+    if debug_mode:
+      print "Turn number: " + str(turn)
+    ## Simulate Hero attack on Mob
+    simulateAttack(hero_actor, mob_actor, debug_mode)
+    if mob_actor[ACTOR_STAT.CURRENT_HP] <= 0:
+      ## TODO: Handle hero victory
+      battle_going = False
+      break
+      if debug_mode:
+        print "HERO kills MOB"
+    simulateAttack(mob_actor, hero_actor, debug_mode)
+    if hero_actor[ACTOR_STAT.CURRENT_HP] <= 0:
+      ## TODO: Handle hero victory
+      battle_going = False
+      break
+      if debug_mode:
+        print "MOB kills HERO"
+
+
+def simulateAttack(attacker, defender, debug_mode):
+  chance = getChanceToHit(attacker[ACTOR_STAT.ACCURACY], defender[ACTOR_STAT.DEFENSE])
+  roll = random.random()
+  if roll < chance:
+    if debug_mode:
+      print (attacker[ACTOR_STAT.NAME] + " has hit " + defender[ACTOR_STAT.NAME] +
+          " Roll: " + str(roll) + " chance: " + str(chance))
+    ## roll for raw damage
+    damage_roll = random.random()
+    damage = getHitDamage(attacker, defender, damage_roll, debug_mode)
+    if debug_mode:
+      print (attacker[ACTOR_STAT.NAME] + " deals " + str(damage) + " damage to " + 
+          defender[ACTOR_STAT.NAME])
+      print (defender[ACTOR_STAT.NAME] + " has " + str(defender[ACTOR_STAT.CURRENT_HP] - damage) + 
+          " HP remaining")
+    defender[ACTOR_STAT.CURRENT_HP] -= damage
+  elif debug_mode:
+    print (attacker[ACTOR_STAT.NAME] + " has missed " + defender[ACTOR_STAT.NAME] + ". Roll: " + 
+        str(roll) + " chance: " + str(chance))
+
+def getChanceToHit(attack, defense):
+  return attack/(attack+(math.pow(defense ,0.8)))
+
+def getHitDamage(attacker, defender, damage_roll, debug_mode):
+  """ Determine hit damage using a damage roll, attacker stats, and defender resists. """
+  result = 0
+  for damage_type in ATTACK_DAMAGE_LIST:
+    if attacker[damage_type] != None:
+      raw = mathutils.getRollFromRange(damage_roll, attacker[damage_type])
+      ## TODO: Determine actually resists equations, for now it's straight %.
+      damage = int(round(raw - (raw * (defender[DAMAGE_TYPE_TO_RESIST_MAP[damage_type]]/100.0)), 0))
+      result += damage
+      if debug_mode:
+        print "Attacker Deals: " + str(damage) + " " + damage_type
+  return result
 

@@ -5,6 +5,7 @@ from items import *
 from battle import ACTOR_STAT
 import random
 import math
+import mathutils
 
 class AFFIX:
   """
@@ -1099,16 +1100,13 @@ def generateAffix(item_level, base_item):
 
   ## Roll for values
   roll = rollForAffix()
-  minRoll, maxRoll = item_affix_grade['minValueRange']
-  # Two-Point form equation maps the rolled number to the affix value range.
-  # We round the result to the nearest whole number.
-  value = int(round((roll-0.0)*(maxRoll-minRoll) + minRoll, 0))
+  value = mathutils.getRollFromRange(roll, item_affix_grade['minValueRange'])
   if item_affix_grade['maxValue'] != None:
     # Roll the max
     roll = rollForAffix()
     minRoll = value + 1
     maxRoll = item_affix_grade['maxValue']
-    maxValue = int(round((roll-0.0)*(maxRoll-minRoll) + minRoll, 0))
+    maxValue = mathutils.getRollFromRange(roll, (minRoll, maxRoll))
     result += format(value, "03d") + format(maxValue, "03d")
     return result
   else :

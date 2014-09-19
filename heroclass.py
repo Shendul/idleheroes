@@ -122,13 +122,13 @@ def getBattleActorFromHero(hero):
   hero_class = hero.hero_class
   ## base stats.
   strength = (HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][0] + 
-    HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][1]*level)
+      HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][1]*level)
   agility = (HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][0] +
-    HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][1]*level)
+      HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][1]*level)
   wisdom = (HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][0] +
-    HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*level)
+      HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*level)
   constitution = (HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][0] +
-    HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*level)
+      HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*level)
 
   for item in gear:
     if len(item['prefixes']) > 0:

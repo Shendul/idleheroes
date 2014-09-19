@@ -141,6 +141,7 @@ def getItemFromItemString(itemString):
   ## Add properties for all of the affixes.
   item['prefixes'] = prefixes
   item['suffixes'] = suffixes
+  item['affixes'] = prefixes + suffixes
 
   ## We're all done building the item object, return it.
   return item

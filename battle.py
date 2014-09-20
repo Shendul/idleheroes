@@ -1,5 +1,6 @@
 ## battle.py This file is used to represent all battle related stat data
 ## and functions.
+## Design Doc: https://docs.google.com/document/d/1EmIQz0fRDnnqGYtvmfnVC5c-eysI_uO8yo1zqyA_TY4/edit#heading=h.in14ampaoaji
 
 import math
 import random
@@ -67,7 +68,6 @@ DAMAGE_TYPE_TO_RESIST_MAP = {
   ACTOR_STAT.POISON_DAMAGE: ACTOR_STAT.POISON_RESISTANCE
 }
 
-## TODO: Make the battle process more interesting. Battle Design Doc?
 def getBattleResult(hero_actor, mob_actor, debug_mode):
   ## Initialize the actors' current HP
   hero_actor[ACTOR_STAT.CURRENT_HP] = hero_actor[ACTOR_STAT.HEALTH]

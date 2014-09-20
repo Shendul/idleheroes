@@ -233,7 +233,7 @@ def getHeroDamages(hero, level, gear, actor):
 
           ## Note that the order in which these affixes are applied actually matters, and is broken.
           if affix['affix_type'] == AFFIX.WEAPON_DAMAGE_FLAT:
-            base_damage['damage_range'][0] = (base_damage['damage_range'][0] + affix['value'][0], base_damage['damage_range'][1] + affix['value'][1])
+            base_damage['damage_range'] = (base_damage['damage_range'][0] + affix['value'][0], base_damage['damage_range'][1] + affix['value'][1])
 
           if affix['affix_type'] == AFFIX.WEAPON_DAMAGE_PERCENTAGE:
             dmgPercent = 1 + (affix['value']/100.0)

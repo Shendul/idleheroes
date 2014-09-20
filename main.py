@@ -119,11 +119,11 @@ class EquipItem(webapp2.RequestHandler):
     ih_user = getCurrentIdleHeroesUser(self)
     hero = ih_user.hero[0].get()
     ## choose your item
-    newItem = ## chosen item
-    ## Find out what slot that item goes in
-    ## if newItem['item_slot'] == ITEM_SLOTS['head']
+    ## newItem = ## chosen item
+    ## slot is determined by the base item type, use Item slot map.
     ## compare stats of old and new items
     ## replace the old item with the new item
+
     ## make sure the old item goes into your inventory
 
 class Items(webapp2.RequestHandler):

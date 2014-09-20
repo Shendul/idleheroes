@@ -95,7 +95,7 @@ ITEM_SLOT_MAP = {
   # Accessory
   ITEM.RING : ITEM_SLOT.LEFT_RING, ## TODO add left and right for these v
   ITEM.EARRING : ITEM_SLOT.LEFT_EARRING,
-  ITEM.NECKLACE : ITEM_SLOT.NECKLACE
+  ITEM.AMULET : ITEM_SLOT.NECKLACE
 }
 
 ## A list of all of the armors

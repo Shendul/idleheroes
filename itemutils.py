@@ -57,7 +57,7 @@ import math
 def getItemFromItemString(itemString):
   if itemString == None:
     return None
-  item = {}
+  item = {'string': itemString}
   base_item_key = itemString[0]
   item['item_type'] = base_item_key
   grade_index = int(itemString[1], 16) # We use hex value in this position.
@@ -134,6 +134,8 @@ def getItemFromItemString(itemString):
     base_damage = {}
     base_damage['type'] = WEAPON_DAMAGE_TYPE[base_item_key]
     base_damage['damage_range'] = WEAPON_DAMAGE_RANGE[base_item_key][grade_index]
+    base_damage['accuracy'] = WEAPON_ACCURACY[base_item_key][grade_index]
+    item['base_damage'] = base_damage
 
   elif base_item_key in ARMORS:
     item['defense'] = ARMOR_DEFENSE[base_item_key][grade_index]

@@ -150,7 +150,7 @@ def getHeroDefense(agility, constitution, level, gear, actor):
   actor[ACTOR_STAT.DEFENSE] = agility*level + constitution*level / 4
   ## Add def from items.
   for item in gear.values():
-    if item != None:
+    if item != None and item['item_type'] in ARMORS:
       actor[ACTOR_STAT.DEFENSE] += item[ACTOR_STAT.DEFENSE]
       if len(item['affixes']) > 0:
         for affix in item['affixes']:
@@ -218,49 +218,28 @@ def getHeroDamages(hero, level, gear, actor):
   actor[ACTOR_STAT.COLD_DAMAGE] = (0,0)
   actor[ACTOR_STAT.POISON_DAMAGE] = (0,0)
   actor[ACTOR_STAT.THORNS_DAMAGE] = (0,0)
+  base_damage = {}
   if gear['main_hand'] != None:
-    actor[ACTOR_STAT.ACCURACY] = WEAPON_ACCURACY[gear['main_hand']['item_type']]
+    base_damage = gear['main_hand']['base_damage']
   else:
     ## Fisting it.
-    actor[ACTOR_STAT.ACCURACY] = 20
-    actor[ACTOR_STAT.CRUSH_DAMAGE] = (1, 3)
+    base_damage = {'type': DAMAGE_TYPE.CRUSH, 'damage_range': (1,3), 'accuracy': 20}
+
   ## Add dmg from items.
   for item in gear.values():
     if item != None:
-      ## TODO: account for duel wielding if we have it. If so just add to each type.
-      if base_damage['type'] == DAMAGE_TYPE.THRUST:
-        actor[ACTOR_STAT.THRUST_DAMAGE] = base_damage['damage_range']
-
-      elif base_damage['type'] == DAMAGE_TYPE.SLASH:
-        actor[ACTOR_STAT.SLASH_DAMAGE] = base_damage['damage_range']
-
-      elif base_damage['type'] == DAMAGE_TYPE.CRUSH:
-        actor[ACTOR_STAT.CRUSH_DAMAGE] = base_damage['damage_range']
-
       if len(item['affixes']) > 0:
         for affix in item['affixes']:
 
+          ## Note that the order in which these affixes are applied actually matters, and is broken.
           if affix['affix_type'] == AFFIX.WEAPON_DAMAGE_FLAT:
-            if base_damage['type'] == DAMAGE_TYPE.THRUST:
-              actor[ACTOR_STAT.THRUST_DAMAGE] = addDamages(
-                  actor[ACTOR_STAT.THRUST_DAMAGE], affix['value'])
-            elif base_damage['type'] == DAMAGE_TYPE.SLASH:
-              actor[ACTOR_STAT.SLASH_DAMAGE] = addDamages(
-                actor[ACTOR_STAT.SLASH_DAMAGE], affix['value'])
-            elif base_damage['type'] == DAMAGE_TYPE.CRUSH:
-              actor[ACTOR_STAT.CRUSH_DAMAGE] = addDamages(actor[ACTOR_STAT.CRUSH_DAMAGE], affix['value'])
+            base_damage['damage_range'][0] += affix['value'][0]
+            base_damage['damage_range'][1] += affix['value'][1]
 
           if affix['affix_type'] == AFFIX.WEAPON_DAMAGE_PERCENTAGE:
-            dmgPercent = affix['value']/100.0
-            if base_damage['type'] == DAMAGE_TYPE.THRUST:
-              actor[ACTOR_STAT.THRUST_DAMAGE][0] += actor[ACTOR_STAT.THRUST_DAMAGE][0]*dmgPercent
-              actor[ACTOR_STAT.THRUST_DAMAGE][1] += actor[ACTOR_STAT.THRUST_DAMAGE][1]*dmgPercent
-            elif base_damage['type'] == DAMAGE_TYPE.SLASH:
-              actor[ACTOR_STAT.SLASH_DAMAGE][0] += actor[ACTOR_STAT.SLASH_DAMAGE][0]*dmgPercent
-              actor[ACTOR_STAT.SLASH_DAMAGE][1] += actor[ACTOR_STAT.SLASH_DAMAGE][1]*dmgPercent
-            elif base_damage['type'] == DAMAGE_TYPE.CRUSH:
-              actor[ACTOR_STAT.CRUSH_DAMAGE][0] += actor[ACTOR_STAT.CRUSH_DAMAGE][0]*dmgPercent
-              actor[ACTOR_STAT.CRUSH_DAMAGE][1] += actor[ACTOR_STAT.CRUSH_DAMAGE][1]*dmgPercent 
+            dmgPercent = 1 + (affix['value']/100.0)
+            base_damage['damage_range'][0] *= dmgPercent
+            base_damage['damage_range'][1] *= dmgPercent 
 
           if affix['affix_type'] == AFFIX.LIGHTNING_DAMAGE:
             actor[ACTOR_STAT.LIGHTNING_DAMAGE] = addDamages(actor[ACTOR_STAT.LIGHTNING_DAMAGE], affix['value'])
@@ -277,6 +256,16 @@ def getHeroDamages(hero, level, gear, actor):
           if affix['affix_type'] == AFFIX.THORNS_DAMAGE:
             actor[ACTOR_STAT.THORNS_DAMAGE] = addDamages(actor[ACTOR_STAT.THORNS_DAMAGE], affix['value'])
 
+  if base_damage['type'] == DAMAGE_TYPE.THRUST:
+    actor[ACTOR_STAT.THRUST_DAMAGE] = base_damage['damage_range']
+  elif base_damage['type'] == DAMAGE_TYPE.SLASH:
+    actor[ACTOR_STAT.SLASH_DAMAGE] = base_damage['damage_range']
+  elif base_damage['type'] == DAMAGE_TYPE.CRUSH:
+    actor[ACTOR_STAT.CRUSH_DAMAGE] = base_damage['damage_range']
+  else:
+    logging.error('item without thrust, slash, crush damage type equiped in main hand')
+  actor[ACTOR_STAT.ACCURACY] = base_damage['accuracy']
+
 def getHeroMetaStats(hero, level, gear, actor):
   ## TODO: add remaining meta stats
   actor[ACTOR_STAT.NAME] = hero.name
@@ -289,3 +278,36 @@ def getHeroMetaStats(hero, level, gear, actor):
 
           if affix['affix_type'] == AFFIX.MAGIC_FIND:
             actor[ACTOR_STAT.MAGIC_FIND] += affix['value']
+
+def equipItem(inventory, item):
+  item_object = getItemFromItemString(item)
+  item_slot = ITEM_SLOT_MAP[item_object['item_type']]
+  if item_slot == ITEM_SLOT.MAIN_HAND:
+    inventory.main_hand = item 
+  elif item_slot == ITEM_SLOT.OFF_HAND:
+    inventory.off_hand = item
+  elif item_slot == ITEM_SLOT.HEAD:
+    inventory.head = item
+  elif item_slot == ITEM_SLOT.BODY:
+    inventory.body = item
+  elif item_slot == ITEM_SLOT.BELT:
+    inventory.belt = item
+  elif item_slot == ITEM_SLOT.LEGS:
+    inventory.legs = item
+  elif item_slot == ITEM_SLOT.FEET:
+    inventory.feet = item
+  elif item_slot == ITEM_SLOT.SHOULDERS:
+    inventory.shoulders = item
+  elif item_slot == ITEM_SLOT.LEFT_RING:
+    inventory.left_ring = item
+  elif item_slot == ITEM_SLOT.RIGHT_RING:
+    inventory.right_ring = item
+  elif item_slot == ITEM_SLOT.LEFT_EARRING:
+    inventory.left_earring = item
+  elif item_slot == ITEM_SLOT.RIGHT_EARRING:
+    inventory.right_earring = item
+  elif item_slot == ITEM_SLOT.NECKLACE:
+    inventory.necklace = item
+  else:
+    logging.error('No item slot for item: '+ item)
+  inventory.put()

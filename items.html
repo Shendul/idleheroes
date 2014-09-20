@@ -27,6 +27,11 @@
             <td>
               {{item.rarity}}
             </td>
+            <td>
+              <form action="/equip" method="get">
+                <input type="hidden" name="item" value="{{item.string}}"></input>
+                <input type='submit' value="equip"/>
+              </form>
           </tr>
           {% for prefix in item.prefixes %}
             <tr>

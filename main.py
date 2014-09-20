@@ -120,17 +120,11 @@ class EquipItem(webapp2.RequestHandler):
     ih_user = getCurrentIdleHeroesUser(self)
     hero = ih_user.hero[0].get()
     inventory = hero.inventory.get()
-    ## choose your item
-    ## new_item = ## chosen item
-    ## TODO? compare stats of old and new items
-    ## replace the old item with the new item
-    if ITEM_SLOT_MAP[new_item] == ITEM_SLOT.MAIN_HAND ## TODO same thing for all slots.
-      old_item = inventory.main_hand.get()
-      inventory.main_hand.delete()
-      inventory.main_hand.append(new_item)
-      inventory.items.delete(new_item)
-      ## make sure the old item goes into your inventory
-      inventory.items.append(old_item)
+    item = self.request.get('item')
+    if item != None:
+      # NOTE: because this is a prototype, we leave the item in the inventory.
+      equipItem(inventory, item)
+    self.redirect('/')
 
 
 class Items(webapp2.RequestHandler):
@@ -153,5 +147,6 @@ application = webapp2.WSGIApplication([
     ('/heroCreation', CreateHero),
     ('/generateItem', GenerateItem),
     ('/battle', Battle),
-    ('/items', Items)
+    ('/items', Items),
+    ('/equip', EquipItem)
 ], debug=True)

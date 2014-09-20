@@ -124,7 +124,7 @@ def getHitDamage(attacker, defender, damage_roll, battle_log):
   """ Determine hit damage using a damage roll, attacker stats, and defender resists. """
   result = 0
   for damage_type in ATTACK_DAMAGE_LIST:
-    if attacker[damage_type] != None:
+    if attacker[damage_type] != None and attacker[damage_type][1] != 0:
       raw = mathutils.getRollFromRange(damage_roll, attacker[damage_type])
       ## TODO: Determine actually resists equations, for now it's straight %.
       damage = int(round(raw - (raw * (defender[DAMAGE_TYPE_TO_RESIST_MAP[damage_type]]/100.0)), 0))

@@ -152,7 +152,7 @@ ITEM_AFFIX_CLASS = {
   ITEM.HELMET: 'helmets',
   
   ITEM.GLOVES: 'gloves',
-  ITEM.GUANTLETS: 'gloves',
+  ITEM.GAUNTLETS: 'gloves',
 
   ITEM.RING: 'accessories',
   ITEM.AMULET: 'accessories',
@@ -211,7 +211,7 @@ RARE_SUFFIX_LIST = {
   ITEM.FAULDS: 'Kneecap',
   ITEM.GREAVES: 'Spur',
   ITEM.PAULDRONS: 'Carapace',
-  ITEM.GUANTLETS: 'Fist',
+  ITEM.GAUNTLETS: 'Fist',
   ITEM.ONE_HANDED_SWORD: 'Edge',
   ITEM.ONE_HANDED_MACE: 'Grinder',
   ITEM.ONE_HANDED_AXE: 'Razor',

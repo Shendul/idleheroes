@@ -40,8 +40,6 @@
               </td>
               <td>
                 {% if prefix.has_value_range %}
-                  {{prefix.min_value}}-{{prefix.max_value}}
-                {% else %}
                   {{prefix.value}}
                 {% endif %}
               </td>

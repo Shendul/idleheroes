@@ -253,7 +253,7 @@ def getHeroDamages(hero, level, gear, actor):
           if affix['affix_type'] == AFFIX.POISON_DAMAGE:
             actor[ACTOR_STAT.POISON_DAMAGE] = addDamages(actor[ACTOR_STAT.POISON_DAMAGE], affix['value'])
 
-          if affix['affix_type'] == AFFIX.THORNS_DAMAGE:
+          if affix['affix_type'] == AFFIX.THORNS:
             actor[ACTOR_STAT.THORNS_DAMAGE] = addDamages(actor[ACTOR_STAT.THORNS_DAMAGE], affix['value'])
 
   if base_damage['type'] == DAMAGE_TYPE.THRUST:

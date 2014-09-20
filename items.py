@@ -65,6 +65,9 @@ ITEM_SLOTS = {
   'left_earring': [ ITEM.EARRING ],
   'right_earring': [ ITEM.EARRING ],
   'necklace': [ ITEM.NECKLACE ]
+  'feet': [ITEM.BOOTS, ITEM.GREAVES ],
+  'shoulders': [ ITEM.MANTEL, ITEM.PAULDRONS ],
+  'hands' : [ITEM.GLOVES, ITEM.GUANTLETS ]
 }
 
 ## A list of all of the armors

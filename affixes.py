@@ -191,11 +191,12 @@ def item_affix_grade(
   }
 
 # Used to generate the name for rare items
-RARE_PREFIX_LIST = [
-    'Armageddon', 'Beast', 'Blood', 'Brimestone', 'Shadow', 'Hailstone',
-    'Epic', 'Genisis', 'Choas', 'Eagle', 'Gale', 'Havoc', 'Soul', 'Rift',
-    'Cruel', 'Vengeful', 'Elite', 'Godly', 'Legendary', 'Radical', 'Aaron Sucks'
-]
+RARE_PREFIX_LIST = {
+    'A':'Armageddon', 'B':'Beast', 'C':'Blood', 'D':'Brimestone', 'E':'Shadow', 
+    'F':'Hailstone', 'G':'Epic', 'H':'Genisis', 'I':'Choas', 'J':'Eagle', 'K':'Gale',
+    'L':'Havoc', 'M':'Soul', 'N':'Rift', 'O':'Cruel', 'P':'Vengeful', 'Q':'Elite', 
+    'R':'Godly', 'S':'Legendary', 'T':'Radical'
+}
 
 RARE_SUFFIX_LIST = {
   ## TODO: Make each of these a list of possible names to add variety.

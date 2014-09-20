@@ -120,7 +120,7 @@ def getItemFromItemString(itemString):
       display_name = display_name + ' ' + suffix_name
 
   elif rarity_key == ITEM_RARITY.RARE:
-    prefix_name = random.choice(RARE_PREFIX_LIST)
+    prefix_name = RARE_PREFIX_LIST[itemString[index]] ## final char
     suffix_name = RARE_SUFFIX_LIST[base_item_key]
     display_name = prefix_name + ' ' + suffix_name
 
@@ -157,6 +157,7 @@ def generateRandomItem(magic_find, item_level):
     return None
   result = ''
   base_item = None
+  rare_prefix = None
   possible_grades = []
   while True:
     base_item = random.choice(ALL_BASE_ITEMS)
@@ -182,6 +183,8 @@ def generateRandomItem(magic_find, item_level):
   item_rarity = ITEM_RARITY.COMMON
   if rarity_roll > .90:
     item_rarity = ITEM_RARITY.RARE
+    rare_prefix = random.choice(dict.keys((RARE_PREFIX_LIST)))
+
   elif rarity_roll > .70:
     item_rarity = ITEM_RARITY.UNCOMMON
   result += item_rarity # Third Character of the string = rarity
@@ -223,6 +226,8 @@ def generateRandomItem(magic_find, item_level):
     result += prefix
   for suffix in suffixes:
     result += suffix
+  if item_rarity == ITEM_RARITY.RARE:
+   result += rare_prefix
   return result
 
 

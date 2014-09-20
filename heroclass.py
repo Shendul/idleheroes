@@ -238,8 +238,7 @@ def getHeroDamages(hero, level, gear, actor):
 
           if affix['affix_type'] == AFFIX.WEAPON_DAMAGE_PERCENTAGE:
             dmgPercent = 1 + (affix['value']/100.0)
-            base_damage['damage_range'][0] *= dmgPercent
-            base_damage['damage_range'][1] *= dmgPercent 
+            base_damage['damage_range'] = (base_damage['damage_range'][0] * dmgPercent, base_damage['damage_range'][1] * dmgPercent) 
 
           if affix['affix_type'] == AFFIX.LIGHTNING_DAMAGE:
             actor[ACTOR_STAT.LIGHTNING_DAMAGE] = addDamages(actor[ACTOR_STAT.LIGHTNING_DAMAGE], affix['value'])

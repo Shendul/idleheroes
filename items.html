@@ -29,32 +29,32 @@
             </td>
           </tr>
           {% for prefix in item.prefixes %}
-          <tr>
-            <td>
-              {{prefix.display_name}}
-            </td>
-            <td>
-              {% if prefix.has_value_range %}
-                {{prefix.min_value}}-{{prefix.max_value}}
-              {% else %}
-                {{prefix.value}}
-              {% endif %}
-            </td>
-          <tr>
+            <tr>
+              <td>
+                {{prefix.display_name}}
+              </td>
+              <td>
+                {% if prefix.has_value_range %}
+                  {{prefix.min_value}}-{{prefix.max_value}}
+                {% else %}
+                  {{prefix.value}}
+                {% endif %}
+              </td>
+            </tr>
           {% endfor %}
           {% for suffix in item.suffixes %}
-          <tr>
-            <td>
-              {{suffix.display_name}}
-            </td>
-            <td>
-              {% if suffix.has_value_range %}
-                {{suffix.min_value}}-{{suffix.max_value}}
-              {% else %}
-                {{suffix.value}}
-              {% endif %}
-            </td>
-          <tr>
+            <tr>
+              <td>
+                {{suffix.display_name}}
+              </td>
+              <td>
+                {% if suffix.has_value_range %}
+                  {{suffix.min_value}}-{{suffix.max_value}}
+                {% else %}
+                  {{suffix.value}}
+                {% endif %}
+              </td>
+            </tr>
           {% endfor %}
         </table>
       {% endfor %}

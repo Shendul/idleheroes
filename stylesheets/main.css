@@ -192,3 +192,41 @@ div.buttonText {
   font-weight: bold;
   text-align: right;
 }
+
+.hero-image {
+  background-image: url(/images/knight2.jpg);
+  width: 100px;
+  height: 200px;
+  background-repeat: no-repeat;
+  transform: rotate(90deg);
+  margin-left: 40px;
+}
+
+.rat-image {
+  background-image: url(/images/Rat.jpg);
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+}
+
+.snake-image {
+  background-image: url(/images/Snake.jpg);
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: 25%;
+}
+
+.wolf-image {
+  background-image: url(/images/Wolf.jpg);
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+}
+
+.bear-image {
+  background-image: url(/images/bear.jpg);
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+}

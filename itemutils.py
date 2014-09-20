@@ -59,6 +59,7 @@ def getItemFromItemString(itemString):
     return None
   item = {}
   base_item_key = itemString[0]
+  item['item_type'] = base_item_key
   grade_index = int(itemString[1], 16) # We use hex value in this position.
   rarity_key = itemString[2]
   item['rarity'] = ITEM_RARITY_DISPLAY_NAME[rarity_key]

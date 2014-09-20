@@ -17,6 +17,19 @@
         <input type='submit' value="show me my items"/>
       </form>
       {% if log %}
+        <div>
+          <div class="hero-image"></div>
+          <h2>VS.</h2>
+          {% if enemy == 'Rat' %}
+            <div class="rat-image"></div>
+          {% elif enemy == 'Snake' %}
+            <div class="snake-image"></div>
+          {% elif enemy == 'Wolf' %}
+            <div class="wolf-image"></div>
+          {% else %}
+            <div class="bear-image"></div>
+          {% endif %}
+        <div>
         {% if victory %}
           <h2>You Win!</h2>
           You received a {{item_for_winning.display_name}}

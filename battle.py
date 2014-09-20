@@ -89,14 +89,14 @@ def getBattleResult(hero_actor, mob_actor, debug_mode):
       battle_log.append("HERO kills MOB")
       if debug_mode:
         print battle_log
-      return (True, '<br/>'.join(battle_log))
+      return (True, '<br/>'.join(battle_log), mob_actor[ACTOR_STAT.NAME])
     simulateAttack(mob_actor, hero_actor, battle_log)
     if hero_actor[ACTOR_STAT.CURRENT_HP] <= 0:
       battle_going = False
       battle_log.append("MOB kills HERO")
       if debug_mode:
         print battle_log
-      return (False, '<br/>'.join(battle_log))
+      return (False, '<br/>'.join(battle_log), mob_actor[ACTOR_STAT.NAME])
 
 
 def simulateAttack(attacker, defender, battle_log):

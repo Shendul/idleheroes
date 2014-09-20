@@ -119,13 +119,19 @@ class EquipItem(webapp2.RequestHandler):
   def get(self):
     ih_user = getCurrentIdleHeroesUser(self)
     hero = ih_user.hero[0].get()
+    inventory = hero.inventory.get()
     ## choose your item
-    ## newItem = ## chosen item
-    ## slot is determined by the base item type, use Item slot map.
-    ## compare stats of old and new items
+    ## new_item = ## chosen item
+    ## TODO? compare stats of old and new items
     ## replace the old item with the new item
+    if ITEM_SLOT_MAP[new_item] == ITEM_SLOT.MAIN_HAND ## TODO same thing for all slots.
+      old_item = inventory.main_hand.get()
+      inventory.main_hand.delete()
+      inventory.main_hand.append(new_item)
+      inventory.items.delete(new_item)
+      ## make sure the old item goes into your inventory
+      inventory.items.append(old_item)
 
-    ## make sure the old item goes into your inventory
 
 class Items(webapp2.RequestHandler):
   def get(self):

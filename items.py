@@ -296,6 +296,67 @@ WEAPON_DAMAGE_RANGE = {
   # ]
 }
 
+WEAPON_ACCURACY = {
+  ITEM.ONE_HANDED_SWORD: [
+    20, # Grade 0
+    45, # Grade 1
+    100 # Grade 2
+  ],
+  ITEM.ONE_HANDED_AXE: [
+    18, # Grade 0
+    40 # Grade 1
+  ],
+  ITEM.ONE_HANDED_MACE: [
+    22, # Grade 0
+    50 # Grade 1
+  ],
+  # ITEM.CLAW: [
+  #   (1, 5), # Grade 0
+  #   (1, 10) # Grade 1
+  # ],
+  ITEM.TWO_HANDED_SWORD: [
+    15, # Grade 0
+    35 # Grade 1
+  ],
+  ITEM.QUARTERSTAFF: [
+    25, # Grade 0
+    65 # Grade 1
+  ],
+  ITEM.POLEARM: [
+    12, # Grade 0
+    30 # Grade 1
+  ],
+  ITEM.SPEAR: [
+    15, # Grade 0
+    35 # Grade 1
+  ],
+  ITEM.TWO_HANDED_MACE: [
+    15, # Grade 0
+    35 # Grade 1
+  ],
+  ITEM.SLING: [
+    15, # Grade 0
+    35, # Grade 1
+    80 # Grade 1
+  ],
+  # ITEM.JAVELIN: [
+  #   (1, 5), # Grade 0
+  #   (2, 8) # Grade 1
+  # ],
+  # ITEM.WAND: [
+  #   (2, 4), # Grade 0
+  #   (3, 7) # Grade 1
+  # ],
+  ITEM.BOW: [
+    20, # Grade 0
+    45 # Grade 1
+  ],
+  # ITEM.CROSSBOW: [
+  #   (4, 6), # Grade 0
+  #   (7, 9) # Grade 1
+  # ]
+}
+
 ARMOR_DEFENSE = {
   ITEM.TUNIC: [
     10, # Grade 0

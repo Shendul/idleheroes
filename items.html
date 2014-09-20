@@ -1,0 +1,64 @@
+{% include 'header.html' %}
+{% autoescape true %}
+<html>
+  <body>
+    <div class="content">
+      {% include 'title.html' %}
+      <h2>
+        Your items!
+      </h2>
+      <form action="/battle" method="get">
+        <input type='submit' value="battle"/>
+      </form>
+      {% for item in items %}
+        <table class="item-description-table">
+          <tr>
+            <td>
+              Name
+            </td>
+            <td>
+              {{item.display_name}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Rarity
+            </td>
+            <td>
+              {{item.rarity}}
+            </td>
+          </tr>
+          {% for prefix in item.prefixes %}
+          <tr>
+            <td>
+              {{prefix.display_name}}
+            </td>
+            <td>
+              {% if prefix.has_value_range %}
+                {{prefix.min_value}}-{{prefix.max_value}}
+              {% else %}
+                {{prefix.value}}
+              {% endif %}
+            </td>
+          <tr>
+          {% endfor %}
+          {% for suffix in item.suffixes %}
+          <tr>
+            <td>
+              {{suffix.display_name}}
+            </td>
+            <td>
+              {% if suffix.has_value_range %}
+                {{suffix.min_value}}-{{suffix.max_value}}
+              {% else %}
+                {{suffix.value}}
+              {% endif %}
+            </td>
+          <tr>
+          {% endfor %}
+        </table>
+      {% endfor %}
+    </div>
+  </body>
+</html>
+{% endautoescape %}

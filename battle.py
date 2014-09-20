@@ -46,6 +46,7 @@ class ACTOR_STAT:
   # EXP_BONUS = "exp_bonus"  ## TODO: implement exp gain
   NAME = "name"
   # LOOT_TABLE = "loot_table" ## TODO: implement loot tables
+  ITEM_LEVEL = "item_level"
 
   # ABILITIES ##TODO: Implement abilities
 
@@ -69,56 +70,57 @@ DAMAGE_TYPE_TO_RESIST_MAP = {
 }
 
 def getBattleResult(hero_actor, mob_actor, debug_mode):
+  """ Returns True if the player wins, or False if the player loses."""
   ## Initialize the actors' current HP
   hero_actor[ACTOR_STAT.CURRENT_HP] = hero_actor[ACTOR_STAT.HEALTH]
   mob_actor[ACTOR_STAT.CURRENT_HP] = mob_actor[ACTOR_STAT.HEALTH]
   battle_going = True
   turn = 0
+  battle_log = []
   while battle_going:
     turn += 1
-    if debug_mode:
-      print "Turn number: " + str(turn)
+    battle_log.append("<br/>Turn number: " + str(turn))
+    battle_log.append("------")
     ## Simulate Hero attack on Mob
-    simulateAttack(hero_actor, mob_actor, debug_mode)
+    simulateAttack(hero_actor, mob_actor, battle_log)
     if mob_actor[ACTOR_STAT.CURRENT_HP] <= 0:
       ## TODO: Handle hero victory
       battle_going = False
-      break
+      battle_log.append("HERO kills MOB")
       if debug_mode:
-        print "HERO kills MOB"
-    simulateAttack(mob_actor, hero_actor, debug_mode)
+        print battle_log
+      return (True, '<br/>'.join(battle_log))
+    simulateAttack(mob_actor, hero_actor, battle_log)
     if hero_actor[ACTOR_STAT.CURRENT_HP] <= 0:
-      ## TODO: Handle hero victory
       battle_going = False
-      break
+      battle_log.append("MOB kills HERO")
       if debug_mode:
-        print "MOB kills HERO"
+        print battle_log
+      return (False, '<br/>'.join(battle_log))
 
 
-def simulateAttack(attacker, defender, debug_mode):
+def simulateAttack(attacker, defender, battle_log):
   chance = getChanceToHit(attacker[ACTOR_STAT.ACCURACY], defender[ACTOR_STAT.DEFENSE])
   roll = random.random()
   if roll < chance:
-    if debug_mode:
-      print (attacker[ACTOR_STAT.NAME] + " has hit " + defender[ACTOR_STAT.NAME] +
-          " Roll: " + str(roll) + " chance: " + str(chance))
+    battle_log.append(attacker[ACTOR_STAT.NAME] + " has hit " + defender[ACTOR_STAT.NAME] +
+        " Roll: " + str(roll) + " chance: " + str(chance))
     ## roll for raw damage
     damage_roll = random.random()
-    damage = getHitDamage(attacker, defender, damage_roll, debug_mode)
-    if debug_mode:
-      print (attacker[ACTOR_STAT.NAME] + " deals " + str(damage) + " damage to " + 
-          defender[ACTOR_STAT.NAME])
-      print (defender[ACTOR_STAT.NAME] + " has " + str(defender[ACTOR_STAT.CURRENT_HP] - damage) + 
-          " HP remaining")
+    damage = getHitDamage(attacker, defender, damage_roll, battle_log)
+    battle_log.append(attacker[ACTOR_STAT.NAME] + " deals " + str(damage) + " damage to " + 
+        defender[ACTOR_STAT.NAME])
+    battle_log.append(defender[ACTOR_STAT.NAME] + " has " + 
+        str(defender[ACTOR_STAT.CURRENT_HP] - damage) + " HP remaining")
     defender[ACTOR_STAT.CURRENT_HP] -= damage
-  elif debug_mode:
-    print (attacker[ACTOR_STAT.NAME] + " has missed " + defender[ACTOR_STAT.NAME] + ". Roll: " + 
-        str(roll) + " chance: " + str(chance))
+  else:
+    battle_log.append(attacker[ACTOR_STAT.NAME] + " has missed " + defender[ACTOR_STAT.NAME] + 
+        ". Roll: " + str(roll) + " chance: " + str(chance))
 
 def getChanceToHit(attack, defense):
   return attack/(attack+(math.pow(defense ,0.8)))
 
-def getHitDamage(attacker, defender, damage_roll, debug_mode):
+def getHitDamage(attacker, defender, damage_roll, battle_log):
   """ Determine hit damage using a damage roll, attacker stats, and defender resists. """
   result = 0
   for damage_type in ATTACK_DAMAGE_LIST:
@@ -127,7 +129,6 @@ def getHitDamage(attacker, defender, damage_roll, debug_mode):
       ## TODO: Determine actually resists equations, for now it's straight %.
       damage = int(round(raw - (raw * (defender[DAMAGE_TYPE_TO_RESIST_MAP[damage_type]]/100.0)), 0))
       result += damage
-      if debug_mode:
-        print "Attacker Deals: " + str(damage) + " " + damage_type
+      battle_log.append("Attacker Deals: " + str(damage) + " " + damage_type)
   return result
 

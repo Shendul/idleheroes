@@ -8,50 +8,28 @@
         You don't has a hero!
         {% include 'herocreation.html' %}
       {% else %}
-        <h1>
-        {{hero.name}}
-        </h1>
-        <h2>
-          Level: {{hero.level}}
-        </h2>
-        <h2>
-          Hero Stats
-        </h2>
-        <table>
-          <tr>
-            <th>
-              Strength
-            </th>
-            <th>
-              Agility
-            </th>
-            <th>
-              Wisdom
-            </th>
-            <th>
-              Constitution
-            </th>
-          </tr>
-          <tr>
-            <td>
-              {{hero.stats['strength']}}
-            </td>
-            <td>
-              {{hero.stats['agility']}}
-            </td>
-            <td>
-              {{hero.stats['wisdom']}}
-            </td>
-            <td>
-              {{hero.stats['constitution']}}
-            </td>
-          </tr>
-        </table>
+        You has a hero!
       {% endif %}
-    <form action="/generateItem" method="get">
-      <input type='submit' value="Make an Item"/>
-    </form>
-    <a href="{{ url|safe }}">{{ url_linktext }}</a>
+      <form action="/battle" method="get">
+        <input type='submit' value="battle"/>
+      </form>
+      <form action="/items" method="get">
+        <input type='submit' value="show me my items"/>
+      </form>
+      {% if log %}
+        {% if victory %}
+          <h2>You Win!</h2>
+          You received a {{item_for_winning.display_name}}
+        {% else %}
+          <h2>You Lose!</h2>
+        {% endif %}
+        <div>
+          {% autoescape false %}
+            {{log}}
+          {% endautoescape %} 
+        </div>
+      {% endif %}
+      <a href="{{ url|safe }}">{{ url_linktext }}</a>
     </div>
   </body>
 </html>

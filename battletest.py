@@ -25,4 +25,4 @@ hero_actor = {
   ACTOR_STAT.NAME: 'Hero'
 }
 
-getBattleResult(hero_actor, MONSTER.RAT, True)
+print getBattleResult(hero_actor, MONSTER.RAT, False)

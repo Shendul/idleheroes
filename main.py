@@ -8,6 +8,7 @@ from userutils import *
 from heroclass import *
 from itemutils import *
 from battle import *
+from monster import *
 
 import jinja2
 import webapp2
@@ -40,8 +41,7 @@ class MainPage(webapp2.RequestHandler):
       if len(ih_user.hero) == 0:
         template_values['no_hero'] = True
       else:
-        # TODO(dreamlane): consider cases where the get fails.
-        template_values['hero'] = getHeroValues(ih_user.hero[0].get())
+        pass
 
       template_values['display_name'] = ih_user.display_name
       template = JINJA_ENVIRONMENT.get_template('home.html')
@@ -88,21 +88,51 @@ class GenerateItem(webapp2.RequestHandler):
     self.response.write(template.render(template_values))
 
 class Battle(webapp2.RequestHandler):
+  ## TODO: make this a post?
   def get(self):
     ## get the hero actor
     ih_user = getCurrentIdleHeroesUser(self)
-    hero_actor = getBattleActorFromHero(ih_user.hero[0].get())
+    hero = ih_user.hero[0].get()
+    hero_actor = getBattleActorFromHero(hero)
 
     ## get the mob actor
     mob_actor = random.choice(ALL_MOBS)
     ## simulate the battle (ignoring time)
-    battle_result = getBattleResult(hero_actor, mob_actor)
-    ## display the results
+    battle_result = getBattleResult(hero_actor, mob_actor, False)
+    template_values = {
+      'victory': battle_result[0],
+      'log': battle_result[1],
+    }
+    if battle_result[0]:
+      ## victory, so get an item.
+      loot_item = generateRandomItem(0, mob_actor[ACTOR_STAT.ITEM_LEVEL])
+      template_values['item_for_winning'] = getItemFromItemString(loot_item)
+      inventory = hero.inventory.get()
+      inventory.items.append(loot_item)
+      inventory.put()
+
+    template = JINJA_ENVIRONMENT.get_template('home.html')
+    self.response.write(template.render(template_values))
+
+class Items(webapp2.RequestHandler):
+  def get(self):
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    inventory = hero.inventory.get()
+    items = inventory.items
+    display_items = []
+    for item in items:
+      display_items.append(getItemFromItemString(item))
+
+    template = JINJA_ENVIRONMENT.get_template('items.html')
+    template_values = {'items': display_items}
+    self.response.write(template.render(template_values))
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/banned', Banned),
     ('/heroCreation', CreateHero),
     ('/generateItem', GenerateItem),
-    ('/battle', Battle)
+    ('/battle', Battle),
+    ('/items', Items)
 ], debug=True)

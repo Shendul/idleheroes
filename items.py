@@ -44,6 +44,29 @@ class ITEM:
   BOW = 'd'
   # CROSSBOW = 'e' ## TODO: Implement
 
+ITEM_SLOTS = {
+  # Weapon slots
+  'main_hand': [ ITEM.ONE_HANDED_SWORD, ITEM.ONE_HANDED_MACE,
+  ITEM.ONE_HANDED_AXE, #ITEM.CLAW, ITEM.SLING,
+  #ITEM.JAVELIN, ITEM.WAND 
+  ],
+  'off_hand': [ ITEM.SHIELD #ITEM.ORB ]
+  # Armor
+  'head': [ ITEM.HAT, ITEM.HELMET ],
+  'body': [ ITEM.TUNIC, ITEM.CHESTPLATE ],
+  'belt': [],
+  'legs': [ ITEM.PANTS, ITEM.FAULDS ],
+  'feet': [ ITEM.BOOTS, ITEM.GREAVES ],
+  'shoulders': [ ITEM.MANTEL, ITEM.PAULDRONS ],
+  'hands' : [ ITEM.GLOVES, ITEM.GUANTLETS ],
+  # Accessory
+  'left_ring': [ ITEM.RING ],
+  'right_ring': [ ITEM.RING ],
+  'left_earring': [ ITEM.EARRING ],
+  'right_earring': [ ITEM.EARRING ],
+  'necklace': [ ITEM.NECKLACE ]
+}
+
 ## A list of all of the armors
 ARMORS = [
   ITEM.TUNIC, ITEM.HAT, ITEM.PANTS, ITEM.BOOTS,

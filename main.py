@@ -102,7 +102,6 @@ class Battle(webapp2.RequestHandler):
     template_values = {
       'victory': battle_result[0],
       'log': battle_result[1],
-      'enemy': battle_result[2]
     }
     if battle_result[0]:
       ## victory, so get an item.
@@ -114,6 +113,18 @@ class Battle(webapp2.RequestHandler):
 
     template = JINJA_ENVIRONMENT.get_template('home.html')
     self.response.write(template.render(template_values))
+
+class EquipItem(webapp2.RequestHandler):
+  def get(self):
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    ## choose your item
+    newItem = ## chosen item
+    ## Find out what slot that item goes in
+    ## if newItem['item_slot'] == ITEM_SLOTS['head']
+    ## compare stats of old and new items
+    ## replace the old item with the new item
+    ## make sure the old item goes into your inventory
 
 class Items(webapp2.RequestHandler):
   def get(self):

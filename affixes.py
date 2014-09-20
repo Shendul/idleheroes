@@ -37,7 +37,7 @@ class AFFIX:
   FIRE_RESISTANCE = 'N'
   COLD_RESISTANCE = 'O'
   POISON_RESISTANCE = 'P'
-  # THORNS = 'a' ## Returns damage to melee attackers.
+  THORNS = 'a' ## Returns damage to melee attackers.
 
   ## Weapon Specific
   WEAPON_DAMAGE_PERCENTAGE = 'Q'

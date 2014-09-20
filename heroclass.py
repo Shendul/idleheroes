@@ -265,6 +265,8 @@ def getHeroDamages(hero, level, gear, actor):
   actor[ACTOR_STAT.ACCURACY] = base_damage['accuracy']
 
 def getHeroMetaStats(hero, level, gear, actor):
+  actor[ACTOR_STAT.MAGIC_FIND] = 0
+  actor[ACTOR_STAT.GOLD_FIND] = 0
   ## TODO: add remaining meta stats
   actor[ACTOR_STAT.NAME] = hero.name
   for item in gear.values():

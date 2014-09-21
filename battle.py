@@ -17,7 +17,7 @@ class ACTOR_STAT:
   """
   HEALTH = "health"
   # MANA = "mana" ## TODO: implement Mana
-  BLOCK = "block"
+  BLOCK = "block" # Represents how easy it is to block an attack.
   DEFENSE = "defense" # Represents how easy you take a hit.
   ACCURACY = "accuracy" # Represents how easy you hit something.
   THRUST_RESISTANCE = "thrust_resistance"

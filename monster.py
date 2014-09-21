@@ -142,7 +142,7 @@ class MONSTER:
   )
   DRAGON = makeMobActor(
       150, # Health
-      0, # Block
+      50, # Block
       50, # Defense
       60, # Accuracy
       20, # Thrust Resist

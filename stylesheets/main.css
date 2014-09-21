@@ -230,3 +230,10 @@ div.buttonText {
   height: 100px;
   background-repeat: no-repeat;
 }
+
+.dragon-image {
+  background-image: url(/images/Dragon.jpg);
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+}

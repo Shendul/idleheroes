@@ -167,8 +167,8 @@ class MONSTER:
       None, # Slash Damage
       None, # Crush Damage
       None, # Lightning Damage
-      (20, 35), # Fire Damage
-      None, # Cold Damage
+      None, # Fire Damage
+      (10, 30), # Cold Damage
       None, # Poison Damage
       None, # Thorns Damage
       "Freezo", # Name

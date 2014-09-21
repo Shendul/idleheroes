@@ -33,27 +33,13 @@
                 <input type='submit' value="equip"/>
               </form>
           </tr>
-          {% for prefix in item.prefixes %}
+          {% for affix in item.affixes %}
             <tr>
               <td>
-                {{prefix.display_name}}
+                {{affix.display_name}}
               </td>
               <td>
-                {{prefix.value}}
-              </td>
-            </tr>
-          {% endfor %}
-          {% for suffix in item.suffixes %}
-            <tr>
-              <td>
-                {{suffix.display_name}}
-              </td>
-              <td>
-                {% if suffix.has_value_range %}
-                  {{suffix.min_value}}-{{suffix.max_value}}
-                {% else %}
-                  {{suffix.value}}
-                {% endif %}
+                {{affix.value}}
               </td>
             </tr>
           {% endfor %}

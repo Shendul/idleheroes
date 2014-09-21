@@ -105,7 +105,7 @@ class Battle(webapp2.RequestHandler):
       inventory = hero.inventory.get()
       inventory.items.append(loot_item)
       inventory.put()
-      template_values['experience_gained'] = mob_actor[ACTOR_STAT.EXP_GAINED]
+      template_values['experience_gained'] = mob_actor[ACTOR_STAT.EXP_GAINED] + hero_actor[ACTOR_STAT.EXP_BONUS]
       hero.experience += mob_actor[ACTOR_STAT.EXP_GAINED] + hero_actor[ACTOR_STAT.EXP_BONUS]
       hero.put()
 

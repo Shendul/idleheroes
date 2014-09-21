@@ -77,8 +77,7 @@ def getItemFromItemString(itemString):
     prefix['display_name'] = ITEM_AFFIX_DISPLAY_NAME[prefix['affix_type']]
     if AFFIX_HAS_VALUE_RANGE[prefix['affix_type']]:
       prefix['has_value_range'] = True
-      prefix['min_value'] = int(itemString[index+2:index+5])
-      prefix['max_value'] = int(itemString[index+5:index+8])
+      prefix['value'] = (int(itemString[index+2:index+5]), int(itemString[index+5:index+8]))
     else:
       prefix['has_value_range'] = False
       prefix['value'] = int(itemString[index+2:index+8])

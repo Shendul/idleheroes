@@ -80,13 +80,6 @@ class CreateHero(webapp2.RequestHandler):
     ih_user.put()
     self.redirect("/")
 
-class GenerateItem(webapp2.RequestHandler):
-  def get(self):
-    item = getItemFromItemString(generateRandomItem(0, 12))
-    template = JINJA_ENVIRONMENT.get_template('itembutton.html')
-    template_values = {'item': item}
-    self.response.write(template.render(template_values))
-
 class Battle(webapp2.RequestHandler):
   ## TODO: make this a post?
   def get(self):
@@ -106,7 +99,7 @@ class Battle(webapp2.RequestHandler):
     }
     if battle_result[0]:
       ## victory, so get an item.
-      loot_item = generateRandomItem(0, mob_actor[ACTOR_STAT.ITEM_LEVEL])
+      loot_item = generateRandomItem(hero_actor[ACTOR_STAT.MAGIC_FIND], mob_actor[ACTOR_STAT.ITEM_LEVEL])
       template_values['item_for_winning'] = getItemFromItemString(loot_item)
       inventory = hero.inventory.get()
       inventory.items.append(loot_item)
@@ -160,7 +153,6 @@ application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/banned', Banned),
     ('/heroCreation', CreateHero),
-    ('/generateItem', GenerateItem),
     ('/battle', Battle),
     ('/items', Items),
     ('/equip', EquipItem),

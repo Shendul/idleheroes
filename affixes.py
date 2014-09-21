@@ -15,7 +15,7 @@ class AFFIX:
   The section comments are basic seperators. When implementing each affix,
   decisions will need to be made regarding which affixes can be used on which
   items.
-  NEXT AVAILABLE CHAR: 'c'
+  NEXT AVAILABLE CHAR: 'd'
   """
   ## Attributes
   HEALTH = 'A'
@@ -40,6 +40,7 @@ class AFFIX:
   THORNS = 'a' ## Returns damage to melee attackers.
 
   ## Weapon Specific
+  ACCURACY = 'c'
   WEAPON_DAMAGE_PERCENTAGE = 'Q'
   WEAPON_DAMAGE_FLAT = 'R'
   LIGHTNING_DAMAGE = 'S'
@@ -81,6 +82,7 @@ AFFIX_HAS_VALUE_RANGE = {
   AFFIX.THORNS: True,
 
   ## Weapon Specific
+  AFFIX.ACCURACY: False,
   AFFIX.WEAPON_DAMAGE_PERCENTAGE: False,
   AFFIX.WEAPON_DAMAGE_FLAT: True,
   AFFIX.LIGHTNING_DAMAGE: True,
@@ -121,6 +123,7 @@ ITEM_AFFIX_DISPLAY_NAME = {
   AFFIX.THORNS: "Thorns",
 
   ## Weapon Specific
+  AFFIX.ACCURACY: "Accuracy",
   AFFIX.WEAPON_DAMAGE_PERCENTAGE: "% Increased Weapon Damage",
   AFFIX.WEAPON_DAMAGE_FLAT: "Increased Weapon Damage",
   AFFIX.LIGHTNING_DAMAGE: "Lightning Damage",
@@ -488,6 +491,10 @@ AFFIX_GRADES = {
     AFFIX.THORNS: [
       item_affix_grade('Spiny', 'of the Procupine', 1, (2, 4), 6), # Grade 0
       item_affix_grade('Thorny', 'of Blackberry Bushes', 8, (3, 10), 15) # Grade 1
+    ],
+    AFFIX.ACCURACY: [
+      item_affix_grade('Pinpointing', 'of the Sniper', 1, (4, 11), None), # Grade 0
+      item_affix_grade('Accurate', 'of the Sharp Shooter', 6, (9, 20), None) # Grade 1
     ],
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
       item_affix_grade('Precise', 'of Mutilation', 3, (5, 20), None), # Grade 0
@@ -887,6 +894,10 @@ AFFIX_GRADES = {
       item_affix_grade('Manly', 'of the Bear', 1, (2, 8), None), # Grade 0
       item_affix_grade('Healthy', 'of Angels', 8, (7, 16), None) # Grade 1
     ],
+    AFFIX.ACCURACY: [
+      item_affix_grade('Pinpointing', 'of the Sniper', 1, (4, 11), None), # Grade 0
+      item_affix_grade('Accurate', 'of the Sharp Shooter', 6, (9, 20), None) # Grade 1
+    ],
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
       item_affix_grade('Precise', 'of Mutilation', 3, (5, 20), None), # Grade 0
       item_affix_grade('Precise', 'of Mutilation', 9, (20, 50), None) # Grade 1
@@ -955,6 +966,10 @@ AFFIX_GRADES = {
     AFFIX.CONSTITUTION: [
       item_affix_grade('Manly', 'of the Bear', 1, (2, 8), None), # Grade 0
       item_affix_grade('Healthy', 'of Angels', 8, (7, 16), None) # Grade 1
+    ],
+    AFFIX.ACCURACY: [
+      item_affix_grade('Pinpointing', 'of the Sniper', 1, (4, 11), None), # Grade 0
+      item_affix_grade('Accurate', 'of the Sharp Shooter', 6, (9, 20), None) # Grade 1
     ],
     AFFIX.WEAPON_DAMAGE_PERCENTAGE: [
       item_affix_grade('Precise', 'of Mutilation', 3, (7, 30), None), # Grade 0

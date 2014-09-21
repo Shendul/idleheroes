@@ -269,6 +269,7 @@ def getHeroDamages(hero, agility, level, gear, actor):
 def getHeroMetaStats(hero, level, gear, actor):
   actor[ACTOR_STAT.MAGIC_FIND] = 0
   actor[ACTOR_STAT.GOLD_FIND] = 0
+  actor[ACTOR_STAT.EXP_BONUS] = 0
   ## TODO: add remaining meta stats
   actor[ACTOR_STAT.NAME] = hero.name
   for item in gear.values():
@@ -280,6 +281,9 @@ def getHeroMetaStats(hero, level, gear, actor):
 
           if affix['affix_type'] == AFFIX.MAGIC_FIND:
             actor[ACTOR_STAT.MAGIC_FIND] += affix['value']
+
+          if affix['affix_type'] == AFFIX.EXP_BONUS:
+            actor[ACTOR_STAT.EXP_BONUS] += affix['value']
 
 def equipItem(inventory, item):
   item_object = getItemFromItemString(item)

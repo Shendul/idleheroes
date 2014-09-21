@@ -52,7 +52,7 @@ class AFFIX:
   ## Accessory Specific
   GOLD_FIND = 'W'
   MAGIC_FIND = 'X'
-  # EXP_GAIN = 'Y'
+  EXP_BONUS = 'Y'
 
   ## Other
   # REDUCED_REQUIREMENTS = 'Z'
@@ -93,7 +93,7 @@ AFFIX_HAS_VALUE_RANGE = {
   ## Accessory Specific
   AFFIX.GOLD_FIND: False,
   AFFIX.MAGIC_FIND: False,
-  # AFFIX.EXP_GAIN: False,  
+  AFFIX.EXP_BONUS: False,  
 
   ## Other
   # AFFIX.REDUCED_REQUIREMENTS: False ## TODO: implement item requirements.
@@ -134,7 +134,7 @@ ITEM_AFFIX_DISPLAY_NAME = {
   ## Accessory Specific
   AFFIX.GOLD_FIND: "Gold Find",
   AFFIX.MAGIC_FIND: "Magic Find",
-  # AFFIX.EXP_GAIN: False,  
+  AFFIX.EXP_BONUS: "Experience Bonus",  
 
   ## Other
   # AFFIX.REDUCED_REQUIREMENTS: False ## TODO: implement item requirements.
@@ -408,10 +408,10 @@ AFFIX_GRADES = {
       item_affix_grade('Lucky', 'of Tracking', 1, (1, 5), None), # Grade 0
       item_affix_grade('Archeologist\'s', 'of the Unicorn', 8, (5, 10), None) # Grade 1
     ],
-#     AFFIX.EXP_GAIN: [
-#       item_affix_grade('Practice', 'of Instructing', 1, (, ), None), # Grade 0
-#       item_affix_grade('', '', 8, (, ), None) # Grade 1
-#     ],
+    AFFIX.EXP_BONUS: [
+      item_affix_grade('Practice', 'of Instructing', 1, (1, 5), None), # Grade 0
+      item_affix_grade('Apprentice', 'of the Mimic', 8, (3, 15), None) # Grade 1
+    ],
 #     AFFIX.REDUCED_REQUIREMENTS: [
 #       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
 #       item_affix_grade('', '', 8, (, ), None) # Grade 1
@@ -640,10 +640,10 @@ AFFIX_GRADES = {
       item_affix_grade('Lucky', 'of Tracking', 1, (1, 5), None), # Grade 0
       item_affix_grade('Archeologist\'s', 'of the Unicorn', 8, (5, 10), None) # Grade 1
     ],
-#     AFFIX.EXP_GAIN: [
-#       item_affix_grade('Practice', 'of Instructing', 1, (, ), None), # Grade 0
-#       item_affix_grade('', '', 8, (, ), None) # Grade 1
-#     ],
+    AFFIX.EXP_BONUS: [
+      item_affix_grade('Practice', 'of Instructing', 1, (1, 5), None), # Grade 0
+      item_affix_grade('Apprentice', 'of the Mimic', 8, (3, 15), None) # Grade 1
+    ],
 #     AFFIX.REDUCED_REQUIREMENTS: [
 #       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
 #       item_affix_grade('', '', 8, (, ), None) # Grade 1
@@ -708,10 +708,10 @@ AFFIX_GRADES = {
       item_affix_grade('Lucky', 'of Tracking', 1, (1, 5), None), # Grade 0
       item_affix_grade('Archeologist\'s', 'of the Unicorn', 8, (5, 10), None) # Grade 1
     ],
-#     AFFIX.EXP_GAIN: [
-#       item_affix_grade('Practice', 'of Instructing', 1, (, ), None), # Grade 0
-#       item_affix_grade('', '', 8, (, ), None) # Grade 1
-#     ],
+    AFFIX.EXP_BONUS: [
+      item_affix_grade('Practice', 'of Instructing', 1, (1, 5), None), # Grade 0
+      item_affix_grade('Apprentice', 'of the Mimic', 8, (3, 15), None) # Grade 1
+    ],
 #     AFFIX.REDUCED_REQUIREMENTS: [
 #       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
 #       item_affix_grade('', '', 8, (, ), None) # Grade 1
@@ -858,10 +858,10 @@ AFFIX_GRADES = {
       item_affix_grade('Lucky', 'of Tracking', 1, (1, 5), None), # Grade 0
       item_affix_grade('Archeologist\'s', 'of the Unicorn', 8, (5, 10), None) # Grade 1
     ],
-#     AFFIX.EXP_GAIN: [
-#       item_affix_grade('Practice', 'of Instructing', 1, (, ), None), # Grade 0
-#       item_affix_grade('', '', 8, (, ), None) # Grade 1
-#     ],
+    AFFIX.EXP_BONUS: [
+      item_affix_grade('Practice', 'of Instructing', 1, (1, 5), None), # Grade 0
+      item_affix_grade('Apprentice', 'of the Mimic', 8, (3, 15), None) # Grade 1
+    ],
 #     AFFIX.REDUCED_REQUIREMENTS: [
 #       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
 #       item_affix_grade('', '', 8, (, ), None) # Grade 1
@@ -930,10 +930,10 @@ AFFIX_GRADES = {
       item_affix_grade('Lucky', 'of Tracking', 1, (1, 5), None), # Grade 0
       item_affix_grade('Archeologist\'s', 'of the Unicorn', 8, (5, 10), None) # Grade 1
     ],
-#     AFFIX.EXP_GAIN: [
-#       item_affix_grade('Practice', 'of Instructing', 1, (, ), None), # Grade 0
-#       item_affix_grade('', '', 8, (, ), None) # Grade 1
-#     ],
+    AFFIX.EXP_BONUS: [
+      item_affix_grade('Practice', 'of Instructing', 1, (1, 5), None), # Grade 0
+      item_affix_grade('Apprentice', 'of the Mimic', 8, (3, 15), None) # Grade 1
+    ],
 #     AFFIX.REDUCED_REQUIREMENTS: [
 #       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
 #       item_affix_grade('', '', 8, (, ), None) # Grade 1
@@ -1003,10 +1003,10 @@ AFFIX_GRADES = {
       item_affix_grade('Lucky', 'of Tracking', 1, (1, 5), None), # Grade 0
       item_affix_grade('Archeologist\'s', 'of the Unicorn', 8, (5, 10), None) # Grade 1
     ],
-#     AFFIX.EXP_GAIN: [
-#       item_affix_grade('Practice', 'of Instructing', 1, (, ), None), # Grade 0
-#       item_affix_grade('', '', 8, (, ), None) # Grade 1
-#     ],
+    AFFIX.EXP_BONUS: [
+      item_affix_grade('Practice', 'of Instructing', 1, (1, 5), None), # Grade 0
+      item_affix_grade('Apprentice', 'of the Mimic', 8, (3, 15), None) # Grade 1
+    ],
 #     AFFIX.REDUCED_REQUIREMENTS: [
 #       item_affix_grade('Simple', 'of the Cadet', 1, (, ), None), # Grade 0
 #       item_affix_grade('', '', 8, (, ), None) # Grade 1

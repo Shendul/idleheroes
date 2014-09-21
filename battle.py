@@ -44,7 +44,7 @@ class ACTOR_STAT:
   # KARMA = 'karma'
   # FAME = 'fame'
   EXP_GAINED = "exp_gained"
-  # EXP_BONUS = "exp_bonus"  ## TODO: implement exp gain
+  EXP_BONUS = "exp_bonus"  ## TODO: implement exp gain
   NAME = "name"
   # LOOT_TABLE = "loot_table" ## TODO: implement loot tables
   ITEM_LEVEL = "item_level"

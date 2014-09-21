@@ -130,7 +130,7 @@ def getBattleActorFromHero(hero):
   getHeroHealth(strength, constitution, level, gear, actor)
   getHeroDefense(agility, constitution, level, gear, actor)
   getHeroResists(wisdom, constitution, level, gear, actor)
-  getHeroDamages(hero, level, gear, actor)
+  getHeroDamages(hero, agility, level, gear, actor)
   getHeroMetaStats(hero, level, gear, actor)
   return actor
 
@@ -208,7 +208,7 @@ def getHeroResists(wisdom, constitution, level, gear, actor):
             actor[ACTOR_STAT.COLD_RESISTANCE] += affix['value']
             actor[ACTOR_STAT.POISON_RESISTANCE] += affix['value']
 
-def getHeroDamages(hero, level, gear, actor):
+def getHeroDamages(hero, agility, level, gear, actor):
   ## Get base damages
   actor[ACTOR_STAT.THRUST_DAMAGE] = (0,0)
   actor[ACTOR_STAT.SLASH_DAMAGE] = (0,0)
@@ -218,6 +218,7 @@ def getHeroDamages(hero, level, gear, actor):
   actor[ACTOR_STAT.COLD_DAMAGE] = (0,0)
   actor[ACTOR_STAT.POISON_DAMAGE] = (0,0)
   actor[ACTOR_STAT.THORNS_DAMAGE] = (0,0)
+  actor[ACTOR_STAT.ACCURACY] = agility*level / 2
   base_damage = {}
   if gear['main_hand'] != None:
     base_damage = gear['main_hand']['base_damage']
@@ -262,7 +263,7 @@ def getHeroDamages(hero, level, gear, actor):
     actor[ACTOR_STAT.CRUSH_DAMAGE] = base_damage['damage_range']
   else:
     logging.error('item without thrust, slash, crush damage type equiped in main hand')
-  actor[ACTOR_STAT.ACCURACY] = base_damage['accuracy']
+  actor[ACTOR_STAT.ACCURACY] += base_damage['accuracy']
 
 def getHeroMetaStats(hero, level, gear, actor):
   actor[ACTOR_STAT.MAGIC_FIND] = 0

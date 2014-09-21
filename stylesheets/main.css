@@ -259,3 +259,35 @@ div.buttonText {
   height: 100px;
   background-repeat: no-repeat;
 }
+
+.redslime-image {
+  background-image: url(/images/redslime.jpg);
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: 25%;
+}
+
+.yellowslime-image {
+  background-image: url(/images/yellowslime.jpg);
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: 25%;
+}
+
+.blueslime-image {
+  background-image: url(/images/blueslime.jpg);
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: 25%;
+}
+
+.slime-image {
+  background-image: url(/images/slime.jpg);
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: 25%;
+}

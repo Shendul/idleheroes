@@ -71,7 +71,7 @@ class MONSTER:
       0, # Fire Resist
       0, # Cold Resist
       10, # Poison Resist
-      (1,3), # Thrust Damage
+      (1, 3), # Thrust Damage
       None, # Slash Damage
       None, # Crush Damage
       None, # Lightning Damage
@@ -175,6 +175,100 @@ class MONSTER:
       None, # Loot Table
       10, # Item Level
   )
+  RED_SLIME = makeMobActor(
+      10, # Health
+      5, # Defense
+      40, # Accuracy
+      100, # Thrust Resist
+      100, # Slash Resist
+      100, # Crush Resist
+      50, # Lightning Resist
+      100, # Fire Resist
+      0, # Cold Resist
+      50, # Poison Resist
+      None, # Thrust Damage
+      None, # Slash Damage
+      None, # Crush Damage
+      None, # Lightning Damage
+      (5, 15), # Fire Damage
+      None, # Cold Damage
+      None, # Poison Damage
+      None, # Thorns Damage
+      "RedSlime", # Name
+      None, # Loot Table
+      4, # Item Level
+  )
+  YELLOW_SLIME = makeMobActor(
+      10, # Health
+      5, # Defense
+      40, # Accuracy
+      100, # Thrust Resist
+      100, # Slash Resist
+      100, # Crush Resist
+      100, # Lightning Resist
+      50, # Fire Resist
+      50, # Cold Resist
+      20, # Poison Resist
+      None, # Thrust Damage
+      None, # Slash Damage
+      None, # Crush Damage
+      (5, 15), # Lightning Damage
+      None, # Fire Damage
+      None, # Cold Damage
+      None, # Poison Damage
+      None, # Thorns Damage
+      "YellowSlime", # Name
+      None, # Loot Table
+      5, # Item Level
+  )
+  BLUE_SLIME = makeMobActor(
+      10, # Health
+      5, # Defense
+      40, # Accuracy
+      100, # Thrust Resist
+      100, # Slash Resist
+      100, # Crush Resist
+      50, # Lightning Resist
+      0, # Fire Resist
+      100, # Cold Resist
+      50, # Poison Resist
+      None, # Thrust Damage
+      None, # Slash Damage
+      None, # Crush Damage
+      None, # Lightning Damage
+      None, # Fire Damage
+      (5, 15), # Cold Damage
+      None, # Poison Damage
+      None, # Thorns Damage
+      "BlueSlime", # Name
+      None, # Loot Table
+      4, # Item Level
+  )
+  SLIME = makeMobActor(
+      10, # Health
+      10, # Defense
+      40, # Accuracy
+      100, # Thrust Resist
+      100, # Slash Resist
+      100, # Crush Resist
+      10, # Lightning Resist
+      10, # Fire Resist
+      10, # Cold Resist
+      10, # Poison Resist
+      None, # Thrust Damage
+      None, # Slash Damage
+      None, # Crush Damage
+      None, # Lightning Damage
+      None, # Fire Damage
+      None, # Cold Damage
+      (3, 10), # Poison Damage
+      None, # Thorns Damage
+      "Slime", # Name
+      None, # Loot Table
+      3, # Item Level
+  )
 
 ## TODO: Create lists of mobs to choose from, and figure out how to organize them.
-ALL_MOBS = [MONSTER.RAT, MONSTER.SNAKE, MONSTER.WOLF, MONSTER.BEAR, MONSTER.DRAGON, MONSTER.FREEZO]
+ALL_MOBS = [MONSTER.RAT, MONSTER.SNAKE, MONSTER.WOLF, MONSTER.BEAR, 
+MONSTER.DRAGON, MONSTER.FREEZO, MONSTER.RED_SLIME, MONSTER.BLUE_SLIME,
+MONSTER.YELLOW_SLIME, MONSTER.SLIME]

@@ -19,6 +19,20 @@
       
       {% if log %}
         <div>
+          <div>
+            <table class="hero-description-table">
+            {% for key in hero.keys() %}
+            <tr>
+              <td>
+                {{key}}
+              </td>
+              <td>
+                {{hero[key]}}
+              </td>
+            </tr>
+            {% endfor %}
+            <table>
+          </div>
           <div class="hero-image"></div>
           <h2>VS.</h2>
           <div class="{{enemy_image}}"></div>

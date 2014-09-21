@@ -95,7 +95,8 @@ class Battle(webapp2.RequestHandler):
     template_values = {
       'victory': battle_result[0],
       'log': battle_result[1],
-      'enemy_image': battle_result[2].lower() + '-image'
+      'enemy_image': battle_result[2].lower() + '-image',
+      'hero': hero_actor
     }
     if battle_result[0]:
       ## victory, so get an item.

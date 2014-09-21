@@ -193,6 +193,21 @@ div.buttonText {
   text-align: right;
 }
 
+.hero-description-table {
+  float: right;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+.hero-description-table td {
+  padding: 2px 20px;
+}
+
+.hero-description-table td:first-child {
+  font-weight: bold;
+  text-align: right;
+}
+
 .hero-image {
   background-image: url(/images/knight2.jpg);
   width: 100px;

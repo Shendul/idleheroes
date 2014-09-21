@@ -340,7 +340,7 @@ WEAPON_DAMAGE_RANGE = {
   ITEM.SLING: [
     (3, 3), # Grade 0
     (5, 5), # Grade 1
-    (12, 9000) # Grade 1
+    (12, 12) # Grade 1
   ],
   # ITEM.JAVELIN: [
   #   (1, 5), # Grade 0

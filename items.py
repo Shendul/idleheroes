@@ -131,6 +131,10 @@ ACCESSORIES = [
   ITEM.RING, ITEM.AMULET, ITEM.EARRING
 ]
 
+SHIELDS = [
+  ITEM.SHIELD
+]
+
 ALL_BASE_ITEMS = ARMORS + WEAPONS + ACCESSORIES
 
 ## Item grade dictionary contains item display names and iLvl requirements for
@@ -473,6 +477,14 @@ ARMOR_DEFENSE = {
   ITEM.SHIELD: [
     5, # Grade 0
     9 # Grade 1
+  ]
+}
+
+# block stat for shields.
+BLOCK_CHANCE = {
+  ITEM.SHIELD: [
+    50, # Grade 0
+    90 # Grade 1
   ]
 }
 

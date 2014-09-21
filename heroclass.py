@@ -149,9 +149,13 @@ def getHeroHealth(strength, constitution, level, gear, actor):
 def getHeroDefense(agility, constitution, level, gear, actor):
   ## Get base defense
   actor[ACTOR_STAT.DEFENSE] = agility*level + constitution*level / 4
-  ## Add def from items.
+  ## Get base block chance
+  actor[ACTOR_STAT.BLOCK] = 0
+  ## Add def and block from items.
   for item in gear.values():
-    if item != None and item['item_type'] in ARMORS:
+    if item != None and item['item_type'] in SHIELDS:
+      actor[ACTOR_STAT.BLOCK] += item[ACTOR_STAT.BLOCK]
+    elif item != None and item['item_type'] in ARMORS:
       actor[ACTOR_STAT.DEFENSE] += item[ACTOR_STAT.DEFENSE]
       if len(item['affixes']) > 0:
         for affix in item['affixes']:

@@ -138,6 +138,8 @@ def getItemFromItemString(itemString):
   elif base_item_key in ARMORS:
     item['defense'] = ARMOR_DEFENSE[base_item_key][grade_index]
     ## TODO: consider the case of shield, which needs a block value.
+    if base_item_key in SHIELDS:
+      item[ACTOR_STAT.BLOCK] = BLOCK_CHANCE[base_item_key][grade_index]
 
   ## Add properties for all of the affixes.
   item['prefixes'] = prefixes

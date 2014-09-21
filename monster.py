@@ -8,7 +8,7 @@ class MONSTER:
   This class is used to represent an enumlike object. All monster data will be
   held here.
   """
-  def makeMobActor(health, defense, accuracy, thrust_resistance, slash_resistance,
+  def makeMobActor(health, block, defense, accuracy, thrust_resistance, slash_resistance,
       crush_resistance, lightning_resistance, fire_resistance, cold_resistance,
       poison_resistance, thrust_damage, slash_damage, crush_damage, lightning_damage,
       fire_damage, cold_damage, poison_damage, thorns_damage, name, loot_table,
@@ -16,6 +16,7 @@ class MONSTER:
     """ Takes the mob parameters and returns a mob actor. """
     return {
       ACTOR_STAT.HEALTH: health,
+      ACTOR_STAT.BLOCK: block,
       ACTOR_STAT.DEFENSE: defense,
       ACTOR_STAT.ACCURACY: accuracy,
       ACTOR_STAT.THRUST_RESISTANCE: thrust_resistance,
@@ -41,6 +42,7 @@ class MONSTER:
 
   RAT = makeMobActor(
       20, # Health
+      0, # Block
       20, # Defense
       20, # Accuracy
       0, # Thrust Resist
@@ -65,6 +67,7 @@ class MONSTER:
   )
   SNAKE = makeMobActor(
       18, # Health
+      0, # Block
       30, # Defense
       45, # Accuracy
       5, # Thrust Resist
@@ -89,6 +92,7 @@ class MONSTER:
   )
   WOLF = makeMobActor(
       45, # Health
+      0, # Block
       30, # Defense
       45, # Accuracy
       0, # Thrust Resist
@@ -113,6 +117,7 @@ class MONSTER:
   )
   BEAR = makeMobActor(
       60, # Health
+      0, # Block
       25, # Defense
       45, # Accuracy
       0, # Thrust Resist
@@ -137,6 +142,7 @@ class MONSTER:
   )
   DRAGON = makeMobActor(
       150, # Health
+      0, # Block
       50, # Defense
       60, # Accuracy
       20, # Thrust Resist
@@ -161,6 +167,7 @@ class MONSTER:
   )
   FREEZO = makeMobActor(
       85, # Health
+      0, # Block
       50, # Defense
       50, # Accuracy
       40, # Thrust Resist
@@ -185,6 +192,7 @@ class MONSTER:
   )
   RED_SLIME = makeMobActor(
       10, # Health
+      0, # Block
       5, # Defense
       40, # Accuracy
       100, # Thrust Resist
@@ -209,6 +217,7 @@ class MONSTER:
   )
   YELLOW_SLIME = makeMobActor(
       10, # Health
+      0, # Block
       5, # Defense
       40, # Accuracy
       100, # Thrust Resist
@@ -233,6 +242,7 @@ class MONSTER:
   )
   BLUE_SLIME = makeMobActor(
       10, # Health
+      0, # Block
       5, # Defense
       40, # Accuracy
       100, # Thrust Resist
@@ -257,6 +267,7 @@ class MONSTER:
   )
   SLIME = makeMobActor(
       10, # Health
+      0, # Block
       10, # Defense
       40, # Accuracy
       100, # Thrust Resist

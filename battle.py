@@ -17,7 +17,7 @@ class ACTOR_STAT:
   """
   HEALTH = "health"
   # MANA = "mana" ## TODO: implement Mana
-  # BLOCK = 'block' ## TODO: implement blocking
+  BLOCK = "block"
   DEFENSE = "defense" # Represents how easy you take a hit.
   ACCURACY = "accuracy" # Represents how easy you hit something.
   THRUST_RESISTANCE = "thrust_resistance"
@@ -44,7 +44,7 @@ class ACTOR_STAT:
   # KARMA = 'karma'
   # FAME = 'fame'
   EXP_GAINED = "exp_gained"
-  EXP_BONUS = "exp_bonus"  ## TODO: implement exp gain
+  EXP_BONUS = "exp_bonus" 
   NAME = "name"
   # LOOT_TABLE = "loot_table" ## TODO: implement loot tables
   ITEM_LEVEL = "item_level"
@@ -101,11 +101,15 @@ def getBattleResult(hero_actor, mob_actor, debug_mode):
 
 
 def simulateAttack(attacker, defender, battle_log):
+  block = getChanceToBlock(defender[ACTOR_STAT.BLOCK])
   chance = getChanceToHit(attacker[ACTOR_STAT.ACCURACY], defender[ACTOR_STAT.DEFENSE])
   roll = random.random()
-  if roll < chance:
-    battle_log.append(attacker[ACTOR_STAT.NAME] + " has hit " + defender[ACTOR_STAT.NAME] +
-        " Roll: " + str(roll) + " chance: " + str(chance))
+  if roll < block:
+    battle_log.append(defender[ACTOR_STAT.NAME] + " has blocked " + attacker[ACTOR_STAT.NAME])# + 
+    #    "'s attack! Roll: " + str(roll) + " block: " + str(block))
+  elif roll < chance:
+    battle_log.append(attacker[ACTOR_STAT.NAME] + " has hit " + defender[ACTOR_STAT.NAME])# +
+    #    " Roll: " + str(roll) + " chance: " + str(chance))
     ## roll for raw damage
     damage_roll = random.random()
     damage = getHitDamage(attacker, defender, damage_roll, battle_log)
@@ -124,11 +128,14 @@ def simulateAttack(attacker, defender, battle_log):
         str(attacker[ACTOR_STAT.CURRENT_HP] - thorns) + " HP remaining")
       attacker[ACTOR_STAT.CURRENT_HP] -= thorns
   else:
-    battle_log.append(attacker[ACTOR_STAT.NAME] + " has missed " + defender[ACTOR_STAT.NAME] + 
-        ". Roll: " + str(roll) + " chance: " + str(chance))
+    battle_log.append(attacker[ACTOR_STAT.NAME] + " has missed " + defender[ACTOR_STAT.NAME])# + 
+    #    ". Roll: " + str(roll) + " chance: " + str(chance))
 
 def getChanceToHit(attack, defense):
   return attack/(attack+(math.pow(defense ,0.8)))
+
+def getChanceToBlock(block):
+  return block/1000.0
 
 def getHitDamage(attacker, defender, damage_roll, battle_log):
   """ Determine hit damage using a damage roll, attacker stats, and defender resists. """

@@ -113,6 +113,15 @@ def simulateAttack(attacker, defender, battle_log):
     battle_log.append(defender[ACTOR_STAT.NAME] + " has " + 
         str(defender[ACTOR_STAT.CURRENT_HP] - damage) + " HP remaining")
     defender[ACTOR_STAT.CURRENT_HP] -= damage
+    ## Now check for Thorns dmg and make that roll
+    if defender[ACTOR_STAT.THORNS_DAMAGE] >= (0, 0):
+      thorns_roll = random.random()
+      thorns = mathutils.getRollFromRange(thorns_roll, defender[ACTOR_STAT.THORNS_DAMAGE])
+      battle_log.append(defender[ACTOR_STAT.NAME] + " deals " + str(thorns) + " thorns damage to " + 
+        attacker[ACTOR_STAT.NAME])
+      battle_log.append(attacker[ACTOR_STAT.NAME] + " has " + 
+        str(attacker[ACTOR_STAT.CURRENT_HP] - thorns) + " HP remaining")
+      attacker[ACTOR_STAT.CURRENT_HP] -= thorns
   else:
     battle_log.append(attacker[ACTOR_STAT.NAME] + " has missed " + defender[ACTOR_STAT.NAME] + 
         ". Roll: " + str(roll) + " chance: " + str(chance))
@@ -126,7 +135,7 @@ def getHitDamage(attacker, defender, damage_roll, battle_log):
   for damage_type in ATTACK_DAMAGE_LIST:
     if attacker[damage_type] != None and attacker[damage_type][1] != 0:
       raw = mathutils.getRollFromRange(damage_roll, attacker[damage_type])
-      ## TODO: Determine actually resists equations, for now it's straight %.
+      ## TODO: Determine actual resists equations, for now it's straight %.
       damage = int(round(raw - (raw * (defender[DAMAGE_TYPE_TO_RESIST_MAP[damage_type]]/100.0)), 0))
       result += damage
       battle_log.append("Attacker Deals: " + str(damage) + " " + damage_type)

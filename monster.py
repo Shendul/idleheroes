@@ -11,7 +11,8 @@ class MONSTER:
   def makeMobActor(health, defense, accuracy, thrust_resistance, slash_resistance,
       crush_resistance, lightning_resistance, fire_resistance, cold_resistance,
       poison_resistance, thrust_damage, slash_damage, crush_damage, lightning_damage,
-      fire_damage, cold_damage, poison_damage, thorns_damage, name, loot_table, item_level):
+      fire_damage, cold_damage, poison_damage, thorns_damage, name, loot_table,
+      item_level, exp_gained):
     """ Takes the mob parameters and returns a mob actor. """
     return {
       ACTOR_STAT.HEALTH: health,
@@ -35,6 +36,7 @@ class MONSTER:
       ACTOR_STAT.NAME: name,
       # ACTOR_STAT.LOOT_TABLE: loot_table,
       ACTOR_STAT.ITEM_LEVEL: item_level,
+      ACTOR_STAT.EXP_GAINED: exp_gained
     }
 
   RAT = makeMobActor(
@@ -59,6 +61,7 @@ class MONSTER:
       "Rat", # Name
       None, # Loot Table
       2, # Item Level
+      1, # Exp Gained
   )
   SNAKE = makeMobActor(
       18, # Health
@@ -82,6 +85,7 @@ class MONSTER:
       "Snake", # Name
       None, # Loot Table
       3, # Item Level
+      2, # Exp Gained
   )
   WOLF = makeMobActor(
       45, # Health
@@ -105,6 +109,7 @@ class MONSTER:
       "Wolf", # Name
       None, # Loot Table
       5, # Item Level
+      3, # Exp Gained
   )
   BEAR = makeMobActor(
       60, # Health
@@ -128,6 +133,7 @@ class MONSTER:
       "Bear", # Name
       None, # Loot Table
       8, # Item Level
+      5, # Exp Gained
   )
   DRAGON = makeMobActor(
       150, # Health
@@ -151,6 +157,7 @@ class MONSTER:
       "DAGRON", # Name
       None, # Loot Table
       15, # Item Level
+      15, # Exp Gained
   )
   FREEZO = makeMobActor(
       85, # Health
@@ -174,6 +181,7 @@ class MONSTER:
       "Freezo", # Name
       None, # Loot Table
       10, # Item Level
+      9, # Exp Gained
   )
   RED_SLIME = makeMobActor(
       10, # Health
@@ -197,6 +205,7 @@ class MONSTER:
       "RedSlime", # Name
       None, # Loot Table
       4, # Item Level
+      2, # Exp Gained
   )
   YELLOW_SLIME = makeMobActor(
       10, # Health
@@ -220,6 +229,7 @@ class MONSTER:
       "YellowSlime", # Name
       None, # Loot Table
       5, # Item Level
+      3, # Exp Gained
   )
   BLUE_SLIME = makeMobActor(
       10, # Health
@@ -243,6 +253,7 @@ class MONSTER:
       "BlueSlime", # Name
       None, # Loot Table
       4, # Item Level
+      2, # Exp Gained
   )
   SLIME = makeMobActor(
       10, # Health
@@ -266,6 +277,7 @@ class MONSTER:
       "Slime", # Name
       None, # Loot Table
       3, # Item Level
+      2, # Exp Gained
   )
 
 ## TODO: Create lists of mobs to choose from, and figure out how to organize them.

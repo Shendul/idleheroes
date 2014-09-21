@@ -43,6 +43,7 @@ class ACTOR_STAT:
   MAGIC_FIND = "magic_find"  # Should be an integer
   # KARMA = 'karma'
   # FAME = 'fame'
+  EXP_GAINED = "exp_gained"
   # EXP_BONUS = "exp_bonus"  ## TODO: implement exp gain
   NAME = "name"
   # LOOT_TABLE = "loot_table" ## TODO: implement loot tables
@@ -135,7 +136,7 @@ def getHitDamage(attacker, defender, damage_roll, battle_log):
   for damage_type in ATTACK_DAMAGE_LIST:
     if attacker[damage_type] != None and attacker[damage_type][1] != 0:
       raw = mathutils.getRollFromRange(damage_roll, attacker[damage_type])
-      ## TODO: Determine actual resists equations, for now it's straight %.
+      ## TODO: Determine actual resist equations, for now it's straight %.
       damage = int(round(raw - (raw * (defender[DAMAGE_TYPE_TO_RESIST_MAP[damage_type]]/100.0)), 0))
       result += damage
       battle_log.append("Attacker Deals: " + str(damage) + " " + damage_type)

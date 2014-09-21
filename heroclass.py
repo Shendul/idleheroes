@@ -101,18 +101,19 @@ def getHeroGear(inventory):
 def getBattleActorFromHero(hero):
   ## TODO: Finish this function.
   actor = {}
-  level = getHeroLevel(hero.experience)
+  actor['level'] = getHeroLevel(hero.experience)
+  actor['exp'] = hero.experience
   gear = getHeroGear(hero.inventory.get())
   hero_class = hero.hero_class
   ## base stats.
   strength = (HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][0] + 
-      HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][1]*level)
+      HERO_BASE_STATS[hero_class][ATTRIBUTE.STRENGTH][1]*actor['level'])
   agility = (HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][0] +
-      HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][1]*level)
+      HERO_BASE_STATS[hero_class][ATTRIBUTE.AGILITY][1]*actor['level'])
   wisdom = (HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][0] +
-      HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*level)
+      HERO_BASE_STATS[hero_class][ATTRIBUTE.WISDOM][1]*actor['level'])
   constitution = (HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][0] +
-      HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*level)
+      HERO_BASE_STATS[hero_class][ATTRIBUTE.CONSTITUTION][1]*actor['level'])
 
   for item in gear.values():
     if item != None:
@@ -127,11 +128,11 @@ def getBattleActorFromHero(hero):
           if affix['affix_type'] == AFFIX.CONSTITUTION:
             constitution += affix['value']
   
-  getHeroHealth(strength, constitution, level, gear, actor)
-  getHeroDefense(agility, constitution, level, gear, actor)
-  getHeroResists(wisdom, constitution, level, gear, actor)
-  getHeroDamages(hero, agility, level, gear, actor)
-  getHeroMetaStats(hero, level, gear, actor)
+  getHeroHealth(strength, constitution, actor['level'], gear, actor)
+  getHeroDefense(agility, constitution, actor['level'], gear, actor)
+  getHeroResists(wisdom, constitution, actor['level'], gear, actor)
+  getHeroDamages(hero, agility, actor['level'], gear, actor)
+  getHeroMetaStats(hero, actor['level'], gear, actor)
   return actor
 
 def getHeroHealth(strength, constitution, level, gear, actor):

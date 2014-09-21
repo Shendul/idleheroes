@@ -99,12 +99,15 @@ class Battle(webapp2.RequestHandler):
       'hero': hero_actor
     }
     if battle_result[0]:
-      ## victory, so get an item.
+      ## victory, so get loot and xp.
       loot_item = generateRandomItem(hero_actor[ACTOR_STAT.MAGIC_FIND], mob_actor[ACTOR_STAT.ITEM_LEVEL])
       template_values['item_for_winning'] = getItemFromItemString(loot_item)
       inventory = hero.inventory.get()
       inventory.items.append(loot_item)
       inventory.put()
+      #template_values['experience_gained'] = mob_actor[ACTOR_STAT.EXP_GAINED]
+      hero.experience += mob_actor[ACTOR_STAT.EXP_GAINED]
+      hero.put()
 
     template = JINJA_ENVIRONMENT.get_template('home.html')
     self.response.write(template.render(template_values))

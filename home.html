@@ -39,7 +39,10 @@
         <div>
         {% if victory %}
           <h2>You Win!</h2>
-          You received a {{item_for_winning.display_name}}
+          You received a {{item_for_winning.display_name}}!
+          <div>
+            You gained {{experience_gained}} experience!
+          </div>
         {% else %}
           <h2>You Lose!</h2>
         {% endif %}

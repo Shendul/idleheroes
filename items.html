@@ -10,7 +10,7 @@
       <form action="/battle" method="get">
         <input type='submit' value="battle"/>
       </form>
-      {% for item in items %}
+      {% for item in items[::-1] %}
         <table class="item-description-table">
           <tr>
             <td>
@@ -27,11 +27,14 @@
             <td>
               {{item.rarity}}
             </td>
+          </tr>
+          <tr>
             <td>
-              <form action="/equip" method="get">
-                <input type="hidden" name="item" value="{{item.string}}"></input>
-                <input type='submit' value="equip"/>
-              </form>
+              Slot
+            </td>
+            <td>
+              {{item.slot}}
+            </td>
           </tr>
           {% for affix in item.affixes %}
             <tr>
@@ -43,6 +46,20 @@
               </td>
             </tr>
           {% endfor %}
+          <tr>  
+            <td>
+              <form action="/equip" method="get">
+                <input type="hidden" name="item" value="{{item.string}}"></input>
+                <input type='submit' value="equip"/>
+              </form>
+            </td>
+            <td>
+              <form action="/sell" method="get">
+                <input type="hidden" name="item" value="{{item.string}}"></input>
+                <input type='submit' value="sell"/>
+              </form>
+            </td>
+          </tr>
         </table>
       {% endfor %}
     </div>

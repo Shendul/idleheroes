@@ -124,7 +124,22 @@ class EquipItem(webapp2.RequestHandler):
     if item != None:
       # NOTE: because this is a prototype, we leave the item in the inventory.
       equipItem(inventory, item)
-    self.redirect('/')
+    self.redirect('/items')
+
+class SellItem(webapp2.RequestHandler):
+  def get(self):
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    inventory = hero.inventory.get()
+    items = inventory.items
+    sell_item = self.request.get('item')
+    if sell_item != None:
+      for item in items:
+        if sell_item == item:
+          items.remove(item)
+          inventory.items = items
+          inventory.put()
+    self.redirect('/items')
 
 
 class Items(webapp2.RequestHandler):
@@ -148,5 +163,6 @@ application = webapp2.WSGIApplication([
     ('/generateItem', GenerateItem),
     ('/battle', Battle),
     ('/items', Items),
-    ('/equip', EquipItem)
+    ('/equip', EquipItem),
+    ('/sell', SellItem),
 ], debug=True)

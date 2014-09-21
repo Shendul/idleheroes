@@ -49,22 +49,22 @@ class ITEM_SLOT:
   This class maps the item slots.
   """
 
-  MAIN_HAND = 'A'
-  OFF_HAND = 'B'
+  MAIN_HAND = 'Main Hand'
+  OFF_HAND = 'Off Hand'
 
-  HEAD = 'C'
-  BODY = 'D'
-  BELT = 'E'
-  LEGS = 'F'
-  FEET = 'G'
-  SHOULDERS = 'H'
-  HANDS = 'I'
+  HEAD = 'Head'
+  BODY = 'Body'
+  BELT = 'Belt'
+  LEGS = 'Legs'
+  FEET = 'Feet'
+  SHOULDERS = 'Shoulders'
+  HANDS = 'Hands'
 
-  LEFT_RING = 'J'
-  RIGHT_RING = 'K'
-  LEFT_EARRING = 'L'
-  RIGHT_EARRING = 'M'
-  NECKLACE = 'N'
+  LEFT_RING = 'Left Ring'
+  RIGHT_RING = 'Right Ring'
+  LEFT_EARRING = 'Left Earring'
+  RIGHT_EARRING = 'Right Earring'
+  NECKLACE = 'Neck'
 
 
 ITEM_SLOT_MAP = {

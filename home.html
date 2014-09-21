@@ -9,13 +9,14 @@
         {% include 'herocreation.html' %}
       {% else %}
         You has a hero!
-      {% endif %}
       <form action="/battle" method="get">
         <input type='submit' value="battle"/>
       </form>
       <form action="/items" method="get">
         <input type='submit' value="show me my items"/>
       </form>
+      {% endif %}
+      
       {% if log %}
         <div>
           <div class="hero-image"></div>

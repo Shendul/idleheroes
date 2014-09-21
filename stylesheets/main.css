@@ -231,8 +231,15 @@ div.buttonText {
   background-repeat: no-repeat;
 }
 
-.dragon-image {
+.dagron-image {
   background-image: url(/images/Dragon.jpg);
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+}
+
+.freezo-image {
+  background-image: url(/images/Freezo.jpg);
   width: 100%;
   height: 100px;
   background-repeat: no-repeat;

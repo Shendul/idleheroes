@@ -148,10 +148,33 @@ class MONSTER:
       None, # Cold Damage
       None, # Poison Damage
       None, # Thorns Damage
-      "DAGRON!", # Name
+      "DAGRON", # Name
       None, # Loot Table
       15, # Item Level
   )
+  FREEZO = makeMobActor(
+      85, # Health
+      50, # Defense
+      50, # Accuracy
+      40, # Thrust Resist
+      40, # Slash Resist
+      0, # Crush Resist
+      15, # Lightning Resist
+      0, # Fire Resist
+      50, # Cold Resist
+      15, # Poison Resist
+      None, # Thrust Damage
+      None, # Slash Damage
+      None, # Crush Damage
+      None, # Lightning Damage
+      (20, 35), # Fire Damage
+      None, # Cold Damage
+      None, # Poison Damage
+      None, # Thorns Damage
+      "Freezo", # Name
+      None, # Loot Table
+      10, # Item Level
+  )
 
 ## TODO: Create lists of mobs to choose from, and figure out how to organize them.
-ALL_MOBS = [MONSTER.RAT, MONSTER.SNAKE, MONSTER.WOLF, MONSTER.BEAR, MONSTER.DRAGON]
+ALL_MOBS = [MONSTER.RAT, MONSTER.SNAKE, MONSTER.WOLF, MONSTER.BEAR, MONSTER.DRAGON, MONSTER.FREEZO]

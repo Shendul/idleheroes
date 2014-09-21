@@ -21,17 +21,7 @@
         <div>
           <div class="hero-image"></div>
           <h2>VS.</h2>
-          {% if enemy == 'Rat' %}
-            <div class="rat-image"></div>
-          {% elif enemy == 'Snake' %}
-            <div class="snake-image"></div>
-          {% elif enemy == 'Wolf' %}
-            <div class="wolf-image"></div>
-          {% elif enemy == 'Bear' %}
-            <div class="bear-image"></div>
-          {% else %}
-            <div class="dragon-image"></div>
-          {% endif %}
+          <div class="{{enemy_image}}"></div>
         <div>
         {% if victory %}
           <h2>You Win!</h2>

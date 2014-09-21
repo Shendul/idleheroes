@@ -107,6 +107,16 @@ def simulateAttack(attacker, defender, battle_log):
   if roll < block:
     battle_log.append(defender[ACTOR_STAT.NAME] + " has blocked " + attacker[ACTOR_STAT.NAME])# + 
     #    "'s attack! Roll: " + str(roll) + " block: " + str(block))
+    ## Now check for Thorns dmg and make that roll
+    if defender[ACTOR_STAT.THORNS_DAMAGE] >= (0, 0):
+      thorns_roll = random.random()
+      thorns = mathutils.getRollFromRange(thorns_roll, defender[ACTOR_STAT.THORNS_DAMAGE])
+      battle_log.append(defender[ACTOR_STAT.NAME] + " deals " + str(thorns) + " thorns damage to " + 
+        attacker[ACTOR_STAT.NAME])
+      battle_log.append(attacker[ACTOR_STAT.NAME] + " has " + 
+        str(attacker[ACTOR_STAT.CURRENT_HP] - thorns) + " HP remaining")
+      attacker[ACTOR_STAT.CURRENT_HP] -= thorns
+      
   elif roll < chance:
     battle_log.append(attacker[ACTOR_STAT.NAME] + " has hit " + defender[ACTOR_STAT.NAME])# +
     #    " Roll: " + str(roll) + " chance: " + str(chance))

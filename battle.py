@@ -44,7 +44,8 @@ class ACTOR_STAT:
   # KARMA = 'karma'
   # FAME = 'fame'
   EXP_GAINED = "exp_gained"
-  EXP_BONUS = "exp_bonus" 
+  EXP_BONUS = "exp_bonus"
+  LEVEL = "level"
   NAME = "name"
   # LOOT_TABLE = "loot_table" ## TODO: implement loot tables
   ITEM_LEVEL = "item_level"
@@ -108,7 +109,7 @@ def simulateAttack(attacker, defender, battle_log):
     battle_log.append(defender[ACTOR_STAT.NAME] + " has blocked " + attacker[ACTOR_STAT.NAME])# + 
     #    "'s attack! Roll: " + str(roll) + " block: " + str(block))
     ## Now check for Thorns dmg and make that roll
-    if defender[ACTOR_STAT.THORNS_DAMAGE] >= (0, 0):
+    if defender[ACTOR_STAT.THORNS_DAMAGE] != None and defender[ACTOR_STAT.THORNS_DAMAGE][1] > 0:
       thorns_roll = random.random()
       thorns = mathutils.getRollFromRange(thorns_roll, defender[ACTOR_STAT.THORNS_DAMAGE])
       battle_log.append(defender[ACTOR_STAT.NAME] + " deals " + str(thorns) + " thorns damage to " + 

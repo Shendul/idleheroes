@@ -105,7 +105,8 @@ class Battle(webapp2.RequestHandler):
       template_values['item_for_winning'] = getItemFromItemString(loot_item)
       inventory = hero.inventory.get()
       inventory.gold += mob_actor[ACTOR_STAT.GOLD] + hero_actor[ACTOR_STAT.GOLD_FIND]
-      template_values['gold_for_winning'] = mob_actor[ACTOR_STAT.GOLD] + hero_actor[ACTOR_STAT.GOLD_FIND]
+      template_values['gold_for_winning'] = mob_actor[ACTOR_STAT.GOLD]
+        + (mob_actor[ACTOR_STAT.GOLD] * hero_actor[ACTOR_STAT.GOLD_FIND])
       inventory.items.append(loot_item)
       inventory.put()
       template_values['experience_gained'] = mob_actor[ACTOR_STAT.EXP_GAINED] + hero_actor[ACTOR_STAT.EXP_BONUS]

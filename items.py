@@ -488,4 +488,98 @@ BLOCK_CHANCE = {
   ]
 }
 
+GOLD_VALUES = {
+  ITEM.TUNIC: [
+    5, 10
+  ],
+  ITEM.HAT: [
+    5, 10
+  ],
+  ITEM.PANTS: [
+    5, 10  ],
+  ITEM.BOOTS: [
+    5, 10
+  ],
+  ITEM.MANTEL: [
+    5, 10
+  ],
+  ITEM.GLOVES: [
+    5, 10
+  ],
+  ITEM.CHESTPLATE: [
+    5, 10
+  ],
+  ITEM.HELMET: [
+    5, 10
+  ],
+  ITEM.FAULDS: [
+    5, 10
+  ],
+  ITEM.GREAVES: [
+    5, 10
+  ],
+  ITEM.PAULDRONS: [
+    5, 10
+  ],
+  ITEM.GAUNTLETS: [
+    5, 10
+  ],
+  ITEM.ONE_HANDED_SWORD: [
+    5, 10, 15
+  ],
+  ITEM.ONE_HANDED_MACE: [
+    5, 10
+  ],
+  ITEM.ONE_HANDED_AXE: [
+    5, 10
+  ],
+  # ITEM.CLAW: [
+  #   '', ''
+  # ],
+  ITEM.SHIELD: [
+    5, 10
+  ],
+  # ITEM.ORB: [
+  #   '', ''
+  # ],  
+  ITEM.TWO_HANDED_SWORD: [
+    5, 10
+  ],
+  ITEM.QUARTERSTAFF: [
+    5, 10
+  ],
+  ITEM.POLEARM: [
+    5, 10
+  ],
+  ITEM.SPEAR: [
+    5, 10
+  ],
+  ITEM.TWO_HANDED_MACE: [
+    5, 10
+  ],
+  ITEM.SLING: [
+    5, 10, 15
+  ],
+  # ITEM.JAVELIN: [
+  #   '', ''
+  # ],
+  # ITEM.WAND: [
+  #   '', ''
+  # ],
+  ITEM.BOW: [
+    5, 10
+  ],
+  # ITEM.CROSSBOW: [
+  #   '', ''
+  # ],
+  ITEM.RING: [
+    5, 10
+  ],
+  ITEM.AMULET: [
+    5, 10
+  ],
+  ITEM.EARRING: [
+    5, 10
+  ]
+}
 

@@ -11,7 +11,7 @@ class MONSTER:
   def makeMobActor(health, block, defense, accuracy, thrust_resistance, slash_resistance,
       crush_resistance, lightning_resistance, fire_resistance, cold_resistance,
       poison_resistance, thrust_damage, slash_damage, crush_damage, lightning_damage,
-      fire_damage, cold_damage, poison_damage, thorns_damage, name, loot_table,
+      fire_damage, cold_damage, poison_damage, thorns_damage, name, loot_table, gold,
       item_level, exp_gained):
     """ Takes the mob parameters and returns a mob actor. """
     return {
@@ -36,6 +36,7 @@ class MONSTER:
       ACTOR_STAT.THORNS_DAMAGE: thorns_damage,
       ACTOR_STAT.NAME: name,
       # ACTOR_STAT.LOOT_TABLE: loot_table,
+      ACTOR_STAT.GOLD: gold,
       ACTOR_STAT.ITEM_LEVEL: item_level,
       ACTOR_STAT.EXP_GAINED: exp_gained
     }
@@ -62,6 +63,7 @@ class MONSTER:
       None, # Thorns Damage
       "Rat", # Name
       None, # Loot Table
+      5, # Gold Reward
       2, # Item Level
       1, # Exp Gained
   )
@@ -87,6 +89,7 @@ class MONSTER:
       None, # Thorns Damage
       "Snake", # Name
       None, # Loot Table
+      5, # Gold Reward
       3, # Item Level
       2, # Exp Gained
   )
@@ -112,6 +115,7 @@ class MONSTER:
       None, # Thorns Damage
       "Wolf", # Name
       None, # Loot Table
+      5, # Gold Reward
       5, # Item Level
       3, # Exp Gained
   )
@@ -137,6 +141,7 @@ class MONSTER:
       None, # Thorns Damage
       "Bear", # Name
       None, # Loot Table
+      5, # Gold Reward
       8, # Item Level
       5, # Exp Gained
   )
@@ -162,6 +167,7 @@ class MONSTER:
       None, # Thorns Damage
       "DAGRON", # Name
       None, # Loot Table
+      5, # Gold Reward
       15, # Item Level
       15, # Exp Gained
   )
@@ -187,6 +193,7 @@ class MONSTER:
       None, # Thorns Damage
       "Freezo", # Name
       None, # Loot Table
+      5, # Gold Reward
       10, # Item Level
       9, # Exp Gained
   )
@@ -212,6 +219,7 @@ class MONSTER:
       None, # Thorns Damage
       "RedSlime", # Name
       None, # Loot Table
+      5, # Gold Reward
       4, # Item Level
       2, # Exp Gained
   )
@@ -237,6 +245,7 @@ class MONSTER:
       None, # Thorns Damage
       "YellowSlime", # Name
       None, # Loot Table
+      5, # Gold Reward
       5, # Item Level
       3, # Exp Gained
   )
@@ -262,6 +271,7 @@ class MONSTER:
       None, # Thorns Damage
       "BlueSlime", # Name
       None, # Loot Table
+      5, # Gold Reward
       4, # Item Level
       2, # Exp Gained
   )
@@ -287,6 +297,7 @@ class MONSTER:
       None, # Thorns Damage
       "Slime", # Name
       None, # Loot Table
+      5, # Gold Reward
       3, # Item Level
       2, # Exp Gained
   )

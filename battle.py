@@ -40,6 +40,7 @@ class ACTOR_STAT:
 
   ## Meta stats
   GOLD_FIND = "gold_find"  # Should be a multiplier (float)
+  GOLD = "gold" # Gold reward amount
   MAGIC_FIND = "magic_find"  # Should be an integer
   # KARMA = 'karma'
   # FAME = 'fame'

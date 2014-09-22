@@ -7,12 +7,38 @@
       <h2>
         Your items!
       </h2>
-      <div>
-        GOLD: {{stats}}
-      </div>
       <form action="/battle" method="get">
         <input type='submit' value="battle"/>
       </form>
+      <table class="stat-description-table">
+        <div>
+          <tr>
+            <td>
+              GOLD: {{stats.gold}}
+            </td>
+            <td>
+              EXP: {{stats.exp}}
+            </td>
+            <td>
+              LEVEL: {{stats.level}}
+            </td>
+          </tr>
+        </div>
+      </table>
+      <div>
+        <table class="hero-description-table">
+        {% for key in hero.keys() %}
+          <tr>
+            <td>
+              {{key}}
+            </td>
+            <td>
+              {{hero[key]}}
+            </td>
+          </tr>
+        {% endfor %}
+        <table>
+      </div>
       {% for item in items[::-1] %}
         <table class="item-description-table">
           <tr>

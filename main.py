@@ -105,8 +105,7 @@ class Battle(webapp2.RequestHandler):
       template_values['item_for_winning'] = getItemFromItemString(loot_item)
       inventory = hero.inventory.get()
       inventory.gold += mob_actor[ACTOR_STAT.GOLD] + hero_actor[ACTOR_STAT.GOLD_FIND]
-      template_values['gold_for_winning'] = mob_actor[ACTOR_STAT.GOLD]
-        + (mob_actor[ACTOR_STAT.GOLD] * hero_actor[ACTOR_STAT.GOLD_FIND])
+      template_values['gold_for_winning'] = mob_actor[ACTOR_STAT.GOLD] + (mob_actor[ACTOR_STAT.GOLD] * hero_actor[ACTOR_STAT.GOLD_FIND])
       inventory.items.append(loot_item)
       inventory.put()
       template_values['experience_gained'] = mob_actor[ACTOR_STAT.EXP_GAINED] + hero_actor[ACTOR_STAT.EXP_BONUS]
@@ -149,18 +148,19 @@ class Items(webapp2.RequestHandler):
   def get(self):
     ih_user = getCurrentIdleHeroesUser(self)
     hero = ih_user.hero[0].get()
+    hero_actor = getBattleActorFromHero(hero)
     inventory = hero.inventory.get()
     items = inventory.items
     display_stats = {
       'gold': inventory.gold, 'exp': hero.experience,
-      'level': getHeroLevel(hero.experience),
+      'level': getHeroLevel(hero.experience), 'hero': hero_actor
     }
     display_items = []
     for item in items:
       display_items.append(getItemFromItemString(item))
 
     template = JINJA_ENVIRONMENT.get_template('items.html')
-    template_values = {'items': display_items, 'stats': display_stats}
+    template_values = {'items': display_items, 'stats': display_stats, 'hero': hero_actor}
     self.response.write(template.render(template_values))
 
 application = webapp2.WSGIApplication([

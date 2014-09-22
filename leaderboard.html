@@ -1,0 +1,42 @@
+{% include 'header.html' %}
+{% autoescape true %}
+<html>
+  <body>
+    <div class='content'>
+      {% include 'title.html' %}
+        <table class="leaderboard-table">
+          <tr>
+            <td>
+              Hero
+            </td>
+            <td>
+              Experience
+            </td>
+            <td>
+              Gold
+            </td>
+            <td>
+              Wins
+            </td>
+          <tr>
+        {% for user in users %}
+          <tr>
+            <td>
+              {{user.name}}
+            </td>
+            <td>
+              {{hero.experience}}
+            </td>
+            <td>
+              {{hero.inventory}}
+            </td>
+            <td>
+              {{hero}}
+            </td>
+          <tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>
+{% endautoescape %}

@@ -9,12 +9,6 @@
         {% include 'herocreation.html' %}
       {% else %}
         You has a hero!
-      <form action="/battle" method="get">
-        <input type='submit' value="battle"/>
-      </form>
-      <form action="/items" method="get">
-        <input type='submit' value="show me my items"/>
-      </form>
       {% endif %}
       
       {% if log %}

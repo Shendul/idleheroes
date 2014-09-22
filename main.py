@@ -163,6 +163,18 @@ class Items(webapp2.RequestHandler):
     template_values = {'items': display_items, 'stats': display_stats, 'hero': hero_actor}
     self.response.write(template.render(template_values))
 
+class Leaderboard(webapp2.RequestHandler):
+  def get(self):
+    # Get the players and sort them by score
+    user_query = IHUser.query().order(-Hero.experience)
+    users = user_query.fetch()
+    template_values = {
+      'users': users,
+    }
+    template = JINJA_ENVIRONMENT.get_template('leaderboard.html')
+    self.response.write(template.render(template_values))
+
+
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/banned', Banned),
@@ -171,4 +183,5 @@ application = webapp2.WSGIApplication([
     ('/items', Items),
     ('/equip', EquipItem),
     ('/sell', SellItem),
+    ('/leaderboard', Leaderboard),
 ], debug=True)

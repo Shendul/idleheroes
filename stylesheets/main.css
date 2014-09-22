@@ -203,6 +203,11 @@ div.buttonText {
   padding: 2px 20px;
 }
 
+.hero-description-table td:first-child {
+  font-weight: bold;
+  text-align: right;
+}
+
 .stat-description-table {
   margin-left: auto;
   margin-right: auto;

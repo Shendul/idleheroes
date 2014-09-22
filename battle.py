@@ -130,7 +130,7 @@ def simulateAttack(attacker, defender, battle_log):
         str(defender[ACTOR_STAT.CURRENT_HP] - damage) + " HP remaining")
     defender[ACTOR_STAT.CURRENT_HP] -= damage
     ## Now check for Thorns dmg and make that roll
-    if defender[ACTOR_STAT.THORNS_DAMAGE] >= (0, 0):
+    if defender[ACTOR_STAT.THORNS_DAMAGE] != None and defender[ACTOR_STAT.THORNS_DAMAGE][1] > 0:
       thorns_roll = random.random()
       thorns = mathutils.getRollFromRange(thorns_roll, defender[ACTOR_STAT.THORNS_DAMAGE])
       battle_log.append(defender[ACTOR_STAT.NAME] + " deals " + str(thorns) + " thorns damage to " + 

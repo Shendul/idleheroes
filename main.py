@@ -9,6 +9,7 @@ from heroclass import *
 from itemutils import *
 from battle import *
 from monster import *
+from experience import *
 
 import jinja2
 import webapp2
@@ -149,7 +150,10 @@ class Items(webapp2.RequestHandler):
     hero = ih_user.hero[0].get()
     inventory = hero.inventory.get()
     items = inventory.items
-    display_stats = [inventory.gold]
+    display_stats = {
+      'gold': inventory.gold, 'exp': hero.experience,
+      'level': getHeroLevel(hero.experience),
+    }
     display_items = []
     for item in items:
       display_items.append(getItemFromItemString(item))

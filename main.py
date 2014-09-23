@@ -165,11 +165,18 @@ class Items(webapp2.RequestHandler):
 
 class Leaderboard(webapp2.RequestHandler):
   def get(self):
-    # Get the players and sort them by score
-    user_query = IHUser.query().order(-Hero.experience)
+    # Get the user and sort them by exp,lvl, ect
+    user_query = IHUser.query()
     users = user_query.fetch()
+    heros = []
+    for user in users:
+      heros.append(user.hero[0].get())
+    experience = heros
+    sorted(experience, key=lambda hero: hero.experience)
+    logging.info(experience)
     template_values = {
-      'users': users,
+      'heros': heros,
+      'experience': experience,
     }
     template = JINJA_ENVIRONMENT.get_template('leaderboard.html')
     self.response.write(template.render(template_values))

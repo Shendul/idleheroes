@@ -12,26 +12,17 @@
             <td>
               Experience
             </td>
-            <td>
-              Gold
-            </td>
-            <td>
-              Wins
-            </td>
           <tr>
-        {% for user in users %}
+        {% for user in experience %}
           <tr>
             <td>
               {{user.name}}
             </td>
             <td>
-              {{hero.experience}}
+              {{user.experience}}
             </td>
             <td>
-              {{hero.inventory}}
-            </td>
-            <td>
-              {{hero}}
+              {{user}}
             </td>
           <tr>
         {% endfor %}

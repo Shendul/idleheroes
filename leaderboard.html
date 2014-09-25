@@ -4,29 +4,26 @@
   <body>
     <div class='content'>
       {% include 'title.html' %}
-        <table class="leaderboard-table">
+      <table class="leaderboard-table">
+        <tr>
+          <th>
+            Hero
+          </th>
+          <th>
+            Experience
+          </th>
+        <tr>
+        {% for hero in heros[::-1] %}
           <tr>
             <td>
-              Hero
+              {{hero.name}}
             </td>
             <td>
-              Experience
-            </td>
-          <tr>
-        {% for user in experience %}
-          <tr>
-            <td>
-              {{user.name}}
-            </td>
-            <td>
-              {{user.experience}}
-            </td>
-            <td>
-              {{user}}
+              {{hero.experience}}
             </td>
           <tr>
         {% endfor %}
-      </table>
+    </table>
     </div>
   </body>
 </html>

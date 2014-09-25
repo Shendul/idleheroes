@@ -99,7 +99,6 @@ def getHeroGear(inventory):
   return result
 
 def getBattleActorFromHero(hero):
-  ## TODO: Finish this function.
   actor = {}
   hero_level = getHeroLevel(hero.experience)
   actor[ACTOR_STAT.LEVEL] = hero_level

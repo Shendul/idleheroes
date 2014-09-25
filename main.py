@@ -171,12 +171,9 @@ class Leaderboard(webapp2.RequestHandler):
     heros = []
     for user in users:
       heros.append(user.hero[0].get())
-    experience = heros
-    sorted(experience, key=lambda hero: hero.experience)
-    logging.info(experience)
+    heros = sorted(heros, key=lambda hero: hero.experience)
     template_values = {
-      'heros': heros,
-      'experience': experience,
+      'heros': heros
     }
     template = JINJA_ENVIRONMENT.get_template('leaderboard.html')
     self.response.write(template.render(template_values))

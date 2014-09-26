@@ -81,6 +81,35 @@ class CreateHero(webapp2.RequestHandler):
     ih_user.put()
     self.redirect("/")
 
+class Duel(webapp2.RequestHandler):
+  ## TODO: make this a post?
+  def get(self):
+    ## get the hero actor
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    hero_actor = getBattleActorFromHero(hero)
+    user_query = IHUser.query()
+    users = user_query.fetch()
+    heros = []
+    for user in users:
+      heros.append(user.hero[0].get())
+
+    ## get the enemy hero actor
+    hero2 = random.choice(heros)
+    hero_actor2 = getBattleActorFromHero(hero2)
+
+    ## simulate the battle (ignoring time)
+    battle_result = getBattleResult(hero_actor, hero_actor2, False)
+    template_values = {
+      'pvp_victory': battle_result[0],
+      'pvp_log': battle_result[1],
+      'pvp_hero': hero_actor
+    }
+
+    template = JINJA_ENVIRONMENT.get_template('duel.html')
+    self.response.write(template.render(template_values))
+
+
 class Battle(webapp2.RequestHandler):
   ## TODO: make this a post?
   def get(self):
@@ -88,6 +117,7 @@ class Battle(webapp2.RequestHandler):
     ih_user = getCurrentIdleHeroesUser(self)
     hero = ih_user.hero[0].get()
     hero_actor = getBattleActorFromHero(hero)
+
 
     ## get the mob actor
     mob_actor = random.choice(ALL_MOBS)
@@ -184,6 +214,7 @@ application = webapp2.WSGIApplication([
     ('/banned', Banned),
     ('/heroCreation', CreateHero),
     ('/battle', Battle),
+    ('/duel', Duel),
     ('/items', Items),
     ('/equip', EquipItem),
     ('/sell', SellItem),

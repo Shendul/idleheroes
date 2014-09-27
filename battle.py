@@ -43,7 +43,6 @@ class ACTOR_STAT:
   GOLD = "gold" # Gold reward amount
   MAGIC_FIND = "magic_find"  # Should be an integer
   # KARMA = 'karma'
-  # FAME = 'fame'
   EXP_GAINED = "exp_gained"
   EXP_BONUS = "exp_bonus"
   LEVEL = "level"

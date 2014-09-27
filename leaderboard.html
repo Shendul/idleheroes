@@ -12,7 +12,7 @@
           <th>
             Experience
           </th>
-        <tr>
+        </tr>
         {% for hero in heros[::-1] %}
           <tr>
             <td>
@@ -21,9 +21,29 @@
             <td>
               {{hero.experience}}
             </td>
-          <tr>
+          </tr>
         {% endfor %}
     </table>
+      <table class="leaderboard-table">
+        <tr>
+          <th>
+            Hero
+          </th>
+          <th>
+            Fame
+          </th>
+        </tr>
+        {% for fame in fames[::-1] %}
+          <tr>
+            <td>
+              {{fame.name}}
+            </td>
+            <td>
+              {{fame.fame}}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
     </div>
   </body>
 </html>

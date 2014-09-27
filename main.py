@@ -105,6 +105,10 @@ class Duel(webapp2.RequestHandler):
       'pvp_log': battle_result[1],
       'pvp_hero': hero_actor
     }
+    if battle_result[0]:
+      hero.fame += 5
+      hero.put()
+      template_values['fame_for_winning'] = '5'
 
     template = JINJA_ENVIRONMENT.get_template('duel.html')
     self.response.write(template.render(template_values))
@@ -173,6 +177,35 @@ class SellItem(webapp2.RequestHandler):
           inventory.put()
     self.redirect('/items')
 
+class SellCommonItems(webapp2.RequestHandler):
+  def get(self):
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    inventory = hero.inventory.get()
+    items = inventory.items
+    for item in items:
+      if item[2] == '0':
+        items.remove(item)
+        inventory.items = items
+        # take item base name, grade, and rarity to grab gold value.
+        inventory.gold += GOLD_VALUES[item[0]][int(item[1])] * (int(item[2]) + 1)
+        inventory.put()
+    self.redirect('/items')
+
+class SellUncommonItems(webapp2.RequestHandler):
+  def get(self):
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    inventory = hero.inventory.get()
+    items = inventory.items
+    for item in items:
+      if item[2] == '1':
+        items.remove(item)
+        inventory.items = items
+        # take item base name, grade, and rarity to grab gold value.
+        inventory.gold += GOLD_VALUES[item[0]][int(item[1])] * (int(item[2]) + 1)
+        inventory.put()
+    self.redirect('/items')
 
 class Items(webapp2.RequestHandler):
   def get(self):
@@ -201,9 +234,11 @@ class Leaderboard(webapp2.RequestHandler):
     heros = []
     for user in users:
       heros.append(user.hero[0].get())
-    heros = sorted(heros, key=lambda hero: hero.experience)
+    experience = sorted(heros, key=lambda hero: hero.experience)
+    fames = sorted(heros, key=lambda hero: hero.fame)
     template_values = {
-      'heros': heros
+      'heros': experience,
+      'fames': fames
     }
     template = JINJA_ENVIRONMENT.get_template('leaderboard.html')
     self.response.write(template.render(template_values))
@@ -218,5 +253,7 @@ application = webapp2.WSGIApplication([
     ('/items', Items),
     ('/equip', EquipItem),
     ('/sell', SellItem),
+    ('/sell_all_common', SellCommonItems),
+    ('/sell_all_uncommon', SellUncommonItems),
     ('/leaderboard', Leaderboard),
 ], debug=True)

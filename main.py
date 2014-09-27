@@ -161,6 +161,8 @@ class EquipItem(webapp2.RequestHandler):
     self.redirect('/items')
 
 class SellItem(webapp2.RequestHandler):
+  ## These should be post not get, because we are modifying the database.
+  ## TODO: read up on post vs get.
   def get(self):
     ih_user = getCurrentIdleHeroesUser(self)
     hero = ih_user.hero[0].get()
@@ -174,7 +176,7 @@ class SellItem(webapp2.RequestHandler):
           inventory.items = items
           # take item base name, grade, and rarity to grab gold value.
           inventory.gold += GOLD_VALUES[item[0]][int(item[1])] * (int(item[2]) + 1)
-          inventory.put()
+    inventory.put()
     self.redirect('/items')
 
 class SellCommonItems(webapp2.RequestHandler):
@@ -183,13 +185,15 @@ class SellCommonItems(webapp2.RequestHandler):
     hero = ih_user.hero[0].get()
     inventory = hero.inventory.get()
     items = inventory.items
+    ## This is probably not safe, but determine the gold ammount gained from selling.
     for item in items:
       if item[2] == '0':
-        items.remove(item)
-        inventory.items = items
-        # take item base name, grade, and rarity to grab gold value.
+        # Take item base name, grade, and rarity to grab gold value.
         inventory.gold += GOLD_VALUES[item[0]][int(item[1])] * (int(item[2]) + 1)
-        inventory.put()
+    ## Update the item list so that the sold items are gone.
+    inventory.items = [item for item in items if item[2] != '0']
+    ## Write to the data store.
+    inventory.put()
     self.redirect('/items')
 
 class SellUncommonItems(webapp2.RequestHandler):
@@ -198,13 +202,15 @@ class SellUncommonItems(webapp2.RequestHandler):
     hero = ih_user.hero[0].get()
     inventory = hero.inventory.get()
     items = inventory.items
+    ## This is probably not safe, but determine the gold ammount gained from selling.
     for item in items:
       if item[2] == '1':
-        items.remove(item)
-        inventory.items = items
-        # take item base name, grade, and rarity to grab gold value.
+        # Take item base name, grade, and rarity to grab gold value.
         inventory.gold += GOLD_VALUES[item[0]][int(item[1])] * (int(item[2]) + 1)
-        inventory.put()
+    ## Update the item list so that the sold items are gone.
+    inventory.items = [item for item in items if item[2] != '1']
+    ## Write to the data store.
+    inventory.put()
     self.redirect('/items')
 
 class Items(webapp2.RequestHandler):

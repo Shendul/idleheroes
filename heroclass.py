@@ -307,6 +307,8 @@ def equipItem(inventory, item):
     inventory.feet = item
   elif item_slot == ITEM_SLOT.SHOULDERS:
     inventory.shoulders = item
+  elif item_slot == ITEM_SLOT.HANDS:
+    inventory.hands = item
   elif item_slot == ITEM_SLOT.LEFT_RING:
     inventory.left_ring = item
   elif item_slot == ITEM_SLOT.RIGHT_RING:

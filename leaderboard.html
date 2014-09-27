@@ -12,7 +12,7 @@
           <th>
             Experience
           </th>
-        <tr>
+        </tr>
         {% for hero in heros[::-1] %}
           <tr>
             <td>
@@ -21,29 +21,49 @@
             <td>
               {{hero.experience}}
             </td>
+          </tr>
+        {% endfor %}
+      </table>
+      <table class="leaderboard-table">
+        <tr>
+          <th>
+            Hero
+          </th>
+          <th>
+            Gold
+          </th>
+        <tr>
+        {% for hero in gold_list[::-1] %}
+          <tr>
+            <td>
+              {{hero.name}}
+            </td>
+            <td>
+              {{hero.gold}}
+            </td>
           <tr>
         {% endfor %}
-    </table>
-    <table class="leaderboard-table">
-      <tr>
-        <th>
-          Hero
-        </th>
-        <th>
-          Gold
-        </th>
-      <tr>
-      {% for hero in gold_list[::-1] %}
+      </table>
+      <table class="leaderboard-table">
         <tr>
-          <td>
-            {{hero.name}}
-          </td>
-          <td>
-            {{hero.gold}}
-          </td>
-        <tr>
-      {% endfor %}
-    </table>
+          <th>
+            Hero
+          </th>
+          <th>
+            Fame
+          </th>
+        </tr>
+        {% for fame in fames[::-1] %}
+          <tr>
+            <td>
+              {{fame.name}}
+            </td>
+            <td>
+              {{fame.fame}}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
     </div>
   </body>
 </html>

@@ -81,6 +81,39 @@ class CreateHero(webapp2.RequestHandler):
     ih_user.put()
     self.redirect("/")
 
+class Duel(webapp2.RequestHandler):
+  ## TODO: make this a post?
+  def get(self):
+    ## get the hero actor
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    hero_actor = getBattleActorFromHero(hero)
+    user_query = IHUser.query()
+    users = user_query.fetch()
+    heros = []
+    for user in users:
+      heros.append(user.hero[0].get())
+
+    ## get the enemy hero actor
+    hero2 = random.choice(heros)
+    hero_actor2 = getBattleActorFromHero(hero2)
+
+    ## simulate the battle (ignoring time)
+    battle_result = getBattleResult(hero_actor, hero_actor2, False)
+    template_values = {
+      'pvp_victory': battle_result[0],
+      'pvp_log': battle_result[1],
+      'pvp_hero': hero_actor
+    }
+    if battle_result[0]:
+      hero.fame += 5
+      hero.put()
+      template_values['fame_for_winning'] = '5'
+
+    template = JINJA_ENVIRONMENT.get_template('duel.html')
+    self.response.write(template.render(template_values))
+
+
 class Battle(webapp2.RequestHandler):
   ## TODO: make this a post?
   def get(self):
@@ -88,6 +121,7 @@ class Battle(webapp2.RequestHandler):
     ih_user = getCurrentIdleHeroesUser(self)
     hero = ih_user.hero[0].get()
     hero_actor = getBattleActorFromHero(hero)
+
 
     ## get the mob actor
     mob_actor = random.choice(ALL_MOBS)
@@ -143,6 +177,35 @@ class SellItem(webapp2.RequestHandler):
           inventory.put()
     self.redirect('/items')
 
+class SellCommonItems(webapp2.RequestHandler):
+  def get(self):
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    inventory = hero.inventory.get()
+    items = inventory.items
+    for item in items:
+      if item[2] == '0':
+        items.remove(item)
+        inventory.items = items
+        # take item base name, grade, and rarity to grab gold value.
+        inventory.gold += GOLD_VALUES[item[0]][int(item[1])] * (int(item[2]) + 1)
+        inventory.put()
+    self.redirect('/items')
+
+class SellUncommonItems(webapp2.RequestHandler):
+  def get(self):
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    inventory = hero.inventory.get()
+    items = inventory.items
+    for item in items:
+      if item[2] == '1':
+        items.remove(item)
+        inventory.items = items
+        # take item base name, grade, and rarity to grab gold value.
+        inventory.gold += GOLD_VALUES[item[0]][int(item[1])] * (int(item[2]) + 1)
+        inventory.put()
+    self.redirect('/items')
 
 class Items(webapp2.RequestHandler):
   def get(self):
@@ -171,13 +234,15 @@ class Leaderboard(webapp2.RequestHandler):
     heros = []
     for user in users:
       heros.append(user.hero[0].get())
-    heros = sorted(heros, key=lambda hero: hero.experience)
+    experience = sorted(heros, key=lambda hero: hero.experience)
+    fames = sorted(heros, key=lambda hero: hero.fame)
     gold_list = []
     for hero in heros:
       gold_list.append({'name': hero.name, 'gold': hero.inventory.get().gold})
     gold_list = sorted(gold_list, key=lambda hero: hero['gold'])
     template_values = {
-      'heros': heros,
+      'heros': experience,
+      'fames': fames,
       'gold_list': gold_list
     }
     template = JINJA_ENVIRONMENT.get_template('leaderboard.html')
@@ -189,8 +254,11 @@ application = webapp2.WSGIApplication([
     ('/banned', Banned),
     ('/heroCreation', CreateHero),
     ('/battle', Battle),
+    ('/duel', Duel),
     ('/items', Items),
     ('/equip', EquipItem),
     ('/sell', SellItem),
+    ('/sell_all_common', SellCommonItems),
+    ('/sell_all_uncommon', SellUncommonItems),
     ('/leaderboard', Leaderboard),
 ], debug=True)

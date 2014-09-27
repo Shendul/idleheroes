@@ -1,0 +1,42 @@
+{% include 'header.html' %}
+{% autoescape true %}
+<html>
+  <body>
+    <div class="content">
+      {% include 'title.html' %}
+      {% if pvp_log %}
+          <div>
+            <div>
+              <table class="hero-description-table">
+              {% for key in pvp_hero.keys() %}
+              <tr>
+                <td>
+                  {{key}}
+                </td>
+                <td>
+                  {{pvp_hero[key]}}
+                </td>
+              </tr>
+              {% endfor %}
+              <table>
+            </div>
+            <div class="hero-image"></div>
+            <h2>VS.</h2>
+            <div class="hero-image"></div>
+          </div>
+          {% if pvp_victory %}
+            <h2>You Win!</h2>
+            You gained {{fame_for_winning}} fame!
+          {% else %}
+            <h2>You Lose!</h2>
+          {% endif %}
+          <div>
+            {% autoescape false %}
+              {{pvp_log}}
+            {% endautoescape %} 
+          </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
+{% endautoescape %}

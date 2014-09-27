@@ -10,6 +10,7 @@ class Hero(ndb.Model):
 
   name = ndb.StringProperty()
   experience = ndb.IntegerProperty(default=0) # See experience.py
+  fame = ndb.IntegerProperty(default=0)
   inventory = ndb.KeyProperty(kind='Inventory')
   hero_class = ndb.StringProperty(default="no_class") # See heroclass.py
   #hero_settings = ndb.KeyProperty(kind="HeroSettings")

@@ -266,10 +266,6 @@ class QuestLvlOne(webapp2.RequestHandler):
     hero.quest_time = current_time
     hero.quest = 'A'
     hero.put()
-    template_values = {'on_quest': True}
-    logging.info(template_values['on_quest'])
-    template = JINJA_ENVIRONMENT.get_template('home.html')
-    self.response.write(template.render(template_values))
     self.redirect('/')
 
 class QuestLvlTwo(webapp2.RequestHandler):
@@ -330,12 +326,7 @@ class EndQuest(webapp2.RequestHandler):
     hero.quest_time = None
     inventory.put()
     hero.put()
-    logging.info(time_quested)
-    logging.info(num_of_turns)
     self.redirect('/')
-    template_values = { 'on_quest': False}
-    template = JINJA_ENVIRONMENT.get_template('home.html')
-    self.response.write(template.render(template_values))
 
 
 

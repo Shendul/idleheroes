@@ -5,6 +5,7 @@
 import math
 import random
 import mathutils
+import time
 
 class ACTOR_STAT:
   """

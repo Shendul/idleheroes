@@ -1,6 +1,7 @@
 import logging
 import os
 import urllib
+import datetime
 
 from google.appengine.api import users
 from model import *
@@ -254,6 +255,49 @@ class Leaderboard(webapp2.RequestHandler):
     template = JINJA_ENVIRONMENT.get_template('leaderboard.html')
     self.response.write(template.render(template_values))
 
+class Quest(webapp2.RequestHandler):
+  def get(self):
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    current_time = datetime.datetime.now()
+    logging.info(current_time)
+    hero.quest_time = current_time
+    hero.quest = 'A'
+    hero.put()
+    self.redirect('/')
+
+class EndQuest(webapp2.RequestHandler):
+  def get(self):
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    current_time = datetime.datetime.now()
+    time_quested = current_time - hero.quest_time
+    num_of_turns = int(time_quested.total_seconds() / 30)
+    hero_actor = getBattleActorFromHero(hero)
+    inventory = hero.inventory.get()
+    while num_of_turns > 0:
+      num_of_turns -= 1
+      ## get the mob actor
+      mob_actor = random.choice(A_MOBS)
+      ## simulate the battle (ignoring time)
+      battle_result = getBattleResult(hero_actor, mob_actor, False)
+      if battle_result[0]:
+        ## victory, so get loot and xp.
+        loot_item = generateRandomItem(hero_actor[ACTOR_STAT.MAGIC_FIND],
+            mob_actor[ACTOR_STAT.ITEM_LEVEL])
+        inventory.gold += (mob_actor[ACTOR_STAT.GOLD] +
+            hero_actor[ACTOR_STAT.GOLD_FIND])
+        inventory.items.append(loot_item)
+        hero.experience += (mob_actor[ACTOR_STAT.EXP_GAINED] +
+            hero_actor[ACTOR_STAT.EXP_BONUS])
+    hero.quest_time = None
+    inventory.put()
+    hero.put()
+    logging.info(time_quested)
+    logging.info(num_of_turns)
+    self.redirect('/')
+
+
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -263,6 +307,8 @@ application = webapp2.WSGIApplication([
     ('/duel', Duel),
     ('/items', Items),
     ('/equip', EquipItem),
+    ('/quest', Quest),
+    ('/end_quest', EndQuest),
     ('/sell', SellItem),
     ('/sell_all_common', SellCommonItems),
     ('/sell_all_uncommon', SellUncommonItems),

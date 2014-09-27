@@ -11,10 +11,12 @@ class Hero(ndb.Model):
   name = ndb.StringProperty()
   experience = ndb.IntegerProperty(default=0) # See experience.py
   fame = ndb.IntegerProperty(default=0)
+  quest = ndb.StringProperty()
+  quest_time = ndb.DateTimeProperty()
   inventory = ndb.KeyProperty(kind='Inventory')
   hero_class = ndb.StringProperty(default="no_class") # See heroclass.py
   #hero_settings = ndb.KeyProperty(kind="HeroSettings")
-  battle_history = ndb.KeyProperty(kind="BattleOutcome", repeated=True)
+  #battle_history = ndb.KeyProperty(kind="BattleOutcome", repeated=True)
 
 
 class IHUser(ndb.Model):

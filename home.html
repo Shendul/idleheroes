@@ -10,6 +10,13 @@
       {% else %}
         You has a hero!
       {% endif %}
+
+      <form action="/quest" method="get">
+        <input type='submit' value="Start Killing Stuff"/>
+      </form>
+      <form action="/end_quest" method="get">
+        <input type='submit' value="Stop Killing Stuff"/>
+      </form>
       
       {% if log %}
         <div>

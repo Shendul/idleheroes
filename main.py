@@ -2,6 +2,7 @@ import logging
 import os
 import urllib
 import datetime
+import json
 
 from google.appengine.api import users
 from model import *
@@ -44,8 +45,12 @@ class MainPage(webapp2.RequestHandler):
         template_values['no_hero'] = True
       else:
         ## TODO consider multiple heros
-        if ih_user.hero[0].get().quest_time != None:
+        quest_time = ih_user.hero[0].get().quest_time
+        if quest_time != None:
           template_values['on_quest'] = True
+          current_time = datetime.datetime.now()
+          time_quested = current_time - quest_time
+          template_values['time_quested'] = int(time_quested.total_seconds())
 
       template_values['display_name'] = ih_user.display_name
       template = JINJA_ENVIRONMENT.get_template('home.html')
@@ -98,6 +103,7 @@ class Duel(webapp2.RequestHandler):
       heros.append(user.hero[0].get())
 
     ## get the enemy hero actor
+    ## Todo: make sure it's not you!
     hero2 = random.choice(heros)
     hero_actor2 = getBattleActorFromHero(hero2)
 
@@ -114,42 +120,6 @@ class Duel(webapp2.RequestHandler):
       template_values['fame_for_winning'] = '5'
 
     template = JINJA_ENVIRONMENT.get_template('duel.html')
-    self.response.write(template.render(template_values))
-
-
-class Battle(webapp2.RequestHandler):
-  ## TODO: make this a post?
-  def get(self):
-    ## get the hero actor
-    ih_user = getCurrentIdleHeroesUser(self)
-    hero = ih_user.hero[0].get()
-    hero_actor = getBattleActorFromHero(hero)
-
-
-    ## get the mob actor
-    mob_actor = random.choice(ALL_MOBS)
-    ## simulate the battle (ignoring time)
-    battle_result = getBattleResult(hero_actor, mob_actor, False)
-    template_values = {
-      'victory': battle_result[0],
-      'log': battle_result[1],
-      'enemy_image': battle_result[2].lower() + '-image',
-      'hero': hero_actor
-    }
-    if battle_result[0]:
-      ## victory, so get loot and xp.
-      loot_item = generateRandomItem(hero_actor[ACTOR_STAT.MAGIC_FIND], mob_actor[ACTOR_STAT.ITEM_LEVEL])
-      template_values['item_for_winning'] = getItemFromItemString(loot_item)
-      inventory = hero.inventory.get()
-      inventory.gold += mob_actor[ACTOR_STAT.GOLD] + hero_actor[ACTOR_STAT.GOLD_FIND]
-      template_values['gold_for_winning'] = mob_actor[ACTOR_STAT.GOLD] + (mob_actor[ACTOR_STAT.GOLD] * hero_actor[ACTOR_STAT.GOLD_FIND])
-      inventory.items.append(loot_item)
-      inventory.put()
-      template_values['experience_gained'] = mob_actor[ACTOR_STAT.EXP_GAINED] + hero_actor[ACTOR_STAT.EXP_BONUS]
-      hero.experience += mob_actor[ACTOR_STAT.EXP_GAINED] + hero_actor[ACTOR_STAT.EXP_BONUS]
-      hero.put()
-
-    template = JINJA_ENVIRONMENT.get_template('home.html')
     self.response.write(template.render(template_values))
 
 class EquipItem(webapp2.RequestHandler):
@@ -296,7 +266,7 @@ class EndQuest(webapp2.RequestHandler):
     hero = ih_user.hero[0].get()
     current_time = datetime.datetime.now()
     time_quested = current_time - hero.quest_time
-    num_of_turns = int(time_quested.total_seconds() / 30)
+    battles_to_simulate = int(time_quested.total_seconds() / 30)
     hero_actor = getBattleActorFromHero(hero)
     inventory = hero.inventory.get()
     quest_lvl = hero.quest
@@ -309,8 +279,14 @@ class EndQuest(webapp2.RequestHandler):
     else:
       quest_lvl = LVL_ONE_MOBS
 
-    while num_of_turns > 0:
-      num_of_turns -= 1
+    quest_log = {}
+    quest_log['wins'] = 0
+    quest_log['losses'] = 0
+    quest_log['xp'] = 0
+    quest_log['gold'] = 0
+
+    while battles_to_simulate > 0:
+      battles_to_simulate -= 1
       ## get the mob actor
       mob_actor = random.choice(quest_lvl)
       battle_result = getBattleResult(hero_actor, mob_actor, False)
@@ -318,15 +294,25 @@ class EndQuest(webapp2.RequestHandler):
         ## victory, so get loot and xp.
         loot_item = generateRandomItem(hero_actor[ACTOR_STAT.MAGIC_FIND],
             mob_actor[ACTOR_STAT.ITEM_LEVEL])
-        inventory.gold += (mob_actor[ACTOR_STAT.GOLD] +
-            hero_actor[ACTOR_STAT.GOLD_FIND])
+        gold = mob_actor[ACTOR_STAT.GOLD] + hero_actor[ACTOR_STAT.GOLD_FIND]
+        inventory.gold += gold
         inventory.items.append(loot_item)
-        hero.experience += (mob_actor[ACTOR_STAT.EXP_GAINED] +
+        experience = (mob_actor[ACTOR_STAT.EXP_GAINED] +
             hero_actor[ACTOR_STAT.EXP_BONUS])
+        hero.experience += experience
+        ## Record victory stats
+        quest_log['wins'] += 1
+        quest_log['xp'] += experience
+        quest_log['gold'] += gold
+      else:
+        quest_log['losses'] += 1
+        ## Record loss stats
+
     hero.quest_time = None
     inventory.put()
     hero.put()
-    self.redirect('/')
+    template = JINJA_ENVIRONMENT.get_template('questlog.html')
+    self.response.write(template.render(quest_log))
 
 
 
@@ -334,7 +320,6 @@ application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/banned', Banned),
     ('/heroCreation', CreateHero),
-    ('/battle', Battle),
     ('/duel', Duel),
     ('/items', Items),
     ('/equip', EquipItem),

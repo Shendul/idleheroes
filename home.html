@@ -9,24 +9,27 @@
         {% include 'herocreation.html' %}
       {% else %}
         You has a hero!
+        <div>
+          {% if on_quest == True %}
+            You're Hero is currently questing. and has probably fought
+            <span id="battle-count"></span> Battles
+
+            <form action="/end_quest" method="get">
+              <input type='submit' value="Bring Hero Home"/>
+            </form>
+          {% else %}
+            <form action="/quest_lvl_one" method="get">
+              <input type='submit' value="Start Level One Quest"/>
+            </form>
+            <form action="/quest_lvl_two" method="get">
+              <input type='submit' value="Start Level Two Quest"/>
+            </form>
+            <form action="/quest_lvl_three" method="get">
+              <input type='submit' value="Start Level Three Quest"/>
+            </form>
+          {% endif %}
+        </div>
       {% endif %}
-      <div>
-        {% if on_quest == True %}
-          <form action="/end_quest" method="get">
-            <input type='submit' value="Return Home"/>
-          </form>
-        {% else %}
-          <form action="/quest_lvl_one" method="get">
-            <input type='submit' value="Start Level One Quest"/>
-          </form>
-          <form action="/quest_lvl_two" method="get">
-            <input type='submit' value="Start Level Two Quest"/>
-          </form>
-          <form action="/quest_lvl_three" method="get">
-            <input type='submit' value="Start Level Three Quest"/>
-          </form>
-        {% endif %}
-      </div>
       {% if log %}
         <div>
           <div>
@@ -67,3 +70,11 @@
   </body>
 </html>
 {% endautoescape %}
+
+<script type="text/javascript">
+  var sec = "{{time_quested}}";
+  document.getElementById("battle-count").innerHTML=(sec/30);
+  setInterval( function(){
+      document.getElementById("battle-count").innerHTML=(++sec/30);
+  }, 1000);
+</script>

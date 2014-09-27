@@ -5,24 +5,18 @@
        document.getElementById("home-tab").className += " selected";
     } else if (document.location.pathname == "/items") {
        document.getElementById("items-tab").className += " selected";
-    } else if (document.location.pathname == "/battle") {
-       document.getElementById("battle-tab").className += " selected";
     } else if (document.location.pathname == "/duel") {
        document.getElementById("duel-tab").className += " selected";
     } else if (document.location.pathname == "/leaderboard") {
        document.getElementById("leaderboard-tab").className += " selected";
     }
   }
-
-
 </script>
+
 <div class="tab-bar">
   <ul>
     <li id="home-tab" class="tab-label">
       <a href="/">Home</a>
-    </li>
-    <li id="battle-tab" class="tab-label">
-      <a href="/battle">Battle</a>
     </li>
      <li id="duel-tab" class="tab-label">
       <a href="/duel">Duel</a>

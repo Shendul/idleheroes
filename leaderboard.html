@@ -24,6 +24,26 @@
           <tr>
         {% endfor %}
     </table>
+    <table class="leaderboard-table">
+      <tr>
+        <th>
+          Hero
+        </th>
+        <th>
+          Gold
+        </th>
+      <tr>
+      {% for hero in gold_list[::-1] %}
+        <tr>
+          <td>
+            {{hero.name}}
+          </td>
+          <td>
+            {{hero.gold}}
+          </td>
+        <tr>
+      {% endfor %}
+    </table>
     </div>
   </body>
 </html>

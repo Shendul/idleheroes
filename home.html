@@ -10,14 +10,23 @@
       {% else %}
         You has a hero!
       {% endif %}
-
-      <form action="/quest" method="get">
-        <input type='submit' value="Start Killing Stuff"/>
-      </form>
-      <form action="/end_quest" method="get">
-        <input type='submit' value="Stop Killing Stuff"/>
-      </form>
-      
+      <div>
+        {% if on_quest == True %}
+        {% else %}
+          <form action="/end_quest" method="get">
+            <input type='submit' value="Return Home"/>
+          </form>
+          <form action="/quest_lvl_one" method="get">
+            <input type='submit' value="Start Level One Quest"/>
+          </form>
+          <form action="/quest_lvl_two" method="get">
+            <input type='submit' value="Start Level Two Quest"/>
+          </form>
+          <form action="/quest_lvl_three" method="get">
+            <input type='submit' value="Start Level Three Quest"/>
+          </form>
+        {% endif %}
+      </div>
       {% if log %}
         <div>
           <div>

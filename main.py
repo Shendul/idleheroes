@@ -255,7 +255,7 @@ class Leaderboard(webapp2.RequestHandler):
     template = JINJA_ENVIRONMENT.get_template('leaderboard.html')
     self.response.write(template.render(template_values))
 
-class Quest(webapp2.RequestHandler):
+class QuestLvlOne(webapp2.RequestHandler):
   def get(self):
     ih_user = getCurrentIdleHeroesUser(self)
     hero = ih_user.hero[0].get()
@@ -263,6 +263,32 @@ class Quest(webapp2.RequestHandler):
     logging.info(current_time)
     hero.quest_time = current_time
     hero.quest = 'A'
+    hero.put()
+    template_values = {'on_quest': True}
+    logging.info(template_values['on_quest'])
+    template = JINJA_ENVIRONMENT.get_template('home.html')
+    self.response.write(template.render(template_values))
+    self.redirect('/')
+
+class QuestLvlTwo(webapp2.RequestHandler):
+  def get(self):
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    current_time = datetime.datetime.now()
+    logging.info(current_time)
+    hero.quest_time = current_time
+    hero.quest = 'B'
+    hero.put()
+    self.redirect('/')
+
+class QuestLvlThree(webapp2.RequestHandler):
+  def get(self):
+    ih_user = getCurrentIdleHeroesUser(self)
+    hero = ih_user.hero[0].get()
+    current_time = datetime.datetime.now()
+    logging.info(current_time)
+    hero.quest_time = current_time
+    hero.quest = 'C'
     hero.put()
     self.redirect('/')
 
@@ -275,11 +301,20 @@ class EndQuest(webapp2.RequestHandler):
     num_of_turns = int(time_quested.total_seconds() / 30)
     hero_actor = getBattleActorFromHero(hero)
     inventory = hero.inventory.get()
+    quest_lvl = hero.quest
+    if quest_lvl == 'A':
+      quest_lvl = LVL_ONE_MOBS
+    elif quest_lvl == 'B':
+      quest_lvl = LVL_TWO_MOBS
+    elif quest_lvl == 'C':
+      quest_lvl = LVL_THREE_MOBS
+    else:
+      quest_lvl = LVL_ONE_MOBS
+
     while num_of_turns > 0:
       num_of_turns -= 1
       ## get the mob actor
-      mob_actor = random.choice(A_MOBS)
-      ## simulate the battle (ignoring time)
+      mob_actor = random.choice(quest_lvl)
       battle_result = getBattleResult(hero_actor, mob_actor, False)
       if battle_result[0]:
         ## victory, so get loot and xp.
@@ -296,6 +331,9 @@ class EndQuest(webapp2.RequestHandler):
     logging.info(time_quested)
     logging.info(num_of_turns)
     self.redirect('/')
+    template_values = { 'on_quest': False}
+    template = JINJA_ENVIRONMENT.get_template('home.html')
+    self.response.write(template.render(template_values))
 
 
 
@@ -307,7 +345,9 @@ application = webapp2.WSGIApplication([
     ('/duel', Duel),
     ('/items', Items),
     ('/equip', EquipItem),
-    ('/quest', Quest),
+    ('/quest_lvl_one', QuestLvlOne),
+    ('/quest_lvl_two', QuestLvlTwo),
+    ('/quest_lvl_three', QuestLvlThree),
     ('/end_quest', EndQuest),
     ('/sell', SellItem),
     ('/sell_all_common', SellCommonItems),

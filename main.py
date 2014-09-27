@@ -43,7 +43,9 @@ class MainPage(webapp2.RequestHandler):
       if len(ih_user.hero) == 0:
         template_values['no_hero'] = True
       else:
-        pass
+        ## TODO consider multiple heros
+        if ih_user.hero[0].get().quest_time != None:
+          template_values['on_quest'] = True
 
       template_values['display_name'] = ih_user.display_name
       template = JINJA_ENVIRONMENT.get_template('home.html')

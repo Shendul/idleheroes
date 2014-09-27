@@ -12,10 +12,10 @@
       {% endif %}
       <div>
         {% if on_quest == True %}
-        {% else %}
           <form action="/end_quest" method="get">
             <input type='submit' value="Return Home"/>
           </form>
+        {% else %}
           <form action="/quest_lvl_one" method="get">
             <input type='submit' value="Start Level One Quest"/>
           </form>

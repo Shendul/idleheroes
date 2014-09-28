@@ -116,9 +116,15 @@ class Duel(webapp2.RequestHandler):
       'pvp_hero': hero_actor
     }
     if battle_result[0]:
+      hero2.fame -= 3
       hero.fame += 5
       hero.put()
+      template_values['loss_of_fame'] = '3'
       template_values['fame_for_winning'] = '5'
+    else:
+      hero.fame -= 3
+      hero.put()
+      template_values['loss_of_fame'] = '3'
 
     template = JINJA_ENVIRONMENT.get_template('duel.html')
     self.response.write(template.render(template_values))

@@ -100,10 +100,11 @@ class Duel(webapp2.RequestHandler):
     users = user_query.fetch()
     heros = []
     for user in users:
-      heros.append(user.hero[0].get())
+      champion = user.hero[0].get()
+      if champion.name != hero.name:
+        heros.append(champion)
 
     ## get the enemy hero actor
-    ## Todo: make sure it's not you!
     hero2 = random.choice(heros)
     hero_actor2 = getBattleActorFromHero(hero2)
 

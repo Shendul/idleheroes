@@ -167,13 +167,13 @@ def getHeroDefense(agility, constitution, level, gear, actor):
 
 def getHeroResists(wisdom, constitution, level, gear, actor):
   ## Get base resists
-  actor[ACTOR_STAT.THRUST_RESISTANCE] = constitution*level
-  actor[ACTOR_STAT.SLASH_RESISTANCE] = constitution*level
-  actor[ACTOR_STAT.CRUSH_RESISTANCE] = constitution*level
-  actor[ACTOR_STAT.LIGHTNING_RESISTANCE] = wisdom*level
-  actor[ACTOR_STAT.FIRE_RESISTANCE] = wisdom*level
-  actor[ACTOR_STAT.COLD_RESISTANCE] = wisdom*level
-  actor[ACTOR_STAT.POISON_RESISTANCE] = wisdom*level
+  actor[ACTOR_STAT.THRUST_RESISTANCE] = constitution*level/500.0
+  actor[ACTOR_STAT.SLASH_RESISTANCE] = constitution*level/500.0
+  actor[ACTOR_STAT.CRUSH_RESISTANCE] = constitution*level/500.0
+  actor[ACTOR_STAT.LIGHTNING_RESISTANCE] = wisdom*level/500.0
+  actor[ACTOR_STAT.FIRE_RESISTANCE] = wisdom*level/500.0
+  actor[ACTOR_STAT.COLD_RESISTANCE] = wisdom*level/500.0
+  actor[ACTOR_STAT.POISON_RESISTANCE] = wisdom*level/500.0
   ## Add resists from items.
   for item in gear.values():
     if item != None:
@@ -211,6 +211,14 @@ def getHeroResists(wisdom, constitution, level, gear, actor):
             actor[ACTOR_STAT.FIRE_RESISTANCE] += affix['value']
             actor[ACTOR_STAT.COLD_RESISTANCE] += affix['value']
             actor[ACTOR_STAT.POISON_RESISTANCE] += affix['value']
+  ## Max out the resists at 85%
+  actor[ACTOR_STAT.THRUST_RESISTANCE] = min(85, actor[ACTOR_STAT.THRUST_RESISTANCE])
+  actor[ACTOR_STAT.SLASH_RESISTANCE] = min(85, actor[ACTOR_STAT.SLASH_RESISTANCE])
+  actor[ACTOR_STAT.CRUSH_RESISTANCE] = min(85, actor[ACTOR_STAT.CRUSH_RESISTANCE])
+  actor[ACTOR_STAT.LIGHTNING_RESISTANCE] = min(85, actor[ACTOR_STAT.LIGHTNING_RESISTANCE])
+  actor[ACTOR_STAT.FIRE_RESISTANCE] = min(85, actor[ACTOR_STAT.FIRE_RESISTANCE])
+  actor[ACTOR_STAT.COLD_RESISTANCE] = min(85, actor[ACTOR_STAT.COLD_RESISTANCE])
+  actor[ACTOR_STAT.POISON_RESISTANCE] = min(85, actor[ACTOR_STAT.POISON_RESISTANCE])
 
 def getHeroDamages(hero, agility, level, gear, actor):
   ## Get base damages

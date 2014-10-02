@@ -118,12 +118,14 @@ def getItemFromItemString(itemString):
       display_name = display_name + ' ' + suffix_name
 
   elif rarity_key == ITEM_RARITY.RARE:
-    prefix_name = RARE_PREFIX_LIST[itemString[index]] ## final char
+    prefix_name = RARE_PREFIX_LIST[itemString[index]]
     suffix_name = RARE_SUFFIX_LIST[base_item_key]
     display_name = prefix_name + ' ' + suffix_name
 
   item['display_name'] = display_name
   item['item_level'] = int(itemString[3:5])
+
+  item['roll_value'] = int(itemString[-3:])
 
   ## Handle Weapon case
   if base_item_key in WEAPONS:
@@ -184,6 +186,7 @@ def generateRandomItem(magic_find, item_level):
 
   # TODO: adjust rarities, and add more rarities
   item_rarity = ITEM_RARITY.COMMON
+  item_roll_value = 0
   if rarity_roll > .90:
     item_rarity = ITEM_RARITY.RARE
     rare_prefix = random.choice(dict.keys((RARE_PREFIX_LIST)))
@@ -215,13 +218,17 @@ def generateRandomItem(magic_find, item_level):
   ## Generate the prefix strings
   prefixes = []
   while (prefix_count > 0):
-    prefixes.append(generateAffix(item_level, base_item))
+    prefix_result = generateAffix(item_level, base_item)
+    item_roll_value += prefix_result[1]
+    prefixes.append(prefix_result[0])
     prefix_count -= 1
 
   ## Generate the suffix strings
   suffixes = []
   while (suffix_count > 0):
-    suffixes.append(generateAffix(item_level, base_item))
+    suffix_result = generateAffix(item_level, base_item)
+    item_roll_value += suffix_result[1]
+    suffixes.append(suffix_result[0])
     suffix_count -= 1
 
   ## Build the affix strings into the item.
@@ -231,6 +238,12 @@ def generateRandomItem(magic_find, item_level):
     result += suffix
   if item_rarity == ITEM_RARITY.RARE:
    result += rare_prefix
+
+  ## Build the roll value string into the item.
+  item_roll_value /= 6.0
+  item_roll_value *= 100
+  item_roll_value = int(item_roll_value)
+  result += format(item_roll_value, '03d')
   return result
 
 

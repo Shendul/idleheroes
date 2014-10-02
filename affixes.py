@@ -1109,12 +1109,12 @@ def generateAffix(item_level, base_item):
   value = mathutils.getRollFromRange(roll, item_affix_grade['minValueRange'])
   if item_affix_grade['maxValue'] != None:
     # Roll the max
-    roll = rollForAffix()
+    roll2 = rollForAffix()
     minRoll = value + 1
     maxRoll = item_affix_grade['maxValue']
-    maxValue = mathutils.getRollFromRange(roll, (minRoll, maxRoll))
+    maxValue = mathutils.getRollFromRange(roll2, (minRoll, maxRoll))
     result += format(value, "03d") + format(maxValue, "03d")
-    return result
+    return (result, (roll+roll2)/2)
   else :
     result += format(value, "06d")
-    return result  
+    return (result, roll)  

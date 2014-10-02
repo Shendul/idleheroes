@@ -68,6 +68,16 @@
               {{item.slot}}
             </td>
           </tr>
+          {% if item.roll_value > 0 %}
+            <tr>
+              <td>
+                Roll Value
+              </td>
+              <td>
+                {{item.roll_value}}
+              </td>
+            </tr>
+          {% endif %}
           {% for affix in item.affixes %}
             <tr>
               <td>

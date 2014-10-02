@@ -273,7 +273,7 @@ class EndQuest(webapp2.RequestHandler):
     hero = ih_user.hero[0].get()
     current_time = datetime.datetime.now()
     time_quested = current_time - hero.quest_time
-    battles_to_simulate = int(time_quested.total_seconds() / 30)
+    battles_to_simulate = int(time_quested.total_seconds() / 1)
     hero_actor = getBattleActorFromHero(hero)
     inventory = hero.inventory.get()
     quest_lvl = hero.quest

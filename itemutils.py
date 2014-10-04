@@ -187,11 +187,11 @@ def generateRandomItem(magic_find, item_level):
   # TODO: adjust rarities, and add more rarities
   item_rarity = ITEM_RARITY.COMMON
   item_roll_value = 0
-  if rarity_roll > .90:
+  if rarity_roll > .75:
     item_rarity = ITEM_RARITY.RARE
     rare_prefix = random.choice(dict.keys((RARE_PREFIX_LIST)))
 
-  elif rarity_roll > .70:
+  elif rarity_roll > .10:
     item_rarity = ITEM_RARITY.UNCOMMON
   result += item_rarity # Third Character of the string = rarity
   result += format(item_level, '02d') # 4th and 5th chars = iLvl

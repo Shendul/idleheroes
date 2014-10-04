@@ -273,7 +273,7 @@ class EndQuest(webapp2.RequestHandler):
     hero = ih_user.hero[0].get()
     current_time = datetime.datetime.now()
     time_quested = current_time - hero.quest_time
-    battles_to_simulate = int(time_quested.total_seconds() / 30)
+    battles_to_simulate = int(time_quested.total_seconds() / .1)
     hero_actor = getBattleActorFromHero(hero)
     inventory = hero.inventory.get()
     quest_lvl = hero.quest
@@ -299,11 +299,13 @@ class EndQuest(webapp2.RequestHandler):
       battle_result = getBattleResult(hero_actor, mob_actor, False)
       if battle_result[0]:
         ## victory, so get loot and xp.
-        loot_item = generateRandomItem(hero_actor[ACTOR_STAT.MAGIC_FIND],
-            mob_actor[ACTOR_STAT.ITEM_LEVEL])
+        roll = random.random()
+        if roll > .75:
+          loot_item = generateRandomItem(hero_actor[ACTOR_STAT.MAGIC_FIND],
+              mob_actor[ACTOR_STAT.ITEM_LEVEL])
+          inventory.items.append(loot_item)
         gold = mob_actor[ACTOR_STAT.GOLD] + hero_actor[ACTOR_STAT.GOLD_FIND]
         inventory.gold += gold
-        inventory.items.append(loot_item)
         experience = (mob_actor[ACTOR_STAT.EXP_GAINED] +
             hero_actor[ACTOR_STAT.EXP_BONUS])
         hero.experience += experience

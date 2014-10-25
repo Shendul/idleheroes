@@ -1,0 +1,17 @@
+import PassiveTreeNode
+
+class PassiveTree:
+  """
+    This class holds the root nodes of the Passive Tree, and has utility functions for working with
+    a passive tree.
+  """
+
+  def __init__(self):
+    self.agilityRoot = None ## The agility root node.
+    self.strengthRoot = None ## The strength root node.
+    self.wisdomRoot = None ## The wisdom root node.
+    self.constitutionRoot = None ## The constitution root node.
+
+  ## Add a representation
+  ## Add method to parse a hero's tree from however we represent it in the model.
+  ## Add method

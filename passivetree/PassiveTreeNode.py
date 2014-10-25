@@ -19,5 +19,16 @@ class PassiveTreeNode:
     for node in nodes:
       self.create_link(node)
 
-
+  def pick_node(self, node):
+    ## A node can only be picked if one of the adjacent nodes are picked.
+    invalid = True
+    for link in node.links:
+      if link.isPicked:
+        invalid = False
+        break
+    if invalid:
+      return False
+    
+    self.isPicked = True
+    return True ## We return true here to signal to the caller that the operation was a success.
   

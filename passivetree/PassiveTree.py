@@ -13,7 +13,6 @@ class PassiveTree:
     self.constitutionRoot = None ## The constitution root node.
 
   ## Add method to parse a hero's tree from however we represent it in the model.
-  ## Add method
 
 ## Common Node Attributes
 ## Agility

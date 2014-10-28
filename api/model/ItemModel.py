@@ -35,8 +35,6 @@ class ItemModel(ndb.Model):
   ## See: https://wiki.python.org/moin/UsingPickle
   affixes = ndb.PickleProperty(repeated=True)
 
-  ## Todo: determine if we want starting items to be marked as such (to prevent selling etc...)
-
 class ItemMessage(messages.Message):
   ## Item information properties.
   item_type = messages.StringField(1)

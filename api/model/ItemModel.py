@@ -21,6 +21,7 @@ class ItemModel(ndb.Model):
   slash_resist = ndb.IntegerProperty()
   crush_resist = ndb.IntegerProperty()
   lightning_resist = ndb.IntegerProperty()
+  ice_resist = ndb.IntegerProperty()
   fire_resist = ndb.IntegerProperty()
   encumberance = ndb.IntegerProperty()
 

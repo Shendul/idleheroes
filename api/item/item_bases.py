@@ -12,6 +12,8 @@ def getBaseItem(item_type, tier):
 
 ## The massive set of item bases.
 item_base = {
+
+  ## Begin Weapons
   ITEM_TYPE.ONE_HANDED_SWORD: {
     1: {
       'name': 'Wooden Sword',
@@ -29,6 +31,7 @@ item_base = {
       'name': 'Cloth Cap'
     },
   },
+  ## End light helms
 }
 
 print getBaseItem(ITEM_TYPE.ONE_HANDED_SWORD, 1)

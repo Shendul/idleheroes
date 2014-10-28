@@ -11,13 +11,12 @@ class ItemModel(ndb.Model):
   item_level = ndb.IntegerProperty()
 
   ## weapon type properties
-  weapon_type = ndb.StringProperty()
   action_point_cost = ndb.IntegerProperty()
   min_damage = ndb.IntegerProperty()
   max_damage = ndb.IntegerProperty()
+  auto_attack_damage_type = ndb.StringProperty()
 
   ## armor type properties
-  armor_type = ndb.StringProperty()
   thrust_resist = ndb.IntegerProperty()
   slash_resist = ndb.IntegerProperty()
   crush_resist = ndb.IntegerProperty()
@@ -34,6 +33,8 @@ class ItemModel(ndb.Model):
   ## Affixes are stored as python dictionaries that are pickled.
   ## See: https://wiki.python.org/moin/UsingPickle
   affixes = ndb.PickleProperty(repeated=True)
+
+  ## Todo: determine if we want starting items to be marked as such (to prevent selling etc...)
 
 class ItemMessage(messages.Message):
   ## Item information properties.

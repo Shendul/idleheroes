@@ -3,10 +3,10 @@ from google.appengine.ext import ndb
 from protorpc import messages
 
 class HeroModel(ndb.Model):
-  ## TODO(dreamlane): determine if we need a connection back to the Player.
+  player = ndb.KeyProperty(kind='PlayerModel')
   hero_name = ndb.StringProperty()
 
-  experience = ndb.IntegerProperty()
+  experience = ndb.IntegerProperty(default=0)
   ## The passive tree is a list of passiveTreeNodes by ID.
   passive_tree = ndb.IntegerProperty(repeated=True)
   ## TODO(dreamlane): figure out how we will represent the ability tree? blob?
@@ -20,6 +20,8 @@ class HeroModel(ndb.Model):
   neck = ndb.KeyProperty(kind='ItemModel')
   left_finger = ndb.KeyProperty(kind='ItemModel')
   right_finger = ndb.KeyProperty(kind='ItemModel')
+  main_hand = ndb.KeyProperty(kind='ItemModel')
+  off_hand = ndb.KeyProperty(kind='ItemModel')
 
   ## Items in the hero's inventory
   backpack = ndb.KeyProperty(kind='ItemModel', repeated=True)

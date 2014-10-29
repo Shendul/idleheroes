@@ -4,7 +4,7 @@ from protorpc import messages
 from protorpc import message_types
 from protorpc import remote
 
-from model.PlayerModel import *
+from model.player_model import *
 
 class CreatePlayerCommandRequest(messages.Message):
   """
@@ -32,6 +32,9 @@ class PlayerApi(remote.Service):
                     http_method='POST')
   def create_player(self, request):
     # Check to see if the playername is valid
+    ## TODO: Add bad_words name validation here.  
+    ## TODO: Add illegal_characters name validation here.
+    ## TODO: Add name length validation here.
     players = PlayerModel.query()
     for p in players.fetch():
       if p.player_name == request.player_name:

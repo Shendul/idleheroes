@@ -7,13 +7,14 @@ from protorpc import messages
 from protorpc import message_types
 from protorpc import remote
 
-from model import HeroModel, ItemModel, PlayerModel
+from model.hero_model import *
+from model.item_model import *
+from model.player_model import *
 
 from item.item_rarities import *
 from item.item_types import *
 from item.item_bases import *
 
-HeroModel = HeroModel.HeroModel
 class CreateHeroCommandRequest(messages.Message):
   """
   This class contains the request data model that is sent to the API when the client wants to create
@@ -48,9 +49,11 @@ class HeroApi(remote.Service):
     player = ndb.Key(urlsafe=request.player_key).get()
 
     # Step 2: validate the data (name collision? hacks?)
-    hero_query = HeroModel.query(HeroModel.player == ndb.Key(urlsafe=request.player_key))
-    for h in hero_query:
-      if h.hero_name == request.hero_name:
+    ## TODO: Add bad_words name validation here.
+    ## TODO: Add illegal_characters name validation here.
+    ## TODO: Add name length validation here.
+    for h in player.heroes:
+      if h.get().hero_name == request.hero_name:
         error_message = 'Player already has a hero with that name.'
         return CreateHeroCommandResponse(success=False, error=error_message)
     ## todo: verify that the request.starting_weapon is a legit starting weapon.
@@ -59,7 +62,8 @@ class HeroApi(remote.Service):
     heroModel = HeroModel(
       hero_name=request.hero_name,
       passive_tree=[request.starting_passive_node],
-      main_hand=createStartingWeapon(request.starting_weapon)
+      main_hand=createStartingWeapon(request.starting_weapon),
+      player=player
     )
 
     # Step 4: save the HeroModel and PlayerModel.
@@ -73,7 +77,7 @@ class HeroApi(remote.Service):
 
 def createStartingWeapon(item_type):
   """ Creates a starting weapon of the given type. """
-  weapon = ItemModel.ItemModel()
+  weapon = ItemModel()
   weapon.item_type = item_type
   weapon.item_rarity = ITEM_RARITY.COMMON
 

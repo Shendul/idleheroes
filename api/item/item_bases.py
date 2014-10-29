@@ -157,7 +157,7 @@ item_base = {
   ## Begin Armors
   ITEM_TYPE.LIGHT_HELMET: {
     1: {
-      'name': 'Cloth Cap'
+      'name': 'Cloth Cap',
       'slash_resist': 2,
       'thrust_resist': 2,
       'crush_resist': 2,

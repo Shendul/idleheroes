@@ -1,21 +1,13 @@
 import endpoints
 
-from google.appengine.ext import ndb
-from protorpc import messages
-from protorpc import message_types
-from protorpc import remote
-
 ## apis
 from api import (
-  HeroApi,
-  PlayerApi)
-
-
-## TODO: Move this to it's own file
-
-
+  guild_api,
+  hero_api,
+  player_api)
 
 application = endpoints.api_server([
-    HeroApi.HeroApi,
-    PlayerApi.PlayerApi
+    guild_api.GuildApi,
+    hero_api.HeroApi,
+    player_api.PlayerApi
 ])

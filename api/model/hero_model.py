@@ -25,21 +25,3 @@ class HeroModel(ndb.Model):
 
   ## Items in the hero's inventory
   backpack = ndb.KeyProperty(kind='ItemModel', repeated=True)
-
-class HeroMessage(messages.Message):
-  hero_name = messages.StringField(1)
-  experience = messages.IntegerField(2)
-  passive_tree = messages.IntegerField(3)
-  ## TODO: figure out how to handle the ability tree
-
-  ## Equipped gear
-  head = messages.MessageField('ItemMessage', 4)
-  chest = messages.MessageField('ItemMessage', 5)
-  hands = messages.MessageField('ItemMessage', 6)
-  feet = messages.MessageField('ItemMessage', 7)
-  back = messages.MessageField('ItemMessage', 8)
-  neck = messages.MessageField('ItemMessage', 9)
-  left_finger = messages.MessageField('ItemMessage', 10)
-  right_finger = messages.MessageField('ItemMessage', 11)
-
-  backpack = messages.MessageField('ItemMessage', 12, repeated=True)

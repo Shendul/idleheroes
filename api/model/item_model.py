@@ -1,4 +1,3 @@
-## ItemModel.py
 from google.appengine.ext import ndb
 from protorpc import messages
 
@@ -34,39 +33,3 @@ class ItemModel(ndb.Model):
   ## Affixes are stored as python dictionaries that are pickled.
   ## See: https://wiki.python.org/moin/UsingPickle
   affixes = ndb.PickleProperty(repeated=True)
-
-class ItemMessage(messages.Message):
-  ## Item information properties.
-  item_type = messages.StringField(1)
-  item_rarity = messages.StringField(2)
-  item_name = messages.StringField(3)
-  item_level = messages.IntegerField(4)
-
-  ## weapon type properties
-  weapon_type = messages.StringField(5)
-  action_point_cost = messages.IntegerField(6)
-  min_damage = messages.IntegerField(7)
-  max_damage = messages.IntegerField(8)
-
-  ## armor type properties
-  armor_type = messages.StringField(9)
-  thrust_resist = messages.IntegerField(10)
-  slash_resist = messages.IntegerField(11)
-  crush_resist = messages.IntegerField(12)
-  lightning_resist = messages.IntegerField(13)
-  fire_resist = messages.IntegerField(14)
-  encumberance = messages.IntegerField(15)
-
-  ## other properties
-  level_requirement = messages.IntegerField(16)
-  agility_requirement = messages.IntegerField(17)
-  strength_requirement = messages.IntegerField(18)
-  wisdom_requirement = messages.IntegerField(19)
-
-  ## TODO:figure out if this will work.
-  affixes = messages.MessageField('AffixMessage', 20, repeated=True)
-
-class AffixMessage(messages.Message):
-  affix_type = messages.StringField(1, required=True)
-  min_value = messages.IntegerField(2)
-  max_value = messages.IntegerField(3)

@@ -1,5 +1,3 @@
-## item_rarities.py
-
 class ITEM_RARITY():
 
   COMMON = 'common'

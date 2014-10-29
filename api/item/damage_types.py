@@ -1,5 +1,3 @@
-## damage_types.py
-
 class DAMAGE_TYPE():
   CRUSH = 'crush'
   SLASH = 'slash'

@@ -1,4 +1,3 @@
-## WarModel.py
 from google.appengine.ext import ndb
 from protorpc import messages
 from protorpc import message_types

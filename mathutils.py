@@ -1,4 +1,4 @@
-## mathutils.py Contains useful math functions
+## math_utils.py Contains useful math functions
 
 def getRollFromRange(roll, value_range):
   """

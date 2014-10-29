@@ -1,7 +1,4 @@
-## item_types.py
-
 class ITEM_TYPE():
-
   ## Melee Weapons
   ONE_HANDED_SWORD = '1hsword'
   ONE_HANDED_AXE = '1haxe'

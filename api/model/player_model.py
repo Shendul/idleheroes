@@ -1,4 +1,3 @@
-## PlayerModel.py
 from google.appengine.ext import ndb
 from protorpc import messages
 
@@ -30,4 +29,3 @@ class PlayerMessage(messages.Message):
   stash_capacity = messages.IntegerField(6)
 
   gold = messages.IntegerField(7)
-

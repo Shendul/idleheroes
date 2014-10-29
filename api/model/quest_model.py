@@ -1,4 +1,3 @@
-## QuestModel.py
 from google.appengine.ext import ndb
 from protorpc import messages
 from protorpc import message_types
@@ -34,4 +33,3 @@ class QuestMessage(messages.Message):
 
   max_heroes = messages.IntegerField(6)
   heroes = messages.MessageField('HeroMessage', 7)
-  

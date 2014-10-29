@@ -1,11 +1,7 @@
-## item_bases.py
-
 from damage_types import *
 from item_types import *
 
-"""
-  The item base contains all of the base information for each item type.
-"""
+"""The item base contains all of the base information for each item type."""
 
 def getBaseItem(item_type, tier):
   return item_base[item_type][tier]

@@ -1,4 +1,3 @@
-## GuildApi.py
 import endpoints
 
 from google.appengine.ext import ndb

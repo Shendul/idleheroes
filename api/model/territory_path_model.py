@@ -1,4 +1,3 @@
-## TerritoryPathModel.py
 from google.appengine.ext import ndb
 from protorpc import messages
 
@@ -15,4 +14,3 @@ class TerritoryPathMessage(messages.Message):
   path_type = messages.StringField(2, required=True)
   distance = messages.IntegerField(3, required=True)
   upgrade_level = messages.IntegerField(4)
-  

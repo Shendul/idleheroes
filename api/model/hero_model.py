@@ -1,4 +1,3 @@
-## Hero.py
 from google.appengine.ext import ndb
 from protorpc import messages
 

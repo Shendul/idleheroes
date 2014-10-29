@@ -13,19 +13,7 @@ class PlayerModel(ndb.Model):
   stash_capacity = ndb.IntegerProperty()
 
   gold = ndb.IntegerProperty()
+  premium_currency = ndb.IntegerProperty()
+  total_premium_currency_obtained = ndb.IntegerProperty()
 
   ## TODO: add stuff for monetization, and seasons, and other stuff.
-
-
-
-class PlayerMessage(messages.Message):
-  player_name = messages.StringField(1, required=True)
-  heroes = messages.MessageField('HeroMessage', 2, repeated=True)
-
-  guild = messages.MessageField('GuildMessage', 3)
-  faction = messages.MessageField('FactionMessage', 4)
-
-  stash = messages.MessageField('ItemMessage', 5, repeated=True)
-  stash_capacity = messages.IntegerField(6)
-
-  gold = messages.IntegerField(7)

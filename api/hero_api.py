@@ -38,9 +38,9 @@ class CreateHeroCommandResponse(messages.Message):
 class HeroApi(remote.Service):
 
   @endpoints.method(CreateHeroCommandRequest, CreateHeroCommandResponse,
-                    name='hero.create',
-                    path='hero',
-                    http_method='POST')
+      name='hero.create',
+      path='hero',
+      http_method='POST')
   def create_hero(self, request):
     # Perform the hero creation.
     # Step 1: Get the right player model
@@ -73,6 +73,7 @@ class HeroApi(remote.Service):
 
     # Step 5: return the successful result
     return CreateHeroCommandResponse(success=True)
+
 
 def createStartingWeapon(item_type):
   """ Creates a starting weapon of the given type. """

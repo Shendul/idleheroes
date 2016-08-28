@@ -1,35 +1,35 @@
 from google.appengine.ext import ndb
 from protorpc import messages
 
+class EnhancementModel(ndb.Model):
+  """TODO"""
+
+class ResistModel(ndb.Model):
+  resist_type = ndb.IntegerProperty()
+  resist_amount = ndb.IntegerProperty()
+
 class ItemModel(ndb.Model):
   """This class models an item for storage in the database."""
   ## Item information properties.
-  item_type = ndb.StringProperty()
-  item_rarity = ndb.StringProperty()
-  item_name = ndb.StringProperty()
-  item_level = ndb.IntegerProperty()
+  # Which slot(s) the item belongs to.
+  item_slot = ndb.IntegerProperty()
+  # Type is an integer from constants.py that maps to top level item types like Bow or Chestpiece.
+  item_type = ndb.IntegerProperty()
+  # Grade of item that cooresponds to a material grade, like Steel or Iron.
+  grade = ndb.IntegerProperty()
+  # The Quality of the item from 0% to 100%, where 100% is perfect condition, and 0% is broken.
+  quality = ndb.IntegerProperty()
 
   ## weapon type properties
-  action_point_cost = ndb.IntegerProperty()
-  min_damage = ndb.IntegerProperty()
-  max_damage = ndb.IntegerProperty()
-  auto_attack_damage_type = ndb.StringProperty()
+  ## How much damage the weapon does.
+  power = ndb.IntegerProperty()
 
   ## armor type properties
-  thrust_resist = ndb.IntegerProperty()
-  slash_resist = ndb.IntegerProperty()
-  crush_resist = ndb.IntegerProperty()
-  lightning_resist = ndb.IntegerProperty()
-  ice_resist = ndb.IntegerProperty()
-  fire_resist = ndb.IntegerProperty()
-  encumberance = ndb.IntegerProperty()
+  resist_list = ndb.StructuredProperty(ResistModel, repeated=True)
+  block_chance = ndb.IntegerProperty()
+  dodge_chance_bonus = ndb.IntegerProperty()
 
   ## other properties
   level_requirement = ndb.IntegerProperty()
-  agility_requirement = ndb.IntegerProperty()
-  strength_requirement = ndb.IntegerProperty()
-  wisdom_requirement = ndb.IntegerProperty()
-
-  ## Affixes are stored as python dictionaries that are pickled.
-  ## See: https://wiki.python.org/moin/UsingPickle
-  affixes = ndb.PickleProperty(repeated=True)
+  craftsman = ndb.KeyProperty(kind='HeroModel')
+  enhancement_list = ndb.StructuredProperty(EnhancementModel, repeated=True)

@@ -1,0 +1,196 @@
+## constants.py
+##
+## Where all the magic numbers live
+
+HEALTH_CONSTITUTION_MULTIPLIER = 12
+BASE_CRIT_DAMAGE_MULTIPLIER = 1.5
+BASE_DODGE = 1
+
+""" String mapping for core attributes. """
+STRENGTH = 1
+CONSTITUTION = 2
+AGILITY = 3
+WISDOM = 4
+
+
+""" Integer mapping for Ability enum """
+#TODO
+
+
+""" Integer mapping for TargetType enum """
+# Numbers 1-999 are for enemy targets
+# Numbers 1-9 are for single targets
+ENEMY_SINGLE_FRONTLINE = 1
+ENEMY_SINGLE_BACKLINE = 2
+ENEMY_SINGLE_ANY = 3
+ENEMY_SINGLE_RANDOM = 4
+# Numbers 10-13 are for Lines
+ENEMY_LINE_FRONTLINE = 10
+ENEMY_LINE_ANY = 11
+
+ENEMY_COLUMN_ANY = 14
+
+ENEMY_ALL = 20
+
+
+# Numbers 1000+ are for ally targets
+ALLY_SINGLE_ANY = 1000
+ALLY_SINGLE_RANDOM = 1001
+
+ALLY_ALL = 1010
+
+SINGLE_TARGET_TYPES = [ENEMY_SINGLE_FRONTLINE, ENEMY_SINGLE_BACKLINE,
+                       ENEMY_SINGLE_ANY, ENEMY_SINGLE_RANDOM, ALLY_SINGLE_ANY,
+                       ALLY_SINGLE_RANDOM]
+
+LINE_TARGET_TYPES = [ENEMY_LINE_ANY, ENEMY_LINE_FRONTLINE]
+
+COLUMN_TARGET_TYPES = [ENEMY_COLUMN_ANY]
+
+FULL_GROUP_TARGET_TYPES = [ENEMY_ALL, ALLY_ALL]
+
+
+""" Integer mapping for ClassType enum. """
+ARCHER = 1
+PYROMANCER = 2
+KNIGHT = 3
+PRIEST = 4
+ASSASSIN = 5
+FOOTMAN = 6
+RAIDER = 7
+PALADIN = 8
+BARD = 9
+
+"""Class Intrinsic Property Key Map."""
+SPEED_KEY = "_SPEED"
+CRIT_CHANCE_KEY = "_CRIT_CHANCE"
+
+""" Class Intrinsic Property Dictionary. """
+class_properties = {
+  ## Integer to String mapping.
+  ARCHER: "ARCHER",
+  PYROMANCER: "PYROMANCER",
+  KNIGHT: "KNIGHT",
+  PRIEST: "PRIEST",
+  ASSASSIN: "ASSASSIN",
+  FOOTMAN: "FOOTMAN",
+  RAIDER: "RAIDER",
+  PALADIN: "PALADIN",
+  BARD: "BARD",
+  ## Speed mapping.
+  "ARCHER_SPEED": 100,
+  "PYROMANCER_SPEED": 89,
+  "KNIGHT_SPEED": 85,
+  "PRIEST_SPEED": 80,
+  "ASSASSIN_SPEED": 102,
+  "FOOTMAN_SPEED": 90,
+  "RAIDER_SPEED": 105,
+  "PALADIN_SPEED": 85,
+  "BARD_SPEED": 100,
+  ## Crit Chance Mapping
+  "ARCHER_CRIT_CHANCE": {WISDOM: 0.01, AGILITY: 0.1, STRENGTH: 0},
+  "PYROMANCER_CRIT_CHANCE": {WISDOM: 0.11, AGILITY: 0, STRENGTH: 0},
+  "KNIGHT_CRIT_CHANCE": {WISDOM: 0, AGILITY: 0.02, STRENGTH: 0.05},
+  "PRIEST_CRIT_CHANCE": {WISDOM: 0.04, AGILITY: 0, STRENGTH: 0.01},
+  "ASSASSIN_CRIT_CHANCE": {WISDOM: 0, AGILITY: 0.1, STRENGTH: 0.04},
+  "FOOTMAN_CRIT_CHANCE": {WISDOM: 0, AGILITY: 0.02, STRENGTH: 0.08},
+  "RAIDER_CRIT_CHANCE": {WISDOM: 0, AGILITY: 0.05, STRENGTH: 0.05},
+  "PALADIN_CRIT_CHANCE": {WISDOM: 0.01, AGILITY: 0, STRENGTH: 0.05},
+  "BARD_CRIT_CHANCE": {WISDOM: 0.01, AGILITY: 0.05, STRENGTH: 0},
+}
+
+
+""" Item Type Enum. """
+### Hand Items 1-100 ##
+ONE_HANDED_SWORD = 1
+TWO_HANDED_SWORD = 2
+ONE_HANDED_AXE = 3
+TWO_HANDED_AXE = 4
+SCEPTER = 5
+TWO_HANDED_MACE = 6 # Hammer
+SPEAR = 7
+DAGGER = 8
+MAGIC_STAFF = 9
+BOW = 10
+WEAPON_ITEM_TYPES = range(1, 81)
+
+SHIELD = 81
+
+### Armor Items 101+ ###
+HELMET = 101
+BOOTS = 102
+GLOVES = 103
+CHESTPIECE = 104
+LEGGINGS = 105
+# Update the item types range if adding a new armor type like pauldrons
+ARMOR_ITEM_TYPES = range(HELMET, 106)
+
+
+""" Item Grade Enum. """
+### Woods 1-20 ###
+SOFTWOOD = 1
+HARDWOOD = 2
+IRONWOOD = 3
+MYSTICWOOD = 4
+
+### Stones 21 - 30 ###
+STONE = 21
+GRANITE = 22
+MARBLE = 23
+
+### Gemstones 31 - 40 ###
+QUARTZ = 31
+CRYSTAL = 32
+EMERALD = 33
+DIAMOND = 34
+
+### Cloths 41 - 60 ###
+COTTON = 41
+WOOL = 42
+FUR = 43
+SILK = 44
+
+### Leathers 61 - 80 ###
+LEATHER = 61
+DEERSKIN = 62
+WOLFSKIN = 63
+BEARSKIN = 64
+BEHEMOTHSKIN = 65
+DRAGONSCALE = 70
+
+
+### Metals 81 - 100 ###
+COPPER = 81
+IRON = 82
+STEEL = 83
+TITANIUM = 84
+MITHRIL = 85
+ADAMANTIUM = 86
+
+
+""" Item Attribute Enum. """
+THRUST_RESIST = 1
+CRUSH_RESIST = 2
+SLASH_RESIST = 3
+FIRE_RESIST = 4
+ICE_RESIST = 5
+LIGHTING_RESIST = 6
+POISON_RESIST = 7
+## When adding a resist, be sure to add its number to this list.
+RESIST_TYPE_LIST = [1, 2, 3, 4, 5, 6, 7]
+WEAPON_POWER = 20
+ITEM_QUALITY = 30
+BLOCK_CHANCE = 40
+DODGE_CHANCE_BONUS = 50
+
+
+
+""" Gear Slot Enum. """
+MAIN_HAND = 1
+OFF_HAND = 2
+TWO_HAND = 3
+HEAD = 4
+CHEST = 5
+LEGS = 6
+FEET = 7
+HANDS = 8

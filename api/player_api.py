@@ -31,7 +31,8 @@ class PlayerApi(remote.Service):
                     http_method='POST')
   def create_player(self, request):
     # Check to see if the playername is valid
-    ## TODO: Add bad_words name validation here.  
+    ## TODO: Create common validators, don't make them inline here.
+    ## TODO: Add bad_words name validation here.
     ## TODO: Add illegal_characters name validation here.
     ## TODO: Add name length validation here.
     players = PlayerModel.query()
@@ -44,5 +45,5 @@ class PlayerApi(remote.Service):
     player = PlayerModel(player_name=request.player_name)
     player.put()
     ## Todo: validate that the put worked
-    
+
     return CreatePlayerCommandResponse(success=True)

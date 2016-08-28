@@ -1,4 +1,6 @@
-import endpoints
+#import endpoints
+import os
+print os.environ.get('PYTHONPATH')
 
 ## apis
 from api import (

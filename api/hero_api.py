@@ -22,8 +22,7 @@ class CreateHeroCommandRequest(messages.Message):
   hero_name = messages.StringField(1, required=True)
   ## TODO: dreamlane figure out how to authenticate, and how to get the player_key.
   player_key = messages.StringField(2, required=True)
-  starting_passive_node = messages.IntegerField(3, required=True)
-  starting_weapon = messages.StringField(4, required=True)
+  hero_class = messages.IntegerField(3, required=True)
 
 class CreateHeroCommandResponse(messages.Message):
   """
@@ -55,13 +54,11 @@ class HeroApi(remote.Service):
       if h.get().hero_name == request.hero_name:
         error_message = 'Player already has a hero with that name.'
         return CreateHeroCommandResponse(success=False, error=error_message)
-    ## todo: verify that the request.starting_weapon is a legit starting weapon.
 
     # Step 3: Set up the new hero model
     heroModel = HeroModel(
       hero_name=request.hero_name,
-      passive_tree=[request.starting_passive_node],
-      main_hand=createStartingWeapon(request.starting_weapon),
+      hero_class=request.hero_class,
       player=player
     )
 
@@ -73,20 +70,3 @@ class HeroApi(remote.Service):
 
     # Step 5: return the successful result
     return CreateHeroCommandResponse(success=True)
-
-
-def createStartingWeapon(item_type):
-  """ Creates a starting weapon of the given type. """
-  weapon = ItemModel()
-  weapon.item_type = item_type
-  weapon.item_rarity = ITEM_RARITY.COMMON
-
-  weapon_base = getBaseItem(item_type, 1)
-  weapon.item_name = weapon_base['name']
-  weapon.action_point_cost = weapon_base['action_point_cost']
-  weapon.min_damage = weapon_base['min_damage']
-  weapon.max_damage = weapon_base['max_damage']
-  weapon.auto_attack_damage_type = weapon_base['auto_attack_damage_type']
-  weapon.item_level = 1
-
-  return weapon.put()
